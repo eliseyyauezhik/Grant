@@ -89,7 +89,7 @@
             font-family: var(--font-headings);
             font-size: 1rem;
             color: var(--border-heavy);
-            font-weight: 500;
+            font-weight: 700;
             letter-spacing: 0.1em;
         }
 
@@ -98,14 +98,25 @@
         /* Main slide titles */
         .slide h2 {
             font-family: var(--font-headings);
-            font-size: 2.8rem !important; /* Larger */
-            font-weight: 500; /* Less bold, more elegant */
+            font-size: 3.2rem !important;
+            font-weight: 700;
             margin-bottom: 24px;
             color: var(--text-heading);
             line-height: 1.15;
-            letter-spacing: -0.025em; /* Tighten large headings */
+            letter-spacing: -0.03em;
             position: relative;
-            padding-bottom: 12px;
+            padding-bottom: 16px;
+        }
+        
+        .slide h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-primary), #60a5fa);
+            border-radius: 3px;
         }
         
         /* Subtle underline accent for h2 */
@@ -123,10 +134,10 @@
         /* Subheadings (Section dividers) */
         .slide h3 {
             font-family: var(--font-headings);
-            font-size: 1.6rem !important; /* Larger */
-            font-weight: 400; /* Elegant weight */
-            margin: 32px 0 16px;
-            color: var(--accent-hover);
+            font-size: 1.8rem !important;
+            font-weight: 600;
+            margin: 36px 0 20px;
+            color: var(--accent-primary);
             line-height: 1.3;
             letter-spacing: -0.01em;
         }
@@ -206,7 +217,7 @@
             padding: 10px 20px;
             border-radius: 100px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 700;
             font-family: var(--font-body);
             letter-spacing: 0.01em;
             box-shadow: 0 2px 4px rgba(59, 130, 246, 0.05);
@@ -228,7 +239,7 @@
             font-size: 1.05rem;
             color: var(--text-heading);
             font-family: var(--font-headings);
-            font-weight: 500;
+            font-weight: 700;
         }
 
         .score-bar {
@@ -279,7 +290,7 @@
         th {
             background: #f1f5f9;
             font-family: var(--font-headings);
-            font-weight: 500;
+            font-weight: 700;
             color: var(--text-heading);
             padding: 16px 20px;
             font-size: 1.05rem !important;
@@ -334,7 +345,7 @@
             padding: 12px 28px;
             border-radius: 12px;
             font-family: var(--font-headings);
-            font-weight: 500;
+            font-weight: 700;
             font-size: 0.95rem;
             z-index: 1000;
             box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
@@ -348,7 +359,70 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
         }
-    </style>
+    
+        /* Factor Cards */
+        .factor-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+        .factor-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+        .factor-card .factor-title {
+            font-family: var(--font-headings);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .factor-card p {
+            margin-bottom: 0 !important;
+            font-size: 1.05rem !important;
+        }
+
+        /* Custom Markers for Stages */
+        .stage-list {
+            list-style: none;
+            margin-left: 0 !important;
+            padding-left: 0;
+        }
+        .stage-list li {
+            padding-left: 0 !important;
+            margin-bottom: 16px !important;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .stage-list li::before {
+            content: none !important;
+        }
+        .stage-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: var(--font-headings);
+            font-size: 1.1rem;
+            border: 1px solid #bfdbfe;
+        }
+
+</style>
 
 
     <script>
@@ -389,7 +463,7 @@
                 <p style="color:var(--muted);margin-bottom:24px">Заявка на грант Фонда президентских
                     грантов
                     · 2-й конкурс 2026</p>
-                <h2 style="font-size: 5.5rem !important; font-weight: 500; font-family: var(--font-headings); margin-bottom: 12px; color: var(--text-heading); letter-spacing: -0.04em; line-height: 1: padding-bottom: 0; border: none;">ТехноСтарт</h2>
+                <h2 style="font-size: 5.5rem !important; font-weight: 700; font-family: var(--font-headings); margin-bottom: 12px; color: var(--text-heading); letter-spacing: -0.04em; line-height: 1: padding-bottom: 0; border: none;">ТехноСтарт</h2>
                 <p style="color:#444;max-width:700px;margin:0 auto;">Городские
                     фестивали
                     профессиональных проб по робототехнике<br>для школьников Набережных Челнов</p>
@@ -501,7 +575,7 @@
         </div>
 
         <!-- SLIDE 4b: APPLICANT INFO CARD -->
-        <div class="slide">
+        <div class="slide" style="border-left: 8px solid #d97706; border-radius: 12px 20px 20px 12px;">
             <span class="slide-num">4б</span>
             <p
                 style="color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">
@@ -698,7 +772,7 @@
                 <span class="score-label" style="color:var(--accent)">Балл при внедрении Вариантов
                     (Слайд 4)</span>
                 <div class="score-bar">
-                    <div class="score-fill" style="width:82%;background:#16a34a">~82.0</div>
+                    <div class="score-fill" style="width:82%;background:#16a34a">82.0</div>
                     <div style="position:absolute;top:0;left:68%;bottom:0;width:2px;background:#000;z-index:2">
                     </div>
                 </div>
