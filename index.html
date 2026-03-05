@@ -371,10 +371,16 @@
             }
 
             .slide {
+                min-height: 98vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
                 box-shadow: none;
-                border: 1px solid #ddd;
+                border: none;
+                page-break-after: always;
                 page-break-inside: avoid;
-                margin-bottom: 24px;
+                margin: 0;
+                padding: 10px 0;
             }
 
             tr,
