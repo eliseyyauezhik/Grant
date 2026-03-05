@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>ТехноСтарт — Проект на Президентский грант</title>
     
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,19 +18,23 @@
         }
 
         :root {
-            /* Color Palette for a Government/Tech Grant */
-            --bg-body: #f3f4f6; /* Very subtle gray background */
+            /* Color Palette */
+            --bg-body: #f8fafc;
             --bg-slide: #ffffff;
-            --text-main: #1f2937; /* Very dark gray for soft high contrast */
-            --text-muted: #6b7280;
-            --text-light: #9ca3af;
             
-            --accent-primary: #2563eb; /* Deep reliable blue */
-            --accent-hover: #1d4ed8;
+            --text-main: #334155; /* Softer, highly readable dark slate */
+            --text-heading: #0f172a; /* Deep slate for contrast */
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            
+            --accent-primary: #3b82f6;
+            --accent-hover: #2563eb;
             --accent-light: #eff6ff;
+            --accent-secondary: #0ea5e9;
+            --accent-highlight: #f0f9ff;
             
-            --border-light: #e5e7eb;
-            --border-heavy: #d1d5db;
+            --border-light: #e2e8f0;
+            --border-heavy: #cbd5e1;
             
             /* Typography */
             --font-headings: 'Outfit', system-ui, sans-serif;
@@ -40,14 +45,15 @@
             font-family: var(--font-body);
             background: var(--bg-body);
             color: var(--text-main);
-            
+            line-height: 1.7; /* Increased for modern breathability */
+            letter-spacing: -0.01em; /* Slight tightening for body text reads very premium */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
         /* Container */
         .slides {
-            max-width: 1050px;
+            max-width: 1080px; /* Slightly wider */
             margin: 0 auto;
             padding: 40px 16px 80px;
             display: flex;
@@ -60,87 +66,129 @@
             background: var(--bg-slide);
             border: 1px solid var(--border-light);
             border-radius: 20px;
-            padding: 50px 60px;
+            padding: 50px 65px; /* slightly more inner padding */
             position: relative;
             page-break-inside: avoid;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); /* Soft, premium shadow */
+            box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.08); /* Elegant, diffuse shadow */
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            min-height: 98vh; /* Force them to act like printable A4 pages */
+            justify-content: space-between; /* This helps distribute content to fill the slide! */
+            min-height: 98vh; 
+        }
+
+        /* Group main content to allow justify-content: space-between to work nicely */
+        .slide > *:not(.slide-num) {
+            z-index: 10;
         }
 
         /* Slide Number Indicator */
         .slide-num {
             position: absolute;
-            top: 24px;
-            right: 32px;
+            top: 30px;
+            right: 40px;
             font-family: var(--font-headings);
-            
-            color: var(--text-light);
-            
-            letter-spacing: 0.5px;
+            font-size: 1rem;
+            color: var(--border-heavy);
+            font-weight: 500;
+            letter-spacing: 0.1em;
         }
 
         /* Typography Hierarchy */
+        
+        /* Main slide titles */
         .slide h2 {
             font-family: var(--font-headings);
-             /* Large, bold headers */
-            
+            font-size: 2.8rem !important; /* Larger */
+            font-weight: 500; /* Less bold, more elegant */
             margin-bottom: 24px;
-            color: #111827;
-            
-            letter-spacing: -0.5px;
-        }
-
-        .slide h3 {
-            font-family: var(--font-headings);
-            
-            
-            margin: 28px 0 16px;
-            color: #374151;
-            
+            color: var(--text-heading);
+            line-height: 1.15;
+            letter-spacing: -0.025em; /* Tighten large headings */
+            position: relative;
+            padding-bottom: 12px;
         }
         
-        .slide h4 {
+        /* Subtle underline accent for h2 */
+        .slide h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        /* Subheadings (Section dividers) */
+        .slide h3 {
             font-family: var(--font-headings);
-            
-            
-            margin-bottom: 12px;
-            color: #4b5563;
+            font-size: 1.6rem !important; /* Larger */
+            font-weight: 400; /* Elegant weight */
+            margin: 32px 0 16px;
+            color: var(--accent-hover);
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+        
+        /* Micro-headings (e.g. inside cards/columns) */
+        .slide h4 {
+            font-family: var(--font-body);
+            font-size: 1.15rem !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 14px;
+            color: var(--text-muted);
         }
 
         /* Body Text */
         .slide p,
         .slide li {
-            
-            margin-bottom: 14px;
-            
+            font-size: 1.1rem !important; /* Slightly larger base */
+            margin-bottom: 16px;
+            line-height: 1.75;
             color: var(--text-main);
-            
+            font-weight: 300; /* Light, elegant reading */
+        }
+        
+        /* Emphasized text inside paragraphs */
+        .slide p strong, .slide li strong {
+            font-weight: 600;
+            color: var(--text-heading);
         }
 
         /* Footnotes & Captions */
         .slide .footnote, 
         .slide small,
         .slide .score-footnote {
-            
+            font-size: 0.9rem !important;
             color: var(--text-muted) !important;
-            
+            line-height: 1.5;
+            font-weight: 400;
         }
 
         /* Lists */
         .slide ul {
-            margin-left: 24px;
-            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-bottom: 24px;
+            list-style-type: none; /* Custom markers */
         }
         
         .slide li {
-            padding-left: 6px;
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
         }
         
-        .slide li::marker {
+        .slide li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
             color: var(--accent-primary);
+            font-size: 1.5rem;
+            line-height: 1.1rem;
+            top: 2px;
         }
 
         /* Interactive Elements / Pills */
@@ -152,40 +200,42 @@
         }
 
         .pill {
-            background: var(--accent-light);
-            color: var(--accent-primary);
-            border: 1px solid rgba(37, 99, 235, 0.2);
-            padding: 8px 18px;
+            background: var(--accent-highlight);
+            color: var(--accent-hover);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            padding: 10px 20px;
             border-radius: 100px;
-            
-            
-            font-family: var(--font-headings);
-            letter-spacing: 0.3px;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: var(--font-body);
+            letter-spacing: 0.01em;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.05);
         }
 
         /* Score Bars (Readiness) */
         .score-row {
             display: flex;
             align-items: center;
-            margin-bottom: 16px;
-            padding: 12px 16px;
-            background: #f8fafc;
-            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: var(--bg-body);
+            border-radius: 12px;
             border: 1px solid var(--border-light);
         }
 
         .score-label {
-            min-width: 180px;
-            
-            color: #374151;
+            min-width: 200px;
+            font-size: 1.05rem;
+            color: var(--text-heading);
             font-family: var(--font-headings);
+            font-weight: 500;
         }
 
         .score-bar {
             flex-grow: 1;
-            height: 24px;
-            background: #e2e8f0;
-            border-radius: 12px;
+            height: 28px;
+            background: #cbd5e1;
+            border-radius: 14px;
             overflow: hidden;
             position: relative;
         }
@@ -195,61 +245,68 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            padding-right: 12px;
+            padding-right: 16px;
             color: white;
-            
-            
-            font-family: var(--font-headings);
-            transition: width 1s ease-out;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: var(--font-body);
         }
 
         /* Tags */
         .tag {
-            
+            font-size: 0.75rem !important;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            
-            font-family: var(--font-headings);
+            letter-spacing: 0.08em;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: var(--font-body);
         }
-        .tag-green { background: #dcfce7; color: #166534; }
+        .tag-green { background: #dcfce7; color: #15803d; }
 
         /* Tables */
         table {
             width: 100%;
-            border-collapse: separate; /* Changed for rounded corners */
+            border-collapse: separate; 
             border-spacing: 0;
-            margin-top: 16px;
-            border-radius: 12px;
+            margin-top: 20px;
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
         
         th {
-            background: #f8fafc;
+            background: #f1f5f9;
             font-family: var(--font-headings);
-            
-            color: #1e293b;
-            padding: 14px 16px;
-            
-            border-bottom: 2px solid var(--border-light);
+            font-weight: 500;
+            color: var(--text-heading);
+            padding: 16px 20px;
+            font-size: 1.05rem !important;
+            border-bottom: 2px solid var(--border-heavy);
             text-align: left;
         }
         
         td {
-            padding: 14px 16px;
+            padding: 16px 20px;
             border-bottom: 1px solid var(--border-light);
-            
+            font-size: 1rem !important;
             vertical-align: top;
-            color: #475569;
+            color: var(--text-main);
+            font-weight: 300;
         }
         
         tr:last-child td {
             border-bottom: none;
         }
         
-        /* Alternating row colors off by default, relies on inline styles. But we can override them to look better */
+        /* Layout Grids */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 10px;
+        }
         
         /* Print Styles */
         @media print {
@@ -260,7 +317,7 @@
                 border: none; 
                 min-height: 100vh;
                 margin-bottom: 0;
-                padding: 1cm;
+                padding: 1.5cm;
                 page-break-after: always;
                 border-radius: 0;
             }
@@ -270,28 +327,29 @@
         /* Download Button */
         .download-btn {
             position: fixed;
-            top: 24px;
-            right: 24px;
+            top: 30px;
+            right: 30px;
             background: var(--accent-primary);
             color: white !important;
-            padding: 12px 24px;
-            border-radius: 10px;
+            padding: 12px 28px;
+            border-radius: 12px;
             font-family: var(--font-headings);
-            
-            
+            font-weight: 500;
+            font-size: 0.95rem;
             z-index: 1000;
             box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
             text-decoration: none;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
         }
 
         .download-btn:hover {
-            background: var(--accent-hover);
+            background: var(--accent-heading);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
         }
     </style>
+
 
     <script>
         function toggleSrc(el) { el.closest('.added').querySelector('.src-popup').classList.toggle('open') }
@@ -331,7 +389,7 @@
                 <p style="color:var(--muted);margin-bottom:24px">Заявка на грант Фонда президентских
                     грантов
                     · 2-й конкурс 2026</p>
-                <h2 style="font-size: 4.5rem !important; margin-bottom: 8px; color: #111827; letter-spacing: -2px;">ТехноСтарт</h2>
+                <h2 style="font-size: 5.5rem !important; font-weight: 500; font-family: var(--font-headings); margin-bottom: 12px; color: var(--text-heading); letter-spacing: -0.04em; line-height: 1: padding-bottom: 0; border: none;">ТехноСтарт</h2>
                 <p style="color:#444;max-width:700px;margin:0 auto;">Городские
                     фестивали
                     профессиональных проб по робототехнике<br>для школьников Набережных Челнов</p>
@@ -645,7 +703,7 @@
                     </div>
                 </div>
             </div>
-            <p style="color:var(--muted);text-align:left;margin-top:4px">Черная линия — проходной балл (68).</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 8px;">Черная линия — проходной балл (68).</p>
             <p style="text-align:left;margin-top:16px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                 <strong>Предварительная Оценка в соответствие с 10 критериями ФПГ.</strong> Проходной балл (1–5 млн руб.): <strong>68 / 100</strong>.
             </p>
