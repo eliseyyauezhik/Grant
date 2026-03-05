@@ -43,31 +43,37 @@
             background: var(--slide-bg);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 48px 52px;
+            padding: 40px 48px;
             margin-bottom: 24px;
             position: relative;
             page-break-inside: avoid;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02)
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 98vh;
         }
 
         .slide h2 {
-            font-size:1.58rem;
+            font-size: 2.2rem !important;
             font-weight: 700;
-            margin-bottom: 16px;
-            color: #111
+            margin-bottom: 20px;
+            color: #111;
+            line-height: 1.2;
         }
 
         .slide h3 {
-            font-size:1.16rem;
+            font-size: 1.5rem !important;
             font-weight: 600;
-            margin: 20px 0 8px;
-            color: #333
+            margin: 20px 0 12px;
+            color: #333;
         }
 
         .slide p,
         .slide li {
-            font-size:1.0rem;
-            margin-bottom: 6px
+            font-size: 1.25rem !important;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .slide ul {
@@ -371,18 +377,19 @@
             }
 
             .slide {
-                min-height: 99vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                box-shadow: none;
-                border: none;
-                page-break-after: always;
-                page-break-inside: avoid;
-                margin: 0;
-                padding: 24px 12px;
-                gap: 14px;
-            }
+            background: var(--slide-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 48px;
+            margin-bottom: 24px;
+            position: relative;
+            page-break-inside: avoid;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 98vh;
+        }
 
             tr,
             .score-row,
@@ -517,6 +524,12 @@
                     №803</a> — интел. труд&nbsp;&middot; Минпромторг РФ (дефицит 2&thinsp;млн инженеров)
             </p>
 
+            </div>
+
+        <!-- SLIDE 3b: PROBLEM CONT. -->
+        <div class="slide">
+            <span class="slide-num">3б</span>
+            <h2>Проблема: вызов технологического суверенитета (Часть 2)</h2>
             <h3>Факторы, препятствующие формированию инженерного мышления</h3>
             <ul>
                 <li><strong>Технологические («клиповое мышление»):</strong> Беспрецедентная информационная
@@ -587,7 +600,7 @@
             <h2 style="margin-bottom:6px;">Гимназия им. В.В. Давыдова</h2>
             <p style="color:var(--muted);font-size:0.93rem;margin-bottom:16px;">Первая частная школа Республики
                 Татарстан
-                (осн. 1990) · <a href="https://gimnazia-davydova.ru" target="_blank">gimnazia-davydova.ru</a></p>
+                (осн. 1990)</p>
             <!-- SPLIT CONTAINER -->
             <div style="display: flex; gap: 32px; align-items: stretch; flex-grow: 1;">
 
@@ -636,9 +649,10 @@
                 </div>
 
                 <!-- RIGHT COLUMN -->
-                <div style="flex: 0 0 380px; display: flex; align-items: stretch;">
+                <div style="flex: 0 0 380px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <a href="https://gimnazia-davydova.ru" target="_blank" style="font-weight: 600;">gimnazia-davydova.ru</a>
                     <img src="gymnasium_photo.png" alt="Фото Гимназии им. В.В. Давыдова"
-                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
+                        style="width: 100%; flex-grow: 1; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
                 </div>
 
             </div>
@@ -699,6 +713,13 @@
                     <p style="font-size:0.84rem;color:var(--muted);margin-top:6px;">По 50 участников на каждом · пробы +
                         встречи с инженерами + деловые игры</p>
                 </div>
+                </div>
+        </div>
+
+        <!-- SLIDE: STAGES OVERVIEW CONT. -->
+        <div class="slide">
+            <h2 style="margin-bottom:20px;">Краткая дорожная карта (Часть 2)</h2>
+            <div style="display:flex;flex-direction:column;gap:12px;">
                 <!-- Этап 3 -->
                 <div
                     style="border-left:4px solid #10b981;padding:10px 16px;background:#f0fdf4;border-radius:0 8px 8px 0;">
@@ -739,6 +760,13 @@
                             пособие</span>
                     </div>
                 </div>
+                </div>
+        </div>
+
+        <!-- SLIDE: STAGES OVERVIEW CONT. 2 -->
+        <div class="slide">
+            <h2 style="margin-bottom:20px;">Краткая дорожная карта (Часть 3)</h2>
+            <div style="display:flex;flex-direction:column;gap:12px;">
                 <!-- Этап 5 -->
                 <div
                     style="border-left:4px solid #ec4899;padding:10px 16px;background:#fdf2f8;border-radius:0 8px 8px 0;">
@@ -836,7 +864,7 @@
                     </h3>
                     <p style="font-size:0.9rem; color:#ca8a04; margin-bottom:6px;"><strong>Слабое место:</strong>
                         Нулевой задокументированный вклад в черновиках.</p>
-                    <p style="font-size:0.93rem; line-height:1.5;">А. Оцификровать имеющиеся ресурсы: рыночная
+                    <p style="font-size:0.93rem; line-height:1.5;">А. Оцифровать имеющиеся ресурсы: рыночная
                         стоимость
                         аренды помещений Гимназии + волонтёрский труд наставников.<br>Б. Гарантийное письмо от ПАО
                         «КАМАЗ»: мерч, расходники, экскурсии, время инженеров-наставников.</p>
@@ -990,6 +1018,32 @@
                                     <strong>200 уч.</strong> за цикл
                                 </td>
                             </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- APPENDIX SLIDE 2 -->
+            <div class="slide" style="box-shadow:none;border:1px solid var(--border);">
+                <h2>План мероприятий: 5 этапов (Часть 2)</h2>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;font-size:0.88rem;margin-top:12px;min-width:600px;">
+                        <thead>
+                            <tr style="background:#f4f1eb;">
+                                <th style="padding:8px 12px;text-align:left;border-bottom:2px solid #ddd;width:22%;">
+                                    Этап
+                                </th>
+                                <th style="padding:8px 12px;text-align:left;border-bottom:2px solid #ddd;width:15%;">
+                                    Сроки
+                                </th>
+                                <th style="padding:8px 12px;text-align:left;border-bottom:2px solid #ddd;">Мероприятия
+                                </th>
+                                <th style="padding:8px 12px;text-align:left;border-bottom:2px solid #ddd;width:25%;">
+                                    Ожидаемый
+                                    результат</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <tr style="background:#f0fdf4;">
                                 <td style="padding:8px 12px;border-bottom:1px solid #b2d8c2;font-weight:600;color:#14532d;"
                                     rowspan="3">Этап 3<br>Подведение итогов</td>
@@ -1350,7 +1404,7 @@
             };
 
             const root = ReactDOM.createRoot(document.getElementById('react-infographic-root'));
-    rograph
+            root.render(<InfographicDashboard />);
         </script>
     </div>
 </body>
