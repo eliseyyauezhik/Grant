@@ -102,9 +102,9 @@
         }
 
         .pill {
-            background: #fdf6ec;
-            border: 1px solid #e8d5b0;
-            color: #6b4f20;
+            background: #fff6e0;
+            border: 1px solid #fcdb94;
+            color: #8c5b16;
             border-radius: 20px;
             padding: 7px 16px;
             font-size: .88rem;
@@ -354,11 +354,67 @@
         }
 
         @media print {
+            @page {
+                size: landscape;
+                margin: 8mm;
+            }
+
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                zoom: 0.80;
+            }
+
+            .slides {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
             .slide {
                 box-shadow: none;
                 border: 1px solid #ddd;
-                page-break-inside: avoid
+                page-break-inside: avoid;
+                margin-bottom: 24px;
             }
+
+            tr,
+            .score-row,
+            h3,
+            h4,
+            .bg-white {
+                page-break-inside: avoid !important;
+            }
+
+            .download-btn {
+                display: none !important;
+            }
+        }
+
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1a56db;
+            color: #fff !important;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: .85rem;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(26, 86, 219, 0.25);
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background: #1e40af;
+            color: #fff !important;
+            transform: translateY(-2px);
+        }
+
+        .download-btn::after {
+            content: " ↓" !important;
+            opacity: 1 !important;
         }
 
         @media(max-width:700px) {
@@ -399,6 +455,7 @@
 </head>
 
 <body>
+    <a href="technostart_presentation.pdf" download class="download-btn">Скачать PDF</a>
     <div class="slides">
 
         <!-- SLIDE 1: TITLE -->
