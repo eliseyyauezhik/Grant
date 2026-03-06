@@ -93,12 +93,12 @@
         /* Typography Hierarchy */
         .slide h2 {
             font-family: var(--font-headings);
-            /* Large, bold headers */
-
+            font-size: 3rem;
+            font-weight: 600;
             margin-bottom: 24px;
             color: #111827;
-
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            line-height: 1.1;
         }
 
         .slide h3 {
@@ -379,7 +379,7 @@
                 <p style="color:var(--muted);margin-bottom:24px">Заявка на грант Фонда президентских
                     грантов
                     · 2-й конкурс 2026</p>
-                <h2 style="font-size: 4.5rem !important; margin-bottom: 8px; color: #111827; letter-spacing: -2px;">
+                <h2 style="font-size: 4rem !important; font-weight: 700; margin-bottom: 8px; color: #111827; letter-spacing: -2px;">
                     ТехноСтарт</h2>
                 <p style="color:#444;max-width:700px;margin:0 auto;">Городские
                     фестивали
@@ -459,16 +459,18 @@
         <!-- SLIDE 4: SOLUTION -->
         <div class="slide">
             <span class="slide-num">4</span>
-            <h2 style="font-size: 2.5rem; margin-bottom: 24px; color: #111827; letter-spacing: -1px;">Решение: формат проекта</h2>
-            <p>Цикл из <strong>4 городских фестивалей профессиональных проб</strong> по робототехнике на базе школ
+            <h2>Решение: Фестивали профессиональных проб</h2>
+            <p>Цикл из <strong>4 городских фестивалей</strong> по робототехнике на базе школ
                 г.&thinsp;Набережные Челны. Каждый фестиваль — 50 участников, 8–10 кл., практика + живой контакт с
                 индустрией.</p>
 
             <h3>Ключевые активности</h3>
+            <div class="pill-row" style="margin-bottom:12px;">
+                <div class="pill">🔧 Пробы: механика, электроника, программирование, 3d моделирование и печать</div>
+            </div>
             <div class="pill-row">
-                <div class="pill">🔧 Пробы: механика, электроника, программирование</div>
-                <div class="pill">🏭 Встречи с инженерами реальных производств</div>
                 <div class="pill">🎯 Деловые игры: карьерный путь</div>
+                <div class="pill">🏭 Встречи с инженерами реальных производств</div>
             </div>
 
             <div
@@ -500,11 +502,11 @@
             <!-- LEFT COLUMN (TEXT) -->
             <div style="flex: 1; padding: 50px 40px 50px 60px; display: flex; flex-direction: column; justify-content: flex-start;">
                 <span class="slide-num" style="top: 24px; right: auto; left: 32px;">4б</span>
-                <p style="color:var(--accent-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px; margin-top:20px;">
+                <p style="color:var(--accent-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px; margin-top:20px; font-size:1.2rem; font-weight:700;">
                     Исполнитель проекта</p>
-                <h2 style="margin-bottom:6px;">Гимназия им. В.В. Давыдова</h2>
+                <h2 style="margin-bottom:6px; font-size:3.5rem; font-weight:800; line-height:1.1;">Гимназия им. В.В. Давыдова</h2>
                 <p style="color:var(--muted);margin-bottom:20px;">Первая частная школа Республики
-                    Татарстан (осн. 1990)</p>
+                    Татарстан (осн. 1990) <span style="margin:0 10px;">|</span> <a href="https://gimnazia-davydova.ru" target="_blank" style="font-weight:600;">gimnazia-davydova.ru</a></p>
 
                 <h3 style="margin-top: 0;">Сквозная методология: теоретическое и проектное мышление</h3>
                 <p>35-летний опыт системы развивающего обучения Эльконина — Давыдова.
@@ -533,8 +535,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <a href="https://gimnazia-davydova.ru" target="_blank" style="margin-top:20px; font-weight:500;">gimnazia-davydova.ru</a>
             </div>
 
             <!-- RIGHT COLUMN (IMAGE FULL HEIGHT) -->
@@ -560,9 +560,7 @@
                 <!-- Card 1 -->
                 <div
                     style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <div
-                        style="width: 60px; height: 60px; border-radius: 50%; background: #e0f2fe; color: #0369a1; display: flex; align-items: center; justify-content: center; font-family: var(--font-headings); font-size: 1.4rem; font-weight: bold; flex-shrink: 0;">
-                        ТС</div>
+                    <img src="Татьяна Александровна.jpg" alt="Татьяна Сунгатуллина" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-light);">
                     <div>
                         <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #111827;">Татьяна Сунгатуллина</h3>
                         <p style="margin: 0 0 8px; font-size: 0.9rem; color: #d97706; font-weight: 500;">Руководитель
@@ -576,9 +574,7 @@
                 <!-- Card 2 -->
                 <div
                     style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <div
-                        style="width: 60px; height: 60px; border-radius: 50%; background: #fffbeb; color: #b45309; display: flex; align-items: center; justify-content: center; font-family: var(--font-headings); font-size: 1.4rem; font-weight: bold; flex-shrink: 0;">
-                        ВП</div>
+                    <img src="Вера Анатольевна.jpg" alt="Вера Патракеева" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-light);">
                     <div>
                         <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #111827;">Вера Патракеева</h3>
                         <p style="margin: 0 0 8px; font-size: 0.9rem; color: #0284c7; font-weight: 500;">Зам. директора
@@ -592,9 +588,7 @@
                 <!-- Card 3 -->
                 <div
                     style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <div
-                        style="width: 60px; height: 60px; border-radius: 50%; background: #e0f2fe; color: #0369a1; display: flex; align-items: center; justify-content: center; font-family: var(--font-headings); font-size: 1.4rem; font-weight: bold; flex-shrink: 0;">
-                        ЕС</div>
+                    <img src="Сибгатуллина Елена Владимировна.jfif" alt="Елена Сибгатуллина" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-light);">
                     <div>
                         <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #111827;">Елена Сибгатуллина</h3>
                         <p style="margin: 0 0 8px; font-size: 0.9rem; color: #d97706; font-weight: 500;">Зам. директора
@@ -608,9 +602,7 @@
                 <!-- Card 4 -->
                 <div
                     style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <div
-                        style="width: 60px; height: 60px; border-radius: 50%; background: #fffbeb; color: #b45309; display: flex; align-items: center; justify-content: center; font-family: var(--font-headings); font-size: 1.4rem; font-weight: bold; flex-shrink: 0;">
-                        ЭД</div>
+                    <img src="Деняпкина Эльза Маратовна.jfif" alt="Эльза Деняпкина" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-light);">
                     <div>
                         <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #111827;">Эльза Деняпкина</h3>
                         <p style="margin: 0 0 8px; font-size: 0.9rem; color: #0284c7; font-weight: 500;">Зам. директора
@@ -623,16 +615,14 @@
 
                 <!-- Card 5 (Repina) -->
                 <div
-                    style="background: #f0f9ff; border: 2px solid #bae6fd; border-radius: 12px; padding: 24px; display: flex; gap: 20px; align-items: start; grid-column: 1 / -1; margin-top: 8px;">
-                    <div
-                        style="width: 72px; height: 72px; border-radius: 50%; background: #38bdf8; color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-headings); font-size: 1.8rem; font-weight: bold; flex-shrink: 0; box-shadow: 0 4px 12px rgba(56,189,248,0.3);">
-                        ОР</div>
+                    style="background: #f0f9ff; border: 2px solid #bae6fd; border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
+                    <img src="Репина Ольга Константиновна.png" alt="Ольга Репина" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #0284c7; box-shadow: 0 4px 12px rgba(56,189,248,0.3);">
                     <div>
-                        <h3 style="margin: 0 0 4px; font-size: 1.25rem; color: #0f172a;">Ольга Репина</h3>
-                        <p style="margin: 0 0 8px; font-size: 1rem; color: #0284c7; font-weight: 600;">Научный
-                            консультант / Эксперт-методист</p>
+                        <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #0f172a;">Ольга Репина</h3>
+                        <p style="margin: 0 0 8px; font-size: 0.9rem; color: #0284c7; font-weight: 600;">Научный
+                            консульт. / Эксперт</p>
                         <p
-                            style="margin: 0 0 12px; font-size: 0.9rem; color: #334155; line-height: 1.5; max-width: 800px;">
+                            style="margin: 0 0 12px; font-size: 0.85rem; color: #334155; line-height: 1.4;">
                             Кандидат психологических наук, директор Центра компетенций АНО ДПО «Академия менеджмента».
                             Спикер, эксперт Университета Талантов. Автор научных публикаций по педагогике и оценке
                             профессиональных компетенций в базе PsyJournals.ru.</p>
