@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
         * {
@@ -38,7 +38,7 @@
             --border-heavy: #d1d5db;
 
             /* Typography */
-            --font-headings: 'Outfit', system-ui, sans-serif;
+            --font-headings: 'Manrope', system-ui, sans-serif;
             --font-body: 'Inter', system-ui, sans-serif;
         }
 
@@ -93,17 +93,167 @@
         /* Typography Hierarchy */
         .slide h2 {
             font-family: var(--font-headings);
-            font-size: 3rem;
-            font-weight: 600;
-            margin-bottom: 24px;
+            font-size: 2.2rem;
+            font-weight: 500;
+            margin-bottom: 18px;
             color: #111827;
-            letter-spacing: -1px;
-            line-height: 1.1;
+            letter-spacing: -0.35px;
+            line-height: 1.2;
         }
 
         .slide h3 {
             font-family: var(--font-headings);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 24px 0 14px;
+            color: #374151;
+        }
 
+        .problem-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .problem-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+
+        .problem-card h3 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            color: #0f172a;
+        }
+
+        .sources-banner {
+            background: #fffbeb;
+            border: 1px solid #f1d79d;
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #6b5a2b;
+            margin-top: 10px;
+        }
+
+        .obstacle-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .obstacle-card {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-left: 4px solid #38bdf8;
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .obstacle-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: #e0f2fe;
+            color: #0369a1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .modern-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0f4d7a;
+            background: #e8f4ff;
+            border: 1px solid #b9ddfb;
+        }
+
+        .pill-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .team-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 210px;
+        }
+
+        .team-top {
+            display: grid;
+            grid-template-columns: 68px 1fr;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .team-avatar {
+            width: 68px;
+            height: 68px;
+            border-radius: 999px;
+            object-fit: cover;
+            object-position: center 25%;
+            border: 2px solid var(--border-light);
+            background: #fff;
+        }
+
+        .team-name {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #111827;
+            line-height: 1.25;
+        }
+
+        .team-role {
+            margin: 2px 0 0;
+            font-size: 0.9rem;
+            color: #0284c7;
+            font-weight: 600;
+        }
+
+        .team-achievements {
+            margin: 0;
+            font-size: 0.86rem;
+            color: #475569;
+            line-height: 1.45;
+        }
+
+        @media (max-width: 860px) {
+            .problem-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .slide h2 {
+                font-size: 1.75rem;
+                font-weight: 500;
+            }
+        }
+
+        .slide h3 {
+            font-family: var(--font-headings);
 
             margin: 28px 0 16px;
             color: #374151;
@@ -112,7 +262,6 @@
 
         .slide h4 {
             font-family: var(--font-headings);
-
 
             margin-bottom: 12px;
             color: #4b5563;
@@ -166,7 +315,6 @@
             padding: 8px 18px;
             border-radius: 100px;
 
-
             font-family: var(--font-headings);
             letter-spacing: 0.3px;
         }
@@ -205,7 +353,6 @@
             justify-content: flex-end;
             padding-right: 12px;
             color: white;
-
 
             font-family: var(--font-headings);
             transition: width 1s ease-out;
@@ -336,30 +483,8 @@
         }
     </style>
 
-    <script>
-        function toggleSrc(el) { el.closest('.added').querySelector('.src-popup').classList.toggle('open') }
-        function toggleCard(el) {
-            const isActive = el.classList.contains('active');
-            // Close siblings
-            const siblings = el.parentElement.querySelectorAll('.alt-card');
-            siblings.forEach(s => s.classList.remove('active'));
-            // Toggle current
-            if (!isActive) el.classList.add('active');
-        }
-    </script>
 
-    <!-- Require React, ReactDOM, Babel, Tailwind -->
-    <script>
-        tailwind = {
-            corePlugins: {
-                preflight: false,
-            }
-        }
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
 </head>
 
 <body>
@@ -368,6 +493,10 @@
             Скачать PDF (черновик 1)</a>
         <a href="презентация к заявке/ПРЕЗЕНТАЦИЯ ГРАНТ ЧЕРНОВИК 2.pdf" download class="download-btn download-btn-2">⬇
             Скачать PDF (черновик 2)</a>
+        <a href="deep_research_2026.html" class="download-btn">Открыть: Аналитика и источники (2026)</a>
+        <a href="grant_application_additions_2026.html" class="download-btn download-btn-2">Открыть: Дополнения к заявке</a>
+        <a href="grant_evaluation.html" class="download-btn">Открыть: Экспертная оценка</a>
+        <a href="technostart_presentation.html" class="download-btn download-btn-2">Открыть: Альтернативная версия</a>
     </div>
     <div class="slides">
 
@@ -379,7 +508,7 @@
                 <p style="color:var(--muted);margin-bottom:24px">Заявка на грант Фонда президентских
                     грантов
                     · 2-й конкурс 2026</p>
-                <h2 style="font-size: 4rem !important; font-weight: 700; margin-bottom: 8px; color: #111827; letter-spacing: -2px;">
+                <h2 style="font-size: 3rem !important; font-weight: 600; margin-bottom: 8px; color: #111827; letter-spacing: -2px;">
                     ТехноСтарт</h2>
                 <p style="color:#444;max-width:700px;margin:0 auto;">Городские
                     фестивали
@@ -391,111 +520,111 @@
                     г. Набережные Челны, Республика Татарстан</p>
             </div>
         </div>
-
-
-
-        <!-- SLIDE 3: PROBLEM -->
+                <!-- SLIDE 3: PROBLEM -->
         <div class="slide">
             <span class="slide-num">3</span>
-            <h2>Проблема</h2>
-            <p><strong>Глобальные тренды:</strong> Развитие технологий (робототехника, нейросети, автоматизированные
-                линии) радикально меняет формат работы с техникой. На первый план выходит ультимативное требование к
-                <strong>качеству инженерного мышления</strong> — способности не просто обслуживать, но и проектировать,
-                управлять сложными интеллектуальными системами. Формирование такого мышления со школьной скамьи сегодня
-                — ключевое условие сохранения технологического суверенитета страны.
-            </p>
-            <p style="margin-top:8px;margin-bottom:16px;"><strong>Региональная потребность:</strong> Современная
-                промышленность испытывает колоссальный кадровый голод. Это критично для крупных индустриальных кластеров
-                — Набережных Челнов, Елабуги (ОЭЗ «Алабуга»), всего Татарстана и России в целом. Экономика региона,
-                опирающаяся на промышленных гигантов (таких как ПАО «КАМАЗ»), остро нуждается в поколениях инженеров с
-                развитым системным мышлением.</p>
+            <h2>Проблема: вызов технологического суверенитета</h2>
 
-            <div class="footnote"
-                style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px 16px; margin-top:20px;">
-                <p
-                    style=" color:#6b6b65; margin-top:-10px; margin-bottom:14px;  background:#fffbeb; border-radius:6px; padding:7px 12px;">
-                    <strong style="color:#555;">Источники:</strong>
-                    <a href="http://kremlin.ru/acts/bank/50542" target="_blank"
-                        style="color:#6b6b65;text-decoration:none;border-bottom:1px dashed #aaa;">Указ №309, 2024</a> —
-                    цель
-                    100 роботов / 10 000 работников к 2030&thinsp;г.&nbsp;&middot;&nbsp;
-                    <a href="https://www.government.ru/rugovclassifier/843/events/" target="_blank"
-                        style="color:#6b6b65;text-decoration:none;border-bottom:1px dashed #aaa;">Нацпроект «Средства
-                        производства»</a> — 350&thinsp;млрд руб.&nbsp;&middot;&nbsp;
-                    <a href="http://www.kremlin.ru/acts/bank/50684" target="_blank"
-                        style="color:#6b6b65;text-decoration:none;border-bottom:1px dashed #aaa;">Стратегия НТР, Указ
-                        №803</a> — интел. труд&nbsp;&middot; Минпромторг РФ (дефицит 2&thinsp;млн инженеров)
-                </p>
+            <div class="problem-cards">
+                <div class="problem-card">
+                    <h3>Глобальные тренды</h3>
+                    <p>Развитие робототехники, ИИ и автоматизации резко повышает требования к инженерному мышлению: сегодня важно не только обслуживать, но и проектировать сложные системы.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Региональная потребность</h3>
+                    <p>Промышленность Набережных Челнов и Татарстана испытывает кадровый дефицит. Для устойчивого развития региона требуется ранняя подготовка школьников к инженерным трекам.</p>
+                </div>
             </div>
 
+            <div class="sources-banner">
+                <p style="margin:0;"><strong>Источники:</strong> Минпромторг РФ (дефицит 2&thinsp;млн инженеров) &middot; <a href="http://kremlin.ru/acts/bank/50542" target="_blank" style="color:#6b5a2b;border-bottom:1px dashed #9f8b5a;text-decoration:none;">Указ №309, 2024</a> &middot; <a href="https://www.government.ru/rugovclassifier/843/events/" target="_blank" style="color:#6b5a2b;border-bottom:1px dashed #9f8b5a;text-decoration:none;">Нацпроект «Средства производства»</a> &middot; <a href="http://www.kremlin.ru/acts/bank/50684" target="_blank" style="color:#6b5a2b;border-bottom:1px dashed #9f8b5a;text-decoration:none;">Стратегия НТР, Указ №803</a></p>
+            </div>
         </div>
-
-        <!-- SLIDE 3b: PROBLEM CONT. -->
+                <!-- SLIDE 3b: PROBLEM CONT. -->
         <div class="slide">
             <span class="slide-num">3б</span>
-            <h2>Проблема: Препятствия инженерному мышлению</h2>
-            <ul>
-                <li><strong>Технологические («клиповое мышление»):</strong> Беспрецедентная информационная
-                    перегрузка и
-                    постоянный скроллинг коротких видео (Reels, TikTok) вызывают когнитивное истощение. У молодежи
-                    формируется фрагментарное восприятие: возникают критические трудности с длительной
-                    концентрацией,
-                    глубоким анализом и осмыслением сложных систем (навык Deep Work).</li>
-                <li><strong>Социальные:</strong> Информационный вакуум в семьях (незнание перспектив работы на
-                    <em>чистых</em> высокотехнологичных производствах) и устаревшие стереотипы общества («завод —
-                    это
-                    непрестижно»).
-                </li>
-                <li><strong>Образовательные:</strong> Дефицит созидательного опыта. Большинство школьников не имеют
-                    возможности работать руками, конструировать и видеть физический результат интеллектуального
-                    труда.
-                </li>
-            </ul>
+            <h2>Проблема: препятствия инженерному мышлению</h2>
 
+            <div class="obstacle-grid">
+                <article class="obstacle-card">
+                    <span class="obstacle-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h14v4H5zM5 10h9v10H5zM16 10h3v10h-3z" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </span>
+                    <div>
+                        <p style="margin:0 0 6px;"><strong>Технологические («клиповое мышление»)</strong></p>
+                        <p style="margin:0;">Информационная перегрузка и короткий контент снижают глубину концентрации, затрудняя системный анализ и длительную интеллектуальную работу.</p>
+                    </div>
+                </article>
 
+                <article class="obstacle-card" style="border-left-color:#f59e0b;">
+                    <span class="obstacle-icon" style="background:#fff7ed;color:#b45309;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19h16M7 19V9a5 5 0 0 1 10 0v10" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </span>
+                    <div>
+                        <p style="margin:0 0 6px;"><strong>Социальные</strong></p>
+                        <p style="margin:0;">Стереотип «завод = непрестижно» и слабая информированность семей о современных высокотехнологичных производствах и карьерных траекториях.</p>
+                    </div>
+                </article>
 
+                <article class="obstacle-card" style="border-left-color:#7c3aed;">
+                    <span class="obstacle-icon" style="background:#f5f3ff;color:#5b21b6;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4l8 4-8 4-8-4 8-4zm-8 8l8 4 8-4M4 16l8 4 8-4" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </span>
+                    <div>
+                        <p style="margin:0 0 6px;"><strong>Образовательные</strong></p>
+                        <p style="margin:0;">Дефицит практик «делать руками»: школьники редко конструируют и тестируют решения, из-за чего инженерия не становится личным опытом.</p>
+                    </div>
+                </article>
+            </div>
         </div>
-
-        <!-- SLIDE 4: SOLUTION -->
+                <!-- SLIDE 4: SOLUTION -->
         <div class="slide">
             <span class="slide-num">4</span>
-            <h2>Решение: Фестивали профессиональных проб</h2>
+            <h2>Решение: фестивали профессиональных проб</h2>
             <p>Цикл из <strong>4 городских фестивалей</strong> по робототехнике на базе школ
                 г.&thinsp;Набережные Челны. Каждый фестиваль — 50 участников, 8–10 кл., практика + живой контакт с
                 индустрией.</p>
 
             <h3>Ключевые активности</h3>
             <div class="pill-row" style="margin-bottom:12px;">
-                <div class="pill">🔧 Пробы: механика, электроника, программирование, 3d моделирование и печать</div>
+                <div class="pill modern-pill">
+                    <span class="pill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l2.3 2.3 3.3-.5.5 3.3L21 10l-1.9 2 1.9 2-2.9 1.9-.5 3.3-3.3-.5L12 21l-2.3-2.3-3.3.5-.5-3.3L3 14l1.9-2L3 10l2.9-1.9.5-3.3 3.3.5L12 3z" stroke="currentColor" stroke-width="1.5"/></svg></span>
+                    <span>Пробы: механика, электроника, программирование, 3D-моделирование и печать</span>
+                </div>
             </div>
             <div class="pill-row">
-                <div class="pill">🎯 Деловые игры: карьерный путь</div>
-                <div class="pill">🏭 Встречи с инженерами реальных производств</div>
+                <div class="pill modern-pill">
+                    <span class="pill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                    <span>Деловые игры: карьерный путь</span>
+                </div>
+                <div class="pill modern-pill">
+                    <span class="pill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 17h18M5 17V9h6v8M13 17V5h6v12" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                    <span>Встречи с инженерами реальных производств</span>
+                </div>
             </div>
 
             <div
-                style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:12px 16px;margin-top:14px;">
-                <p style="margin-bottom:6px;color:#0369a1;"><strong>Почему именно этот формат —
+                style="background:#fffbeb;border:1px solid #f1d79d;border-radius:8px;padding:12px 16px;margin-top:14px;">
+                <p style="margin-bottom:6px;color:#7c5b16;"><strong>Почему именно этот формат —
                         обосновано
                         наукой и практикой ФПГ</strong></p>
-                <p style="margin-bottom:5px;color:#3d3d3a;">Метод профессиональных проб — доказанный
+                <p style="margin-bottom:5px;color:#5b4a20;">Метод профессиональных проб — доказанный
                     инструмент профориентации
                     (<a href="https://www.instrao.ru/" target="_blank"
-                        style="color:#6b6b65;text-decoration:none;border-bottom:1px dashed #aaa;">ИНСТРАО РАО</a>,
+                        style="color:#7c5b16;text-decoration:none;border-bottom:1px dashed #bfa470;">ИНСТРАО РАО</a>,
                     методрекомендации Минпросвещения 2019).
                     Исследования НИУ ВШЭ (2021–2023): практики в <strong>7–10 раз эффективнее</strong> пассивного
                     просвещения.</p>
-                <p style="margin-bottom:5px;color:#3d3d3a;">Технические практики активируют сразу
+                <p style="margin-bottom:5px;color:#5b4a20;">Технические практики активируют сразу
                     несколько систем мозга, развивают <em>«послепроизвольное внимание»</em>
                     и служат доказанным противоядием клиповому мышлению (иссл. UCSF/IJMRA, КубГУ по нейропластичности).
                 </p>
-                <p style="margin:0;color:#3d3d3a;">ФПГ системно поддерживает этот подход: «Технобол»
+                <p style="margin:0;color:#5b4a20;">ФПГ системно поддерживает этот подход: «Технобол»
                     (2025), «33Ампера» (2021), «Инж. каникулы» (2022)
                     — все победители с формулой: <strong>100% практика + наставники с производства + измеримый
                         результат.</strong></p>
             </div>
         </div>
-
         <!-- SLIDE 4б: APPLICANT INFO CARD -->
         <div class="slide" style="padding: 0; display: flex; flex-direction: row;">
             
@@ -504,9 +633,9 @@
                 <span class="slide-num" style="top: 24px; right: auto; left: 32px;">4б</span>
                 <p style="color:var(--accent-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px; margin-top:20px; font-size:1.2rem; font-weight:700;">
                     Исполнитель проекта</p>
-                <h2 style="margin-bottom:6px; font-size:3.5rem; font-weight:800; line-height:1.1;">Гимназия им. В.В. Давыдова</h2>
+                <h2 style="margin-bottom:6px; font-size:2.5rem; font-weight:600; line-height:1.1;">Гимназия им. В.В. Давыдова</h2>
                 <p style="color:var(--muted);margin-bottom:20px;">Первая частная школа Республики
-                    Татарстан (осн. 1990) <span style="margin:0 10px;">|</span> <a href="https://gimnazia-davydova.ru" target="_blank" style="font-weight:600;">gimnazia-davydova.ru</a></p>
+                    Татарстан (осн. 1990) <span style="margin:0 10px;">|</span> <a href="https://gimnazia-davydova.ru" target="_blank" style="font-weight:600;white-space:nowrap;display:inline-block;">gimnazia-davydova.ru</a></p>
 
                 <h3 style="margin-top: 0;">Сквозная методология: теоретическое и проектное мышление</h3>
                 <p>35-летний опыт системы развивающего обучения Эльконина — Давыдова.
@@ -539,7 +668,7 @@
 
             <!-- RIGHT COLUMN (IMAGE FULL HEIGHT) -->
             <div style="flex: 0 0 350px; position: relative;">
-                <img src="gymnasium_photo.png" alt="Фото Гимназии им. В.В. Давыдова"
+                <img loading="lazy" decoding="async" src="gymnasium_photo.png" alt="Фото Гимназии им. В.В. Давыдова"
                     style="width: 100%; height: 100%; object-fit: cover; border-top-right-radius: 20px; border-bottom-right-radius: 20px;">
             </div>
 
@@ -547,98 +676,70 @@
 
 
 
-
-        <!-- SLIDE 4в: TEAM SECTION -->
+                <!-- SLIDE 4в: TEAM SECTION -->
         <div class="slide">
             <span class="slide-num">4в</span>
             <p style="color:var(--accent-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Команда
                 проекта</p>
             <h2 style="margin-bottom:24px;">Ключевые эксперты и наставники</h2>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-
-                <!-- Card 1 -->
-                <div
-                    style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <img src="Татьяна Александровна.jpg" alt="Татьяна Сунгатуллина" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-light);">
-                    <div>
-                        <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #111827;">Татьяна Сунгатуллина</h3>
-                        <p style="margin: 0 0 8px; font-size: 0.9rem; color: #d97706; font-weight: 500;">Руководитель
-                            проекта / Директор</p>
-                        <p style="margin: 0; font-size: 0.85rem; color: #475569; line-height: 1.4;">Преподаватель высшей
-                            категории. Награждена Почётными грамотами МО РТ и РФ. 35 лет опыта в сфере развивающего
-                            обучения.</p>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div
-                    style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <img src="Вера Анатольевна.jpg" alt="Вера Патракеева" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-light);">
-                    <div>
-                        <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #111827;">Вера Патракеева</h3>
-                        <p style="margin: 0 0 8px; font-size: 0.9rem; color: #0284c7; font-weight: 500;">Зам. директора
-                            по воспит. работе</p>
-                        <p style="margin: 0; font-size: 0.85rem; color: #475569; line-height: 1.4;">Психолог высшей
-                            категории, учитель физики и естествознания. Куратор программ мотивации подростков и деловых
-                            игр.</p>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div
-                    style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <img src="Сибгатуллина Елена Владимировна.jfif" alt="Елена Сибгатуллина" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-light);">
-                    <div>
-                        <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #111827;">Елена Сибгатуллина</h3>
-                        <p style="margin: 0 0 8px; font-size: 0.9rem; color: #d97706; font-weight: 500;">Зам. директора
-                            по развитию</p>
-                        <p style="margin: 0; font-size: 0.85rem; color: #475569; line-height: 1.4;">Педагог-психолог
-                            высшей категории. Эксперт по стратегическому развитию образовательных проектов и межшкольных
-                            партнёрств.</p>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div
-                    style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <img src="Деняпкина Эльза Маратовна.jfif" alt="Эльза Деняпкина" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--border-light);">
-                    <div>
-                        <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #111827;">Эльза Деняпкина</h3>
-                        <p style="margin: 0 0 8px; font-size: 0.9rem; color: #0284c7; font-weight: 500;">Зам. директора
-                            по метод. работе</p>
-                        <p style="margin: 0; font-size: 0.85rem; color: #475569; line-height: 1.4;">Педагог-психолог
-                            высшей категории. Отвечает за методологическую упаковку профессиональных проб и оценку её
-                            качества.</p>
-                    </div>
-                </div>
-
-                <!-- Card 5 (Repina) -->
-                <div
-                    style="background: #f0f9ff; border: 2px solid #bae6fd; border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: start;">
-                    <img src="Репина Ольга Константиновна.png" alt="Ольга Репина" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #0284c7; box-shadow: 0 4px 12px rgba(56,189,248,0.3);">
-                    <div>
-                        <h3 style="margin: 0 0 4px; font-size: 1.1rem; color: #0f172a;">Ольга Репина</h3>
-                        <p style="margin: 0 0 8px; font-size: 0.9rem; color: #0284c7; font-weight: 600;">Научный
-                            консульт. / Эксперт</p>
-                        <p
-                            style="margin: 0 0 12px; font-size: 0.85rem; color: #334155; line-height: 1.4;">
-                            Кандидат психологических наук, директор Центра компетенций АНО ДПО «Академия менеджмента».
-                            Спикер, эксперт Университета Талантов. Автор научных публикаций по педагогике и оценке
-                            профессиональных компетенций в базе PsyJournals.ru.</p>
-                        <div style="display: flex; gap: 8px;">
-                            <span class="pill"
-                                style="font-size: 0.75rem; padding: 4px 10px; background: white;">Методология
-                                оценки</span>
-                            <span class="pill"
-                                style="font-size: 0.75rem; padding: 4px 10px; background: white;">Профориентация</span>
+            <div class="team-grid">
+                <article class="team-card">
+                    <div class="team-top">
+                        <img loading="lazy" decoding="async" class="team-avatar" src="Татьяна Александровна.jpg" alt="Татьяна Сунгатуллина">
+                        <div>
+                            <h3 class="team-name">Татьяна Сунгатуллина</h3>
+                            <p class="team-role">Руководитель проекта / Директор</p>
                         </div>
                     </div>
-                </div>
+                    <p class="team-achievements">Преподаватель высшей категории. Почётные грамоты МО РТ и РФ. Более 35 лет опыта в системе развивающего обучения.</p>
+                </article>
 
+                <article class="team-card">
+                    <div class="team-top">
+                        <img loading="lazy" decoding="async" class="team-avatar" src="Вера Анатольевна.jpg" alt="Вера Патракеева" style="object-position:center 22%;">
+                        <div>
+                            <h3 class="team-name">Вера Патракеева</h3>
+                            <p class="team-role">Зам. директора по воспитательной работе</p>
+                        </div>
+                    </div>
+                    <p class="team-achievements">Психолог и педагог высшей категории. Куратор программ мотивации подростков, деловых игр и проектного сопровождения.</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-top">
+                        <img loading="lazy" decoding="async" class="team-avatar" src="Сибгатуллина Елена Владимировна.jfif" alt="Елена Сибгатуллина" style="object-position:center 18%;">
+                        <div>
+                            <h3 class="team-name">Елена Сибгатуллина</h3>
+                            <p class="team-role">Зам. директора по развитию</p>
+                        </div>
+                    </div>
+                    <p class="team-achievements">Педагог-психолог высшей категории. Эксперт по развитию образовательных проектов и межшкольных партнёрств.</p>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-top">
+                        <img loading="lazy" decoding="async" class="team-avatar" src="Деняпкина Эльза Маратовна.jfif" alt="Эльза Деняпкина" style="object-position:center 20%;">
+                        <div>
+                            <h3 class="team-name">Эльза Деняпкина</h3>
+                            <p class="team-role">Зам. директора по методической работе</p>
+                        </div>
+                    </div>
+                    <p class="team-achievements">Педагог-психолог высшей категории. Отвечает за методическую упаковку профессиональных проб и контроль качества.</p>
+                </article>
+
+                <article class="team-card" style="background:#f0f9ff;border:2px solid #bae6fd;">
+                    <div class="team-top">
+                        <img loading="lazy" decoding="async" class="team-avatar" src="Репина Ольга Константиновна.png" alt="Ольга Репина" style="border-color:#0284c7; box-shadow:0 4px 12px rgba(56,189,248,0.3); object-position:center 18%;">
+                        <div>
+                            <h3 class="team-name" style="color:#0f172a;">Ольга Репина</h3>
+                            <p class="team-role" style="font-weight:700;">Научный консультант / Эксперт</p>
+                        </div>
+                    </div>
+                    <p class="team-achievements" style="color:#334155;">Кандидат психологических наук, директор Центра компетенций АНО ДПО «Академия менеджмента», эксперт Университета Талантов, автор публикаций по педагогике и оценке компетенций.</p>
+                </article>
             </div>
         </div>
-
         <!-- SLIDE: STAGES OVERVIEW -->
         <div class="slide">
             <h2 style="margin-bottom:20px;">Дорожная карта проекта</h2>
@@ -756,6 +857,14 @@
             </div>
         </div>
 
+        <!-- SLIDE: ROADMAP V2 (FROM PDF) -->
+        <div class="slide">
+            <div style="height:100%;display:flex;align-items:center;justify-content:center;">
+                <img loading="lazy" decoding="async" src="roadmap_short_page1.png" alt="Дорожная карта проекта — версия 2"
+                    style="width:100%;height:100%;object-fit:contain;border-radius:12px;border:1px solid var(--border-light);background:#ffffff;">
+            </div>
+        </div>
+
         <!-- SLIDE 6: SCORE OVERVIEW -->
         <div class="slide">
             <span class="slide-num">6</span>
@@ -764,15 +873,14 @@
             <div class="score-row">
                 <span class="score-label">Текущий балл</span>
                 <div class="score-bar">
-                    <div class="score-fill" style="width:24.5%;background:#f59e0b">24.5</div>
+                    <div class="score-fill" style="width:61%;background:#f59e0b">61.0</div>
                 </div>
             </div>
 
             <div class="score-row">
-                <span class="score-label" style="color:var(--accent)">Балл при внедрении Вариантов
-                    (Слайд 4)</span>
+                <span class="score-label" style="color:var(--accent)">Потенциал после доупаковки пакета документов</span>
                 <div class="score-bar">
-                    <div class="score-fill" style="width:82%;background:#16a34a">~82.0</div>
+                    <div class="score-fill" style="width:74%;background:#16a34a">~74.0</div>
                     <div style="position:absolute;top:0;left:68%;bottom:0;width:2px;background:#000;z-index:2">
                     </div>
                 </div>
@@ -780,7 +888,7 @@
             <p style="color:var(--muted);text-align:left;margin-top:4px">Черная линия — проходной балл (68).</p>
             <p
                 style="text-align:left;margin-top:16px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                <strong>Предварительная Оценка в соответствие с 10 критериями ФПГ.</strong> Проходной балл (1–5 млн
+                <strong>Переоценка по полноте материалов в папке проекта и чек-листу 10 критериев ФПГ.</strong> Проходной балл (1–5 млн
                 руб.): <strong>68 / 100</strong>.
             </p>
         </div>
@@ -808,9 +916,7 @@
                     <p>А. Опираться на <strong>35-летний опыт
                             Гимназии</strong> — детально расписать компетенции педагогов (сертификаты РО,
                         организация
-                        конференций).<br>Б. Привлечь опытную НКО-партнера для подачи совместной заявки (зонтичный
-                        бренд
-                        — гарантирует максимум по критерию).</p>
+                        конференций) и показать реализованные образовательные проекты как подтверждение управленческой состоятельности команды.</p>
                 </div>
                 <div style="border-left: 3px solid #38bdf8; padding-left: 16px; padding-bottom: 4px;">
                     <h3 style="margin: 0 0 4px;  color: #111;">2. Реалистичный бюджет <small
@@ -872,18 +978,12 @@
                             style="float:right;">+
                             Оценка эксперта</span></h3>
                     <p style="  margin-bottom: 4px;">
-                        <strong style="color:#0284c7;">Аутентичность:</strong> Заменить стоковые иллюстрации на реальные
-                        фото
-                        учеников и процессов Гимназии.<br>
                         <strong style="color:#0284c7;">Ожидаемые результаты:</strong> Вывести количественный (200 чел.)
                         и
                         качественный эффект отдельным слайдом/блоком.<br>
                         <strong style="color:#0284c7;">Верификация:</strong> Прикрепить к заявке скан-копии писем
                         поддержки от
-                        школ-партнеров и ПАО «КАМАЗ».<br>
-                        <strong style="color:#0284c7;">Фокус:</strong> Сократить плотность текста на вводных слайдах,
-                        оставив
-                        выжимку.
+                        школ-партнеров и ПАО «КАМАЗ».
                     </p>
                 </div>
             </div>
@@ -1229,290 +1329,33 @@
             </div>
 
 
-
             <!-- APPENDIX 2: INFOGRAPHIC -->
             <div style="margin-top:40px;padding-top:24px;border-top:2px solid var(--border);">
                 <p style="text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:16px;">
                     Приложение 2 &mdash; Инфографика результатов опроса
                 </p>
-                <div id="react-infographic-root"></div>
+                                <figure style="margin:0; background:#f8fafc; border:1px solid var(--border-light); border-radius:14px; padding:16px;">
+                    <img loading="lazy" decoding="async" src="1 Инфографика результата опроса.png" alt="Инфографика по результатам опроса школьников" style="width:100%;height:auto;border-radius:10px;display:block;">
+                    <figcaption style="margin-top:10px;color:var(--muted);font-size:.92rem;line-height:1.45;">
+                        Инфографика добавлена в статическом виде для стабильной офлайн-работы без внешних JavaScript-зависимостей.
+                    </figcaption>
+                    <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;">
+                        <a href="1 Инфографика результата опроса.png" download class="download-btn" style="padding:8px 14px;font-size:.9rem;">Скачать PNG инфографики</a>
+                        <a href="Результаты по опросу.pptx" download class="download-btn download-btn-2" style="padding:8px 14px;font-size:.9rem;">Скачать PPTX с диаграммами</a>
+                    </div>
+                </figure>
             </div>
-
-            <script type="text/babel">
-                const Infographic = () => {
-                    // Данные для диаграмм
-                    const genderData = [
-                        { label: 'Женский', value: 55, color: 'bg-gradient-to-r from-blue-400 to-green-400' },
-                        { label: 'Мужской', value: 45, color: 'bg-gradient-to-r from-blue-500 to-green-500' },
-                    ];
-
-                    const classData = [
-                        { label: '10 класс', shortLabel: '10 класс', value: 37.8, color: '#4a90e2' },
-                        { label: '8 класс', shortLabel: '8 класс', value: 32.4, color: '#e67e22' },
-                        { label: '9 класс', shortLabel: '9 класс', value: 29.7, color: '#aab7b8' },
-                    ];
-
-                    const attractionReasonsData = [
-                        { label: 'Это интересно/мне нравится этим заниматься', value: 40.8 },
-                        { label: 'Это приносит хороший доход', value: 28.8 },
-                        { label: 'Эта профессия престижна в обществе/её уважают', value: 17.9 },
-                        { label: 'Там можно быстро построить карьеру', value: 4.7 },
-                        { label: 'Это востребовано в нашем городе/легко найти', value: 4.4 },
-                    ];
-
-                    const handsOnExperienceData = [
-                        { label: 'Да, было пару раз на уроках технологии или с родителями', shortLabel: 'Пару раз', value: 35.7, color: '#4a90e2' },
-                        { label: 'Да, регулярно (это моё хобби)', shortLabel: 'Регулярно', value: 21.3, color: '#e67e22' },
-                        { label: 'Нет, никогда не пробовал', shortLabel: 'Никогда', value: 17.4, color: '#aab7b8' },
-                        { label: 'Затрудняюсь ответить', shortLabel: 'Затрудняюсь', value: 10.9, color: '#f1c40f' },
-                    ];
-
-                    const existingSkillsData = [
-                        { label: 'Работа с текстом (писательство)', value: 30 },
-                        { label: 'Педагогика (наставничество, объяснение)', value: 25 },
-                        { label: 'Аналитика (систематизация)', value: 15 },
-                        { label: 'Креатив (генерация идей)', value: 15 },
-                        { label: 'Психология (поддержка)', value: 10 },
-                    ];
-
-                    const productionWorkData = [
-                        { label: 'Скорее да, чем нет', value: 40.5 },
-                        { label: 'Скорее нет, чем да', value: 21.6 },
-                        { label: 'Затрудняюсь ответить', value: 18.2 },
-                        { label: 'Да, уверен в этом', value: 11.5 },
-                        { label: 'Нет, это не про деньги и карьеру', value: 8.1 },
-                    ];
-
-                    const engineerStereotypeData = [
-                        { label: 'Нет, не знаю', value: 45.3 },
-                        { label: 'Мне это неинтересно', value: 24.3 },
-                        { label: 'Да, знаю конкретные вузы и колледжи', value: 15.5 },
-                        { label: 'Что-то слышал, но точно не знаю', value: 14.9 },
-                    ];
-
-                    const activitiesData = [
-                        { label: 'Спортивные секции', shortLabel: 'Спорт', value: 35.7, color: '#4a90e2' },
-                        { label: 'Танцы/театральная студия', shortLabel: 'Танцы/Театр', value: 21.3, color: '#e67e22' },
-                        { label: 'Музыкальная/художественная школа', shortLabel: 'Музыка/ИЗО', value: 17.4, color: '#aab7b8' },
-                        { label: 'Программирование/IT-курсы', shortLabel: 'IT/Кодинг', value: 10.9, color: '#f1c40f' },
-                        { label: 'Технические кружки', shortLabel: 'Техника', value: 7.8, color: '#c0392b' },
-                        { label: 'Нигде не занимаюсь/не занимался', shortLabel: 'Нигде', value: 7.0, color: '#7f8c8d' },
-                    ];
-
-                    const topProfessionsData = [
-                        { label: 'Творческие профессии (дизайнер, блогер, SMM)', value: 26 },
-                        { label: 'IT-специалист/разработчик игр', value: 20 },
-                        { label: 'Психолог/коуч/нейропсихолог', value: 15 },
-                        { label: 'Врач', value: 14 },
-                        { label: 'Экология', value: 10 },
-                        { label: 'Наука', value: 8 },
-                        { label: 'Педагог', value: 7 },
-                    ];
-
-                    const BarChart = ({ data, title, labelPosition = 'right' }) => (
-                        <div className="p-4 bg-white rounded-lg shadow-md border border-gray-200">
-                            <h3 className="text-lg font-semibold mb-4 text-gray-800 border-none m-0 p-0 leading-tight">{title}</h3>
-                            <div className="space-y-3">
-                                {data.map((item, index) => (
-                                    <div key={index} className="flex items-center text-sm">
-                                        {labelPosition === 'left' && <span className="w-1/3 text-gray-600 truncate pr-2">{item.label}</span>}
-                                        <div className="flex-grow bg-gray-200 rounded-full h-4 overflow-hidden relative">
-                                            <div
-                                                className={`h-full rounded-full ${item.color || 'bg-gradient-to-r from-blue-400 to-green-400'}`}
-                                                style={{ width: `${item.value}%` }}
-                                            ></div>
-                                        </div>
-                                        <span className={`ml-2 font-bold text-gray-700 ${labelPosition === 'left' ? '' : 'w-12 text-right'}`}>
-                                            {item.value}%
-                                        </span>
-                                        {labelPosition === 'right' && <span className="ml-2 text-gray-600 truncate flex-grow block overflow-hidden text-clip whitespace-nowrap" title={item.label}>{item.label}</span>}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    );
-
-                    const DonutChart = ({ data, title }) => {
-                        let cumulativePercent = 0;
-                        const size = 140;
-                        const cx = 160;
-                        const cy = 130;
-                        const r = size / 2;
-                        const labelRadius = r + 16;
-                        const lineStartRadius = r - 12;
-
-                        const segments = data.map((item) => {
-                            const start = cumulativePercent;
-                            cumulativePercent += item.value;
-                            const end = cumulativePercent;
-
-                            const midPercent = start + item.value / 2;
-                            const angleRad = (midPercent / 100 * 360 - 90) * Math.PI / 180;
-
-                            const cos = Math.cos(angleRad);
-                            const sin = Math.sin(angleRad);
-                            const isRight = cos >= 0;
-
-                            const x1 = cx + lineStartRadius * cos;
-                            const y1 = cy + lineStartRadius * sin;
-                            const x2 = cx + labelRadius * cos;
-                            let y2 = cy + labelRadius * sin;
-
-                            return {
-                                ...item, start, end, cos, sin, isRight, x1, y1, x2, y2
-                            };
-                        });
-
-                        const MIN_Y_DIST = 22;
-                        const rightSide = segments.filter(s => s.isRight).sort((a, b) => a.y2 - b.y2);
-                        const leftSide = segments.filter(s => !s.isRight).sort((a, b) => a.y2 - b.y2);
-
-                        const relaxLabels = (labels) => {
-                            for (let iter = 0; iter < 10; iter++) {
-                                let relaxed = false;
-                                for (let i = 0; i < labels.length - 1; i++) {
-                                    const l1 = labels[i];
-                                    const l2 = labels[i + 1];
-                                    if (l2.y2 - l1.y2 < MIN_Y_DIST) {
-                                        const shift = (MIN_Y_DIST - (l2.y2 - l1.y2)) / 2;
-                                        l1.y2 -= shift;
-                                        l2.y2 += shift;
-                                        relaxed = true;
-                                    }
-                                }
-                                if (!relaxed) break;
-                            }
-                        };
-
-                        relaxLabels(rightSide);
-                        relaxLabels(leftSide);
-
-                        segments.forEach(s => {
-                            s.x3 = s.isRight ? s.x2 + 8 : s.x2 - 8;
-                        });
-
-                        const gradient = segments.map((s) => `${s.color} ${s.start}% ${s.end}%`).join(', ');
-
-                        return (
-                            <div className="p-4 bg-white rounded-lg shadow-md border border-gray-200 flex flex-col items-center">
-                                <h3 className="text-lg font-semibold mb-2 text-gray-800 text-center w-full min-h-[48px] flex items-center justify-center border-none m-0 leading-tight">{title}</h3>
-
-                                <div className="relative flex-shrink-0 overflow-visible" style={{ width: cx * 2, height: cy * 2 }}>
-                                    <div
-                                        className="absolute rounded-full"
-                                        style={{
-                                            width: size,
-                                            height: size,
-                                            top: cy - r,
-                                            left: cx - r,
-                                            background: `conic-gradient(${gradient})`,
-                                            maskImage: 'radial-gradient(circle, transparent 55%, black 56%)',
-                                            WebkitMaskImage: 'radial-gradient(circle, transparent 55%, black 56%)',
-                                        }}
-                                    />
-
-                                    <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
-                                        {segments.map((s, i) => (
-                                            <polyline
-                                                key={`line-${i}`}
-                                                points={`${s.x1},${s.y1} ${s.x2},${s.y2} ${s.x3},${s.y2}`}
-                                                fill="none"
-                                                stroke={s.color}
-                                                strokeWidth="1.5"
-                                            />
-                                        ))}
-                                    </svg>
-
-                                    {segments.map((s, i) => {
-                                        const isLightColor = ['#aab7b8', '#f1c40f'].includes(s.color);
-                                        return (
-                                            <div
-                                                key={`label-${i}`}
-                                                className="absolute text-xs font-bold whitespace-nowrap flex items-center bg-white/80 px-1 rounded z-10"
-                                                style={{
-                                                    top: `${s.y2}px`,
-                                                    left: `${s.x3}px`,
-                                                    transform: `translate(${s.isRight ? '0' : '-100%'}, -50%)`,
-                                                    color: isLightColor ? '#555' : s.color,
-                                                }}
-                                            >
-                                                {s.shortLabel || s.label}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-
-                                <div className="mt-4 flex flex-col gap-y-1.5 text-xs w-full">
-                                    {segments.map((item, index) => (
-                                        <div key={index} className="flex justify-between items-center w-full bg-gray-50 rounded p-1.5">
-                                            <div className="flex items-center text-left">
-                                                <span className="w-3 h-3 rounded-full mr-2 flex-shrink-0" style={{ backgroundColor: item.color }}></span>
-                                                <span className="leading-tight text-gray-700" title={item.label}>
-                                                    {item.label}
-                                                </span>
-                                            </div>
-                                            <span className="font-bold text-gray-900 ml-2 whitespace-nowrap">
-                                                {item.value}%
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        );
-                    };
-
-                    const HorizontalBarChart = ({ data, title }) => (
-                        <div className="p-4 bg-white rounded-lg shadow-md border border-gray-200">
-                            <h3 className="text-lg font-semibold mb-4 text-gray-800 border-none m-0 p-0 leading-tight">{title}</h3>
-                            <div className="space-y-4">
-                                {data.map((item, index) => (
-                                    <div key={index} className="text-sm">
-                                        <div className="mb-1 text-gray-600 truncate">{item.label}</div>
-                                        <div className="flex items-center">
-                                            <div className="flex-grow bg-gray-200 rounded-full h-4 overflow-hidden">
-                                                <div
-                                                    className="h-full rounded-full bg-gradient-to-r from-blue-400 to-green-400"
-                                                    style={{ width: `${item.value}%` }}
-                                                ></div>
-                                            </div>
-                                            <span className="ml-3 font-bold text-gray-700">{item.value}%</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    );
-
-                    return (
-                        <div className="bg-gray-50/50 p-2 sm:p-6 rounded-xl font-sans text-left mt-4 border border-gray-200">
-                            <div className="max-w-7xl mx-auto">
-                                <h1 className="text-2xl font-bold text-center text-gray-900 mb-8 border-none p-0">Ключевые инсайты опроса школьников</h1>
-
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <BarChart data={genderData} title="Твой пол" labelPosition="left" />
-                                    <DonutChart data={classData} title="В каком классе ты учишься?" />
-                                    <HorizontalBarChart data={attractionReasonsData} title="Почему привлекают профессии?" />
-
-                                    <DonutChart data={handsOnExperienceData} title="Пробовал создавать что-то руками?" />
-                                    <HorizontalBarChart data={existingSkillsData} title="Уже есть опыт или навыки в..." />
-                                    <HorizontalBarChart data={productionWorkData} title="Работа на производстве = карьера?" />
-
-                                    <HorizontalBarChart
-                                        data={engineerStereotypeData}
-                                        title="'Работа инженера - это скучно?'"
-                                    />
-                                    <DonutChart data={activitiesData} title="В каких кружках занимаешься?" />
-                                    <HorizontalBarChart data={topProfessionsData} title="Топ привлекательных профессий" />
-                                </div>
-                            </div>
-                        </div>
-                    );
-                };
-
-                const root = ReactDOM.createRoot(document.getElementById('react-infographic-root'));
-                root.render(<Infographic />);
-            </script>
-        </div>
+</div>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
