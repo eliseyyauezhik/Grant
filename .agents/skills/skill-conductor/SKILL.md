@@ -8,6 +8,7 @@ description: Full lifecycle management for agent skills. Use when creating, eval
 Full lifecycle management for agent skills: design → build → test → evaluate → package.
 
 Synthesized from Anthropic official guide, obra/superpowers, mgechev/best-practices, and OpenClaw skill-creator. Adapted for Antigravity.
+Apply `core-agent-rules` before creating or editing local skills. Keep shared workspace policy in that skill instead of copying it into every `SKILL.md`.
 
 ## Modes
 
@@ -128,6 +129,7 @@ What goes wrong + how to fix.
 - **Step-by-step numbering.** Decision trees mapped explicitly
 - **Concrete templates > prose.** Pattern-matching beats paragraphs
 - **Progressive disclosure.** SKILL.md = brain (<500 lines). References = details
+- **Shared policy belongs in `core-agent-rules`.** Do not duplicate workspace boundaries, approvals, checkpoint rules, or artifact hygiene in every skill unless the skill truly changes that policy.
 - **No junk files.** No README, CHANGELOG inside the skill
 - **Token budget.** Frequently loaded: <200 words. Standard: <500 words. Heavy reference: move to references/
 
@@ -168,6 +170,7 @@ Common edit patterns:
 | Skips body | follows description instead | remove process from description |
 | Inconsistent output | varies across sessions | add explicit templates, reduce freedom |
 | Too slow | large context | move detail to references/ |
+| Policy drift | hardcoded paths or duplicated workspace rules | move shared policy into `core-agent-rules` and keep only task-specific behavior |
 
 ---
 

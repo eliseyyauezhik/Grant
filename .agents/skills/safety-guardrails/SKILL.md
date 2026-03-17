@@ -10,6 +10,7 @@ Hard safety boundaries for autonomous agent operation. Domain Intelligence patte
 ## Overview
 
 All agent actions pass through this pre-check. Actions are classified into three tiers. Tier 1 is always allowed, Tier 2 requires logging, Tier 3 requires explicit user confirmation.
+Apply `core-agent-rules` first for workspace boundaries, dirty-state awareness, approvals, checkpoints, and artifact hygiene. This skill focuses on tiering and escalation.
 
 ## Pre-Check: Action Classification
 
@@ -17,7 +18,8 @@ Before ANY action, classify it:
 
 ### Tier 1: Always Allowed (no confirmation needed)
 
-- Read files in project directories
+- Read files in the current workspace
+- Read external reference files that are directly relevant to the current task
 - Search the web (Tavily, built-in search)
 - Generate text, plans, summaries
 - Create new files in project working directories
@@ -27,16 +29,17 @@ Before ANY action, classify it:
 
 ### Tier 2: Allowed with Logging (no confirmation, but logged)
 
-- Edit existing files (with backup awareness)
-- Install Python packages in virtual environment
-- Run safe terminal commands (ls, cat, grep, git status)
-- Send messages to user via Telegram
-- Make GET requests to external APIs
+- Edit existing files inside the current workspace or other writable roots
+- Create checkpoints or roll back through `.agents/checkpoints`
+- Install Python packages in a project-local virtual environment
+- Run safe terminal commands (`rg`, `git status`, tests, formatters, local scripts)
+- Make read-only GET requests to external APIs when the task requires it
+- Update project journals such as `agent_audit.log`, `research_notes.md`, `implementation_plan.md`, `task.md`
 
 ### Tier 3: Requires User Confirmation
 
 - **Delete** any file or directory
-- **Overwrite** files outside the project directory
+- **Edit or overwrite** files outside the current workspace or writable roots
 - Execute commands that modify system state (registry, services)
 - POST/PUT/DELETE requests to external APIs with side effects
 - Any action involving money (API billing, purchases)
@@ -44,20 +47,13 @@ Before ANY action, classify it:
 - Running unknown or downloaded executables
 - Modifying system PATH or environment variables globally
 - Git push, force push, branch delete
+- Broad overwrite of many files when the user did not explicitly request it
 
 ## Execution Rules
 
-1. **Project boundaries.** Only modify files within:
-   - `F:\ДИМА\ПРОЕКТЫ\ИИ агент на компьютер\` (main project)
-   - `C:\Users\Admin\.copaw\` (CoPaw config)
-   - `C:\Users\Admin\.gemini\` (Antigravity artifacts)
-   - Temp directories for scratch files
+1. **Shared workspace policy.** Use `core-agent-rules` for writable roots, dirty-state awareness, artifact reuse, approval boundaries, and checkpoint requirements for sensitive system files.
 
-2. **API rate limits.** Maximum per session:
-   - Gemini API: 50 calls
-   - Tavily API: 20 calls
-   - Telegram API: 10 messages
-   - If approaching limit, warn user before continuing
+2. **Sandbox first.** Run commands inside the sandbox first. If a required command fails because of sandbox restrictions or network limitations, request escalation with a short, task-specific justification.
 
 3. **Timeout.** If any single operation takes longer than 60 seconds, abort and report.
 
@@ -74,7 +70,7 @@ Before ANY action, classify it:
 
 ## Audit Trail
 
-Log every Tier 2 and Tier 3 action to `agent_audit.log`:
+Log every Tier 2 and Tier 3 action to `agent_audit.log` in UTF-8:
 
 ```
 [TIMESTAMP] [TIER] [ACTION] [TARGET] [RESULT]
@@ -83,19 +79,29 @@ Log every Tier 2 and Tier 3 action to `agent_audit.log`:
 Example:
 
 ```
-[2026-03-04 10:30:00] [T2] EDIT F:\project\main.py SUCCESS
-[2026-03-04 10:31:00] [T3] DELETE F:\project\old.py BLOCKED:NEEDS_CONFIRMATION
+[2026-03-17 23:20:00] [T2] CHECKPOINT d:\repo\AGENTS.md SUCCESS
+[2026-03-17 23:21:00] [T2] EDIT d:\repo\.agents\skills\task-executor\SKILL.md SUCCESS
+[2026-03-17 23:22:00] [T3] DELETE d:\repo\old.md BLOCKED:NEEDS_CONFIRMATION
 ```
+
+Recommended action labels:
+- `READ_EXTERNAL`
+- `CHECKPOINT`
+- `EDIT`
+- `CMD`
+- `VERIFY`
+- `BLOCKED`
 
 ## Common Mistakes
 
 | Mistake | Rule |
 |---------|------|
 | Deleting without asking | ALWAYS ask for Tier 3 |
+| Editing outside writable roots | Treat it as Tier 3 and request approval |
 | Running pip install globally | Use project venv only |
 | Sending API keys in messages | Never expose credentials |
 | Infinite retry loops | Max 2 retries, then escalate |
-| Modifying files outside project | Check project boundaries first |
+| Ignoring mixed user/agent changes | Apply `core-agent-rules` before rollback or overwrite |
 
 ## Emergency Stop
 

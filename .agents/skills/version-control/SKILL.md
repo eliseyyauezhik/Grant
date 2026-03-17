@@ -1,57 +1,57 @@
 ---
 name: version-control
-description: Version Control and Rollback Skill for AI Agents to create checkpoints of files before making risky changes, and rollback if things go wrong.
+description: Create local checkpoints and restore them when risky edits need a safe rollback path. Use when changing existing files in the workspace and a reversible checkpoint is needed first. Do NOT use for git workflows, commits, or reverting unrelated user changes.
 ---
 
-# Управление версиями и откаты (Version Control Skill)
+# Version Control
 
-Этот навык предоставляет Агенту инструменты для безопасного редактирования файлов с возможностью отката изменений.
-Вместо настройки полноценного Git (который может быть избыточным или конфликтовать с пользовательским репозиторием), этот навык использует локальную директорию `.agents/checkpoints/` для сохранения снимков состояния конкретных файлов.
+## Overview
 
-## Когда использовать
+Use local checkpoints in `.agents/checkpoints/` before risky edits. Apply `core-agent-rules` first for writable roots, dirty-state awareness, and approval boundaries before checkpointing or rolling back files.
 
-- Перед глобальной заменой кода (особенно через регулярные выражения или сложные Python-скрипты).
-- Перед изменением критических файлов (например, `index.html`, `style.css`), если вы не уверены в конечном результате.
-- Когда пользователь просит "сохранить текущий вариант" перед тем, как пробовать другой стиль/подход.
-- Если произошла ошибка, и вам нужно быстро вернуть файл в рабочее состояние.
+## When to Use
 
-## Инструкции
+- Before broad replacements, regex edits, or scripted rewrites.
+- Before editing agent-system files such as `AGENTS.md` or `.agents/skills/**`.
+- When the user asks to preserve a known-good variant before experimentation.
+- When a failed edit should be reverted to a checkpointed state.
 
-У вас есть доступ к двум основным скриптам в папке `scripts/` этого навыка.
+## Workflow
 
-### 1. Создание снимка (Checkpoint)
+1. Choose only files inside the current workspace or other writable roots.
+2. Inspect whether the target files contain unrelated user changes before saving or restoring.
+3. Create a checkpoint with `scripts/checkpoint.ps1`.
+4. Record the returned checkpoint ID in the task notes or final report.
+5. If rollback is needed, restore only the files covered by that checkpoint.
 
-Перед изменением файлов запустите скрипт `scripts/checkpoint.ps1`.
-Передайте ему полные (или относительные) пути к файлам, которые вы планируете изменить.
+### Create Checkpoint
 
-**Пример использования:**
+Run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File ".agents\skills\version-control\scripts\checkpoint.ps1" -Files "index_v3.html", "style.css"
 ```
 
-Скрипт вернёт ID чекпоинта (обычно это timestamp) и залогирует, куда были сохранены файлы.
-**ВАЖНО:** Запомните ID чекпоинта!
+The script returns a checkpoint ID such as `checkpoint_20260318_004504`.
 
-### 2. Откат изменений (Rollback)
+### Roll Back
 
-Если код сломался, или пользователь попросил вернуть предыдущий вариант, запустите `scripts/rollback.ps1`.
-Передайте ему ID чекпоинта, к которому нужно вернуться.
-
-**Пример использования:**
+Run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File ".agents\skills\version-control\scripts\rollback.ps1" -CheckpointId "20260307_123456"
 ```
 
-Скрипт восстановит все файлы, которые были сохранены в рамках этого чекпоинта, перезаписав их текущие версии оригинальными.
+Rollback restores the files captured by that checkpoint. Do not use rollback to overwrite unrelated user edits unless the user explicitly approves it.
 
-## Структура папок
+## Stored Data
 
-- `checkpoints/<ID>/` - Здесь хранятся копии файлов.
-- `checkpoints/<ID>/manifest.json` - Содержит информацию о том, откуда был скопирован каждый файл, чтобы скрипт отката знал, куда его возвращать.
+- `.agents/checkpoints/<ID>/` stores the checkpointed file copies.
+- `.agents/checkpoints/<ID>/manifest.json` maps each saved file back to its original location.
 
-## Правила безопасности
+## Common Mistakes
 
-- Не создавайте чекпоинты для всей директории `node_modules` или для бинарных файлов большого размера. Чекпоинты предназначены в первую очередь для исходного кода (`.html`, `.css`, `.js`, `.py` и т.д.).
-- Используйте инструмент `run_command` для вызова этих PowerShell скриптов.
+- Checkpointing large binary directories such as `node_modules`. Fix: checkpoint only the specific source files being changed.
+- Forgetting the checkpoint ID. Fix: write it into the task notes or final report immediately.
+- Using rollback on files with mixed user and agent edits. Fix: inspect dirty state first and ask before overwriting unrelated work.
+- Referring to a legacy command runner that is not available here. Fix: use the current shell or PowerShell execution tool.
