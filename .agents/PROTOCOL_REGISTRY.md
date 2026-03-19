@@ -14,6 +14,16 @@ next_review: 2026-06-19
 | .agents/templates/context-handover-template.md | v1.0.0 | 2026-03-19 | Новый шаблон handover документа | ACTIVE |
 | .agents/templates/adr-template.md | v1.0.0 | 2026-03-19 | Новый шаблон Architecture Decision Record | ACTIVE |
 
+### СИСТЕМНЫЕ НАВЫКИ
+
+| Файл | Версия | Дата | Статус |
+|---|---|---|---|
+| .agents/skills/core-agent-rules/SKILL.md | v1.0.0 | 2026-03-19 | ACTIVE |
+| .agents/skills/task-executor/SKILL.md | v1.0.0 | 2026-03-19 | ACTIVE |
+| .agents/skills/safety-guardrails/SKILL.md | v1.0.0 | 2026-03-19 | ACTIVE |
+| .agents/skills/version-control/SKILL.md | v1.0.0 | 2026-03-19 | ACTIVE |
+| .agents/skills/skill-conductor/SKILL.md | v1.0.0 | 2026-03-19 | ACTIVE |
+
 ### ЗАФИКСИРОВАННЫЕ МОДЕЛИ
 
 | Роль | Модель | Версия модели | Дата фиксации |
