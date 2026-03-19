@@ -70,7 +70,7 @@ Before ANY action, classify it:
 
 ## Audit Trail
 
-Log every Tier 2 and Tier 3 action to `agent_audit.log` in UTF-8:
+Log every Tier 2 and Tier 3 action to `agent_audit.log` in UTF-8. Write exactly one record per line and ensure the file ends with a newline before appending the next entry:
 
 ```
 [TIMESTAMP] [TIER] [ACTION] [TARGET] [RESULT]
