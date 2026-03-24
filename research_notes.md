@@ -498,3 +498,32 @@ Verification
 Deferred
 - QW-6 (schema validation for project frontmatter) is not implemented yet.
 - QW-7 (`.obsidian` isolation in guardrails/ignore rules) is not implemented yet.
+
+## 2026-03-22 - OpenClaw Personal Deployment Report
+
+Goal
+- Prepare an evidence-based report on what OpenClaw actually is, how the Habr case maps to the real product, and how to deploy OpenClaw or an Anthropic-based alternative on a personal Windows PC for business and personal workflows.
+
+Sources checked
+- Habr article `https://habr.com/ru/articles/1008982/`
+- OpenClaw official repo `https://github.com/openclaw/openclaw`
+- OpenClaw official docs `https://docs.openclaw.ai/`
+- Anthropic official docs on computer use and models `https://docs.anthropic.com/`
+
+Verified facts
+- The Habr article was published on 2026-03-11 and describes OpenClaw as an orchestrator around LLMs, skills, and integrations rather than a full autonomous system by itself.
+- The article's concrete marketing case combined official APIs, Google Sheets API, browser automation via Playwright, and vision analysis; the reported implementation was not "just prompts", but a custom skill with ~3,700 lines of code plus infrastructure.
+- OpenClaw official repo currently describes the product as a self-hosted personal AI assistant that runs on your own devices and can connect to channels such as Telegram, WhatsApp, Slack, Discord, Signal, iMessage, and others.
+- OpenClaw's recommended setup path is `openclaw onboard`; on Windows the official repo explicitly recommends WSL2.
+- OpenClaw's docs expose first-class tools such as `exec`, `browser`, `web_search`, `web_fetch`, file tools, messaging, and cron/gateway automation. Tool access is configurable through allow/deny lists and base profiles (`full`, `coding`, `messaging`, `minimal`).
+- OpenClaw has an approvals system for command execution, including host-specific approval files.
+- OpenClaw onboarding supports cloud providers and local models; docs mention Anthropic setup-token auth, OpenAI Codex OAuth, API keys, and LM Studio local models.
+- Anthropic's official computer-use docs explicitly mark the feature as beta and recommend using a dedicated VM or container with minimal privileges because browser/desktop control has unique security risks.
+- Anthropic model pricing docs currently list Claude Sonnet 4 at $3 per 1M input tokens and $15 per 1M output tokens, with higher pricing for Opus models.
+
+Conclusions
+- The Habr case is directionally plausible, but it is a custom integration project on top of OpenClaw, not a one-click business automation product.
+- "Self-hosted" in the OpenClaw sense does not automatically mean fully local AI inference: if Anthropic/OpenAI/Gemini models are used, your prompts and context still leave the PC and go to the provider.
+- For a Windows personal computer, the realistic path is OpenClaw in WSL2 plus carefully limited tools, not unrestricted desktop automation on the host OS.
+- Anthropic does provide the model/tool layer (`computer use`, APIs, Claude Code for coding), but not a complete consumer-grade self-hosted personal-assistant shell equivalent to OpenClaw; building a general assistant around Anthropic still requires your own orchestration layer.
+- The safest rollout path is staged: start with chat + search + notes + calendar/tasks, then add APIs, and only then add browser/UI automation for the few systems that truly lack APIs.

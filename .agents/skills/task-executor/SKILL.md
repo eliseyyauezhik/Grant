@@ -76,6 +76,8 @@ Plan:
 Persist the plan in `implementation_plan.md` and turn it into checkboxes in `task.md`.
 Present the plan to the user and wait for approval when the work is HIGH risk, ambiguous, spans multiple systems, or the user explicitly asks for a plan/review.
 
+**Risk ↔ Safety Tier mapping:** The risk level here applies to the *task step* as a whole. Before each *concrete action* within a step, also check `safety-guardrails` for the action's tier: LOW → Tier 1–2 (no confirmation), MEDIUM → Tier 2 (logged), HIGH → Tier 3 (user confirmation required). See `core-agent-rules` for the full mapping table.
+
 ## Step 4: Execute
 
 For each approved or low-risk step:
@@ -118,6 +120,7 @@ Send results to the user.
 If the repository already uses `critic_evaluations.csv`, append a brief self-evaluation after the task is complete. If the file does not exist, skip this step.
 
 Suggested axes:
+
 - **Clarity**
 - **Efficiency**
 - **Quality**

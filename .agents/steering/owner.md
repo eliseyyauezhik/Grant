@@ -1,65 +1,71 @@
-# owner.md — ПРИМЕР ЗАПОЛНЕНИЯ
-## Файл: `.agents/steering/owner.md`
-*Пример для предпринимателя в EdTech/B2B*
+# Owner Profile
 
----
+## Context and Roles
 
-```markdown
-# Профиль владельца
+Entrepreneur. Building projects in education and EdTech.
+Simultaneously building an AI infrastructure for automating personal
+workflows (Antigravity system).
+Based in Naberezhnye Chelny, Russia. Projects target the Russian market.
 
-## Контекст и роли
-Предприниматель. Развиваю проекты в сфере образования и EdTech.
-Параллельно строю AI-инфраструктуру для автоматизации собственных
-рабочих процессов (система Antigravity).
-Работаю в Набережных Челнах, проекты — российский рынок.
+## Technical Level
 
-## Технический уровень
-нетехнический: плохо понимаю архитектуру, не читаю код, сам не пишу, требуется пояснение.
-Могу оценить решение на здравый смысл, но не на детали синтаксиса.
+Non-technical: limited understanding of architecture, cannot read or write code,
+requires clear explanations. Can evaluate solutions on common sense but not on
+syntax or implementation details.
 
-## Стиль работы с агентом
-Вайб-кодинг: даю идею и критерии успеха, не вникаю в детали реализации.
-Предпочитаю автономную работу агента до результата.
-Хочу участвовать только в ключевых решениях и точках невозврата.
+## Working Style With Agents
 
-## Приоритеты при принятии решений
-1. Рабочий MVP быстро важнее идеальной архитектуры
-2. Простота поддержки важнее функциональной полноты
-3. Локальное развёртывание предпочтительнее облака где возможно
-4. Минимум внешних зависимостей и платных сервисов
-5. Русскоязычный стек документации там где есть выбор
-6. Если облачные - предпочтительны российские сервисы
+Vibe-coding: provides ideas and success criteria, does not engage in implementation details.
+Prefers autonomous agent work until completion.
+Wants to participate only in key decisions and points of no return.
+Values interactive checkpoints: periodic choice-based pauses where the agent
+offers 2–3 clear, contrasting options for the user to pick from.
 
-## Активные проекты
-- SmartMeeting: сервис записи и обработки совещаний (backend готов ~60%)
-- Фантом Давыдова: AI-ассистент для гимназии, поисковик по учебным материалам
-- Antigravity: персональная AI-операционная система, база знаний + агенты
-- Лендинг гимназии: сайт учебного заведения (поддержка)
-- TGAggregator: агрегатор новостей из Telegram-каналов (на паузе)
+## Decision Priorities
 
-## Домены и интересы
-EdTech, образование, AI-агенты, автоматизация рабочих процессов,
-локальные AI-решения, Telegram-боты, B2B-сервисы для организаций.
+1. A working MVP fast is more important than perfect architecture
+2. Ease of maintenance is more important than feature completeness
+3. Local deployment is preferred over cloud where possible
+4. Minimize external dependencies and paid services
+5. Russian-language documentation stack where there is a choice
+6. If cloud — prefer Russian providers
 
-## Ограничения и жёсткие правила
-- Не рефакторить работающий код без явного запроса
-- Не менять стек или архитектуру без обсуждения в точке невозврата
-- Не добавлять функции сверх описанного в spec
-- Не создавать git commit без явного разрешения
-- Не использовать платные внешние API без предупреждения о стоимости
-- Файлы .obsidian/ и generated artifacts не трогать в агентных сессиях
+## Active Projects
 
-## Что агент должен делать проактивно
-- Предлагать более простое решение если видит его до начала реализации
-- Сообщать о рисках и подводных камнях до начала, не в процессе
-- При новом проекте запускать intake (5 вопросов) перед любым кодом
-- Останавливаться на точках невозврата с 2 вариантами + рекомендацией
-- Сигнализировать о T1–T3 триггерах протокола прямо в чате
+- SmartMeeting: meeting recording and processing service (backend ~60% ready)
+- Phantom Davydov: AI assistant for a gymnasium, educational materials search engine
+- Antigravity: personal AI operating system, knowledge base + agents
+- Gymnasium landing: school website (maintenance)
+- TGAggregator: Telegram channel news aggregator (paused)
 
-## Предпочтения по коммуникации
-- Язык: русский по умолчанию
-- Формат: лаконично, без воды, структурированно
-- Код: с минимальными комментариями только там где неочевидно
-- При неопределённости: предложить 2-3 варианта с явной рекомендацией,
-  не угадывать молча
-```
+## Domains and Interests
+
+EdTech, education, AI agents, workflow automation,
+local AI solutions, Telegram bots, B2B services for organizations.
+
+## Hard Rules
+
+- Do not refactor working code without explicit request
+- Do not change stack or architecture without discussion at a point of no return
+- Do not add features beyond what is described in the spec
+- Do not create git commits without explicit permission
+- Do not use paid external APIs without warning about cost
+- Do not touch `.obsidian/` files or generated artifacts during agent sessions
+
+## What the Agent Should Do Proactively
+
+- Suggest a simpler solution if one exists before starting implementation
+- Report risks and pitfalls before starting, not during
+- For new projects, run the intake protocol (5 questions) before any code
+- Stop at points of no return with 2 options + recommendation
+- Signal T1–T3 protocol triggers directly in chat
+
+## Communication Preferences
+
+- Language: Russian by default in this workspace
+- Format: concise, no fluff, structured
+- Code: minimal comments only where non-obvious
+- When uncertain: offer 2–3 options with a clear recommendation, do not guess silently
+- Interactive pauses: periodically offer choice-based checkpoints
+  (e.g., "Option A / Option B / Option C — which do you prefer?")
+  to maintain alignment with the owner

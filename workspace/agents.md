@@ -1,47 +1,46 @@
 <!-- PRIORITY: repo_root/AGENTS.md > workspace/agents.md > scratch-dashboard/AGENTS.md -->
 # KB Workspace Agent Rules
 
-Ты работаешь внутри Obsidian-совместимого vault в папке `workspace/`.
+You are working inside an Obsidian-compatible vault in the `workspace/` folder.
 
-## Основные правила
+## Core Rules
 
-- Для KB-сессий write-back обязателен: перед завершением обновляй связанную project/progress note и только потом запускай sync/export в витрины.
+- For KB sessions, write-back is mandatory: before ending, update the linked project/progress note, then run sync/export to data views.
+- For KB tasks, treat this vault as the working root. If the harness can select cwd, prefer launching from `workspace/`; if launched from the repo root, explicitly read `workspace/agents.md` and restrict KB changes to the `workspace/` folder.
+- Create all new working notes in Markdown format.
+- Obsidian database views and representations may use the native `.base` format.
+- Vault settings in `.obsidian/*.json` are allowed as part of Obsidian configuration.
+- Obsidian files in `.obsidian/`, including community plugins in `.obsidian/plugins/`, are not knowledge-base content.
+- Do not create `.docx`, `.pdf`, `.rtf`, images, or other binary files inside the vault, except in `_assets_bin/`.
+- Respond in Russian by default, unless the user requests otherwise.
 
-- Для KB-задач считай рабочим корнем этот vault. Если харнес умеет выбирать cwd, предпочитай запуск из `workspace/`; если он запущен из корня репозитория, явно прочитай `workspace/agents.md` и ограничь KB-изменения папкой `workspace/`.
-- Все новые рабочие заметки создавай в формате Markdown.
-- Для баз данных и представлений Obsidian разрешен нативный формат `.base`.
-- Служебные настройки vault в `.obsidian/*.json` разрешены как часть Obsidian-конфигурации.
-- Служебные файлы Obsidian в `.obsidian/`, включая `community plugins` в `.obsidian/plugins/`, не считай knowledge-base контентом.
-- Не создавай `.docx`, `.pdf`, `.rtf`, изображения и другие бинарные файлы внутри vault, кроме папки `_assets_bin/`.
-- Отвечай на русском языке, если пользователь не попросил иное.
+## Knowledge Navigation
 
-## Навигация по знаниям
+- Before reading a note, first try to understand its relationships.
+- If the `obsidian` CLI is available, use `obsidian links <note>`, `obsidian backlinks <note>`, `obsidian search`, and `obsidian files`.
+- If the `obsidian` CLI is unavailable, rely on wikilinks, folder structure, and Markdown file search.
+- Do not read notes blindly if you can first narrow context through links.
 
-- Перед чтением заметки сначала попытайся понять ее связи.
-- Если доступен `obsidian` CLI, используй `obsidian links <note>`, `obsidian backlinks <note>`, `obsidian search` и `obsidian files`.
-- Если `obsidian` CLI недоступен, опирайся на wikilinks, структуру папок и поиск по Markdown-файлам.
-- Не читай заметки вслепую, если сначала можно сузить контекст через ссылки.
+## Creating New Materials
 
-## Создание новых материалов
+- Before creating a task, read `[[assets/task-template]]`.
+- Before creating a note, read `[[assets/note-template]]`.
+- Before creating a service record, read `[[assets/service-template]]`.
+- Before creating a source record, read `[[assets/source-template]]`.
+- Before creating a runbook, read `[[assets/runbook-template]]`.
+- For kanban tasks, first read `[[skills/kanban-skill]]`.
+- For capturing unstructured text, first read `[[skills/capture-skill]]`.
+- For reviewing and analyzing notes, first read `[[skills/review-skill]]`.
 
-- Перед созданием задачи читай `[[assets/task-template]]`.
-- Перед созданием заметки читай `[[assets/note-template]]`.
-- Перед созданием записи о сервисе читай `[[assets/service-template]]`.
-- Перед созданием записи об источнике читай `[[assets/source-template]]`.
-- ????? ????????? runbook ????? `[[assets/runbook-template]]`.
-- Для канбан-задач сначала читай `[[skills/kanban-skill]]`.
-- Для захвата неструктурированного текста сначала читай `[[skills/capture-skill]]`.
-- Для обзора и анализа заметок сначала читай `[[skills/review-skill]]`.
+## Opening Files
 
-## Открытие файлов
+- After creating a new note, open it via `obsidian open path=<path>` or create it via `obsidian create ... open` if the CLI is available.
+- If the CLI is unavailable, report the exact path to the created note and continue without auto-opening.
 
-- После создания новой заметки открой ее через `obsidian open path=<path>` или создай через `obsidian create ... open`, если CLI доступен.
-- Если CLI недоступен, сообщи пользователю точный путь к созданной заметке и продолжай работу без авто-открытия.
+## Storage Boundaries
 
-## Границы хранения
-
-- `notes/` хранит постоянные знания и инструкции.
-- `projects/` хранит активные рабочие документы, task boards, daily logs и `.base` views.
-- `assets/` хранит эталонные шаблоны.
-- `.obsidian/plugins/` хранит служебные файлы установленных community plugins.
-- `_assets_bin/` хранит бинарные вложения, которые нельзя держать в основном note graph.
+- `notes/` stores permanent knowledge and instructions.
+- `projects/` stores active working documents, task boards, daily logs, and `.base` views.
+- `assets/` stores reference templates.
+- `.obsidian/plugins/` stores community plugin service files.
+- `_assets_bin/` stores binary attachments that cannot be kept in the main note graph.

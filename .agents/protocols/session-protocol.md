@@ -1,43 +1,46 @@
 # Session Protocol
 
-Этот файл описывает правила context compaction, критерии смены сессии и handover discipline.
+This file describes context compaction rules, session-switch criteria, and handover discipline.
 
-## 1. Базовые принципы
+## 1. Core Principles
 
-- По возможности придерживайся правила `одна задача = один контекст`.
-- Используй minimum viable context: только нужные файлы, зависимости, ограничения и артефакты.
-- После каждого логически целостного блока фиксируй compact handover, даже если продолжаешь работу в той же сессии.
+- Follow the rule `one task = one context` whenever possible.
+- Use minimum viable context: only the files, dependencies, constraints, and artifacts actually needed.
+- After each logically complete block, record a compact handover, even if continuing work in the same session.
 
-## 2. Когда нужен context compaction
+## 2. When Context Compaction Is Needed
 
-Запускай compaction, если наблюдается хотя бы один сигнал:
+Trigger compaction if at least one signal is observed:
 
-- чат превысил примерно `40-50` обменов или `~50 000` токенов;
-- ответы становятся длиннее, но менее конкретными;
-- ограничения из начала сессии начинают забываться;
-- следующий шаг меняет модуль, слой, тип работы или домен задачи;
-- пользователь явно просит остановить этап и продолжить позже.
+- Chat has exceeded approximately `40–50` exchanges;
+- Responses are becoming longer but less specific;
+- Constraints from the start of the session are being forgotten;
+- The next step changes the module, layer, work type, or task domain;
+- The user explicitly asks to stop the stage and continue later.
 
-## 3. Когда менять сессию
+## 3. When to Switch Sessions
 
-Переход в новый чат обязателен, если:
+A switch to a new chat is mandatory if:
 
-- пользователь явно завершает этап;
-- контекст деградировал до уровня, опасного для качества;
-- следующий шаг меняет модуль, тип работы или требует чистого контекста.
+- The user explicitly ends the stage;
+- Context has degraded to a level dangerous for quality;
+- The next step changes the module, work type, or requires a clean context;
+- The user's request concerns a **different project** (signal this to the user per AGENTS.md § 9.2).
 
-Если этих условий нет, агент может продолжать в той же сессии после фиксации handover.
+If none of these conditions hold, the agent may continue in the same session after recording a handover.
 
-## 4. Что должно быть в handover
+## 4. What a Handover Must Contain
 
-Handover должен содержать:
+A handover must include:
 
-- задачу текущей сессии;
-- принятые решения, которые нельзя пересматривать без причины;
-- реализованное и проверенное;
-- текущее состояние;
-- следующий шаг;
-- риски, ограничения и `не трогать`;
-- ключевые файлы и артефакты.
+- The task of the current session;
+- Decisions made that should not be reconsidered without cause;
+- What was implemented and verified;
+- Current state;
+- Next step;
+- Risks, constraints, and "do not touch" items;
+- Key files and artifacts;
+- Protocol version (AGENTS.md version used during this session).
 
-Используй шаблон из [`context-handover-template`](../templates/context-handover-template.md).
+Use the template from [`context-handover-template`](../templates/context-handover-template.md).
+Store handover files in `.agents/handovers/` with naming: `handover_YYYY-MM-DD_<topic>.md`.

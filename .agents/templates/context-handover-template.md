@@ -1,37 +1,47 @@
 # Context Handover Template
 
-Используй этот шаблон, когда нужно перенести работу в новый чат или зафиксировать milestone.
+Use this template when transferring work to a new chat or recording a milestone.
 
-## HANDOVER: [название проекта] - [дата]
+## HANDOVER: [project name] — [date]
 
-### 1. ЗАДАЧА СЕССИИ
-[Что именно делали]
+### 1. SESSION TASK
 
-### 2. ПРИНЯТЫЕ РЕШЕНИЯ
-- [решение 1]: [почему]
-- [решение 2]: [почему]
+[What was being done]
 
-### 3. РЕАЛИЗОВАННОЕ И ПРОВЕРЕННОЕ
-- [компонент или файл]: [что сделано и как проверено]
+### 2. DECISIONS MADE
 
-### 4. ТЕКУЩЕЕ СОСТОЯНИЕ
-[Где остановились и что уже подготовлено]
+### 3. IMPLEMENTED AND VERIFIED
 
-### 5. СЛЕДУЮЩИЙ ШАГ
-[Одно первое действие]
+- [component or file]: [what was done and how it was verified]
 
-### 6. РИСКИ / ОСТОРОЖНО
-- [ограничение, баг, компромисс или запрет]
+### 4. CURRENT STATE
 
-### 7. НЕ ТРОГАТЬ
-- [защищенные файлы, интерфейсы, решения]
+[Where we stopped and what is already prepared]
 
-### 8. КОД-АРТЕФАКТЫ
-- [ключевые файлы, функции, diff или команды]
+### 5. NEXT STEP
 
-## Правила
+[One first action]
 
-- Документ должен быть самодостаточным.
-- Пиши только факты, решения и проверенные результаты.
-- Не вставляй лишний код; добавляй только то, без чего нельзя продолжить.
-- Ориентир по объему: `800-1200` слов для полного handover и заметно меньше для compact handover внутри той же сессии.
+### 6. RISKS / CAUTION
+
+- [constraint, bug, compromise, or prohibition]
+
+### 7. DO NOT TOUCH
+
+- [protected files, interfaces, decisions]
+
+### 8. CODE ARTIFACTS
+
+- [key files, functions, diffs, or commands]
+
+### 9. PROTOCOL VERSION
+
+- AGENTS.md version: [e.g., v3.0.0]
+- LLM used: [model name]
+
+## Rules
+
+- The document must be self-contained.
+- Write only facts, decisions, and verified results.
+- Do not insert unnecessary code; add only what is needed to continue.
+- Target length: `800–1200` words for a full handover, significantly less for a compact handover within the same session.

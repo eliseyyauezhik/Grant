@@ -1,20 +1,26 @@
-# ADR-{номер}: {название решения}
+# ADR-{number}: {decision title}
 
-Дата: {дата}
-Статус: Предложено / Принято / Отменено
+Date: {date}
+Status: Proposed / Accepted / Rejected
+Participants: {who participated — user, agent model name, external reviewer}
 
-## Контекст
-[Почему это решение потребовалось]
+## Context
 
-## Варианты рассматривались
-1. [вариант A] - плюсы и минусы
-2. [вариант B] - плюсы и минусы
+[Why this decision was needed]
 
-## Решение
-[Что выбрано и почему]
+## Options Considered
 
-## Последствия
-[Что это влечет, от чего мы отказываемся, какие trade-offs принимаем]
+1. [option A] — pros and cons
+2. [option B] — pros and cons
 
-## Условия пересмотра
-[При каких обстоятельствах решение нужно пересмотреть]
+## Decision
+
+[What was chosen and why]
+
+## Consequences
+
+[What this entails, what we are giving up, what trade-offs we accept]
+
+## Conditions for Reconsideration
+
+[Under what circumstances this decision should be revisited]
