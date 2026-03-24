@@ -349,3 +349,152 @@ Actions
 - Added `scripts/git_cohort_stage.ps1` to stage by cohort with optional index reset and generated-artifact exclusion.
 - Added `staging_strategy.md` with baseline, dry-run, apply, and validation command sequences.
 - Verified script output in dry-run mode for `show`, single-cohort, and `all`.
+
+## 2026-03-18 - Ecosystem Overlap And Architecture Analysis
+
+Goal
+- Analyze the current project ecosystem across `My Dashboard`, vault notes, NotebookLM integration, chats, and workflows in order to separate duplication from legitimate layer boundaries.
+
+Sources reviewed
+- `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\data\dashboard_data.json`
+- `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\data\mindmap.json`
+- `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\README.md`
+- `workspace/notes/dashboard.md`
+- `workspace/notes/target-system-architecture.md`
+- `workspace/notes/project-status-summary.md`
+
+Verified facts
+- The dashboard currently tracks `22` projects, `37` chats, and `21` workflows.
+- `11` of the `22` projects are still grouped under the `manual` topic, which indicates a large amount of user-facing/system-facing overlap.
+- All `37` chats in the exported dashboard index are currently unlinked to project IDs.
+- The vault already states the target architecture as `My Dashboard -> Agent -> Vault`.
+- NotebookLM is already functioning as an MCP-connected external knowledge tool rather than as the main system of record.
+
+Analysis
+- The main overlap is structural, not accidental: several current projects are really partial views of the same target system.
+- `My Dashboard` should be the front door and daily UI.
+- `Obsidian vault` should be the durable memory and knowledge graph.
+- `NotebookLM` should be the bounded deep-reading and synthesis workspace.
+- Chats should be treated as transient working memory and raw traces, not as durable knowledge.
+- Workflows, skills, and agent projects should be treated as one execution layer, not as separate user-facing systems.
+
+Recommended direction
+- Converge on a layered model instead of parallel product growth.
+- Introduce a canonical `project_id` registry shared by dashboard, vault, workflows, chat routing, and notebook mappings.
+- Introduce a single inbox pipeline and a project-specific launch contract for agents.
+- Keep autonomous or semi-autonomous agents behind a stable registry/inbox architecture instead of scaling orchestration first.
+
+Artifact created
+- Added `workspace/notes/ecosystem-overlap-analysis.md` and linked it from the vault dashboard/index.
+
+Additional input from external `analysis_results.md`
+- The external analysis strongly aligns with the current `My Dashboard -> Agent -> Vault` direction and does not require an architectural reversal.
+- It adds three concrete planning deltas worth keeping:
+  - treat dashboard JSON as generated exports from vault entities rather than as manually maintained parallel state;
+  - define a minimal YAML/frontmatter entity schema for projects, agents, ideas, artifacts, tasks, and reports;
+  - add a weekly synthesis/report loop that summarizes changed projects into a report layer.
+
+## 2026-03-18 - Dashboard Productization MVP
+
+Goal
+- Turn the convergence plan into a working MVP where the dashboard consumes a canonical project registry derived from the vault and exposes a usable `project mode`.
+
+Verified facts
+- `sync_workspace_data.py` now completes successfully and generates `projects.json`, `data/dashboard_data.json`, `data/mindmap.json`, `data/project_registry.json`, `docs/information_operating_system_2026-03-18.md`, and `docs/weekly_project_brief.md`.
+- The sync run exported `22` projects, `38` chats, and `21` workflows and also published `KnowledgeBase/Dashboards/Weekly Project Brief.md`.
+- `data/project_registry.json` contains `22` project entries; sampled entries include `launchContract.prompt`, `projectMode.allowedTools`, and a KB entry point.
+- `projects.json` now embeds `projectRegistry`, so the dashboard has a compatibility fallback even if the dedicated registry file is unavailable.
+- `app.js` passes `node --check`, and the sync script passes `python -m py_compile`.
+
+Implementation decisions
+- The vault is treated as the canonical overlay: existing KB entity notes enrich generated project/chat/workflow records before dashboard export.
+- Entity note export is now non-destructive by default: existing project/chat/workflow notes are preserved unless `--refresh-obsidian-entities` is explicitly requested.
+- The dashboard UI now uses registry-backed `Project mode` actions instead of relying only on raw project cards.
+
+Remaining gap
+- Legacy chats and workflows are not yet fully normalized to `project_id`; current linking is strong enough for the MVP but not yet complete for autonomous orchestration.
+
+## 2026-03-18 - Legacy Chat Link Normalization
+
+Goal
+- Reduce the number of chat sessions without `project_id` links so the graph is usable for project-scoped agent orchestration rather than only dashboard viewing.
+
+Verified facts
+- Before this pass, generated state had `21` unlinked chats and `0` unlinked workflows.
+- The weak spot was concentrated in legacy/brain-derived chats, especially system sessions around NotebookLM, Dashboard, Obsidian, grants, and monitoring.
+- Invalid legacy IDs such as `agent-second-brain` were still leaking into `relatedProjectIds` even though those projects are no longer in the canonical project set.
+
+Actions taken
+- Added evidence-based chat autolinking that uses title/summary, markdown snippets from brain files, path hints, exact project aliases, and curated domain hint rules.
+- Added a second reconciliation pass after KB overlay so legacy CSV links and Obsidian links cannot overwrite each other into an inconsistent state.
+- Added sanitization that filters `relatedProjectIds` to the current canonical project set only.
+
+Result
+- Unlinked chats reduced from `21` to `4`.
+- Invalid project references in chats reduced from `3` cases to `0`.
+- Remaining unlinked titles are currently the most ambiguous generic sessions: `Task Plan`, `Текущие задачи`, `Поиск фотографий`, `Agent Second Brain Task Plan`.
+
+## 2026-03-18 - External Audit File Inventory
+
+Goal
+- Prepare a machine-readable full file inventory so an independent advanced LLM can audit the entire current system and propose further development directions.
+
+Scope included
+- Current repository
+- Scratch dashboard workspace
+- KnowledgeBase vault
+- Antigravity brain/session store
+- MCP config
+- NotebookLM runtime/profile cache
+
+Artifacts created
+- `system_audit_full_file_inventory_2026-03-18_23-32-39.txt`
+- `system_audit_manifest_2026-03-18_23-32-39.md`
+- `external_audit_bundle_2026-03-18_23-45-29/`
+- `external_audit_bundle_2026-03-18_23-45-29.zip`
+
+Verified facts
+- The generated inventory contains `4772` absolute file paths in one unified list.
+- The manifest records root counts, sensitivity notes, and a recommended audit order for the external model.
+- The curated bundle contains `48` copied/redacted files plus prompt and bundle manifest, and the ZIP was created successfully.
+
+## 2026-03-19 - Post-Audit Quick Wins
+
+Goal
+- Implement the first verified fixes from `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\АУДИТ ВСЕЙ СИСТЕМЫ\Инструкция после аудита Claude.md` without changing the target architecture.
+
+Files inspected
+- `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\АУДИТ ВСЕЙ СИСТЕМЫ\Инструкция после аудита Claude.md`
+- `AGENTS.md`
+- `workspace/agents.md`
+- `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\AGENTS.md`
+- `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\projects.json`
+
+Verified facts
+- `sync_workspace_data.py` read `projects.json` as input and then overwrote the same file as generated output; this was a real circular dependency risk.
+- `NotebookLM` was injected into every `launchContract.allowedTools` unconditionally, even though the post-audit instruction requires feature gating.
+- Workflow deduplication only covered filesystem fallback discovery; duplicate rows in `workflows_index.csv` with the same normalized path were not filtered.
+- Project `notes` duplication survived initial merge logic because preserved KB entity-notes could overwrite cleaned values during overlay.
+- Three instruction files (`AGENTS.md`, `workspace/agents.md`, dashboard `AGENTS.md`) needed an explicit priority marker to reduce policy drift.
+
+Implementation decisions
+- Split manual input from generated output by defaulting manual overrides to `projects_manual_base.json` and generated compatibility output to `projects.json`.
+- Seed `projects_manual_base.json` automatically from existing generated `projects.json` on first run to avoid a manual migration step.
+- Gate NotebookLM through `NOTEBOOKLM_AVAILABLE=false` by default and publish `notebooklmEnabled` in both `projectMode` and `launchContract`.
+- Deduplicate notes both at source merge time and at KB overlay time so legacy entity-notes stop reintroducing repeated `;` segments.
+- Add root-level write-back protocol and explicit AGENTS priority comments instead of trying to unify all AGENTS files in the same pass.
+
+Verification
+- `python -m py_compile C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- `python C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- Post-sync asserts confirmed:
+  - `projects_manual_base.json` exists
+  - `launchContract.allowedTools` no longer contains `notebooklm` by default
+  - `launchContract.notebooklmEnabled == false` for all registry items
+  - `tgaggregator.notes` is deduplicated down to one segment
+  - workflow paths in generated dashboard data are unique by normalized path
+
+Deferred
+- QW-6 (schema validation for project frontmatter) is not implemented yet.
+- QW-7 (`.obsidian` isolation in guardrails/ignore rules) is not implemented yet.

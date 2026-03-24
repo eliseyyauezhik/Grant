@@ -48,3 +48,62 @@ Suggested commit order
   - `-ExcludeGenerated`
   - `-ShowStatus`
   - `-Apply` for actual staging operations
+
+## 2026-03-18 - Dashboard Productization MVP
+
+- Dashboard workspace now has a generated canonical registry at `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\data\project_registry.json`.
+- `sync_workspace_data.py` now overlays dashboard exports with KB notes, preserves existing entity notes by default, and emits weekly briefs into both the dashboard docs and the vault dashboards layer.
+- `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\app.js` now exposes a registry-backed `Project mode` with KB/open and prompt-copy actions.
+- Validation completed with:
+  - `python -m py_compile C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+  - `node --check C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\app.js`
+  - `python C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- Current MVP blocker removed: the dashboard is no longer only a static view over `projects.json`; it now has a working launch contract layer for project-scoped agent work.
+
+## 2026-03-18 - Legacy Chat Link Normalization
+
+- Added evidence-based chat autolinking in `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`.
+- Added a post-overlay reconciliation pass so KB-derived links and legacy CSV/brain evidence converge before export.
+- Current measured result after sync:
+  - unlinked chats: `21 -> 4`
+  - unlinked workflows: `0`
+  - invalid chat `project_id` references: `3 -> 0`
+- Remaining ambiguous legacy chats for optional manual curation:
+  - `Task Plan`
+  - `Текущие задачи`
+  - `Поиск фотографий`
+  - `Agent Second Brain Task Plan`
+
+## 2026-03-18 - External Audit Inventory
+
+- Added full-system audit artifacts:
+  - `system_audit_full_file_inventory_2026-03-18_23-32-39.txt`
+  - `system_audit_manifest_2026-03-18_23-32-39.md`
+- Added curated upload-ready audit package:
+  - `external_audit_bundle_2026-03-18_23-45-29/`
+  - `external_audit_bundle_2026-03-18_23-45-29.zip`
+- Included roots:
+  - current repository
+  - scratch dashboard workspace
+  - KnowledgeBase vault
+  - Antigravity brain/session store
+- `mcp_config.json`
+- NotebookLM runtime/profile cache
+- Current inventory size: `4772` absolute file paths.
+- Current curated bundle size: `48` copied/redacted source files plus prompt/meta files.
+
+## 2026-03-19 - Post-Audit Quick Wins
+
+- Manual backup of target files saved to `.agents/checkpoints/manual_post_audit_qw_20260319_000732`.
+- Dashboard sync now reads manual overrides from `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\projects_manual_base.json` and keeps `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\projects.json` as generated output only.
+- `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py` now:
+  - seeds `projects_manual_base.json` automatically on first run;
+  - deduplicates project notes by `;` segments, including KB overlay;
+  - skips duplicate workflow rows by normalized path;
+  - publishes `notebooklmEnabled=false` and excludes `notebooklm` from `allowedTools` unless `NOTEBOOKLM_AVAILABLE=true`.
+- Root, KB, and dashboard instruction files now carry an explicit AGENTS precedence marker, and root `AGENTS.md` contains a dedicated write-back protocol section.
+- Verification passed after live sync:
+  - `projects_manual_base.json` created automatically;
+  - `tgaggregator.notes` reduced to one unique note segment;
+  - generated workflows remain unique by normalized path;
+  - all launch contracts default to `notebooklmEnabled=false`.

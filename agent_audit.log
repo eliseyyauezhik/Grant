@@ -257,3 +257,37 @@
 [2026-03-18 19:26:46] [T2] VERIFY staged_count REMAINS_243
 [2026-03-18 21:48:22] [T2] EDIT workspace/notes/project-status-summary.md workspace/notes/dashboard.md workspace/projects/ops-board.md SUCCESS:project summary exposed via dashboard and board
 [2026-03-18 21:48:22] [T2] VERIFY dashboard links SUCCESS:project-status-summary linked from dashboard and index
+[2026-03-18 22:28:23] [T2] EDIT workspace/notes/target-system-architecture.md workspace/notes/dashboard.md workspace/notes/index.md workspace/notes/project-status-summary.md workspace/projects/ops-board.md SUCCESS:target architecture for My Dashboard + Vault + Mobile + Agent
+[2026-03-18 22:09:18] [T2] CREATE workspace/notes/ecosystem-overlap-analysis.md SUCCESS
+[2026-03-18 22:09:18] [T2] EDIT workspace/notes/dashboard.md SUCCESS:linked ecosystem analysis
+[2026-03-18 22:09:18] [T2] EDIT workspace/notes/index.md SUCCESS:linked ecosystem analysis
+[2026-03-18 22:09:18] [T2] EDIT research_notes.md SUCCESS:ecosystem convergence analysis section
+[2026-03-18 22:09:18] [T2] EDIT implementation_plan.md SUCCESS:ecosystem convergence analysis section
+[2026-03-18 22:09:18] [T2] EDIT task.md SUCCESS:ecosystem convergence analysis checklist
+[2026-03-18 22:15:06] [T2] EDIT workspace/notes/ecosystem-overlap-analysis.md SUCCESS:added export contract, entity schema, weekly synthesis loop
+[2026-03-18 22:15:06] [T2] EDIT research_notes.md SUCCESS:added external analysis_results deltas
+[2026-03-18 22:15:06] [T2] EDIT implementation_plan.md SUCCESS:extended ecosystem convergence plan
+[2026-03-18 22:15:06] [T2] EDIT task.md SUCCESS:added ecosystem convergence next steps
+2026-03-18T23:15:30+03:00 | TIER2 | dashboard_mvp | Extended sync_workspace_data.py to generate project_registry.json, KB overlays, non-destructive entity export, and weekly briefs.
+2026-03-18T23:15:31+03:00 | TIER2 | dashboard_mvp | Updated scratch dashboard app.js to load canonical project registry and expose project mode, KB open, and launch prompt copy actions.
+2026-03-18T23:15:32+03:00 | TIER2 | dashboard_mvp | Verified Python and JavaScript syntax and completed a live sync run producing dashboard and vault artifacts.
+2026-03-18T23:27:40+03:00 | TIER2 | link_normalization | Added evidence-based legacy chat autolinking with brain markdown snippets, path hints, and curated project hint rules in sync_workspace_data.py.
+2026-03-18T23:27:41+03:00 | TIER2 | link_normalization | Added post-overlay reconciliation and canonical project_id sanitization to remove stale chat links to archived project IDs.
+2026-03-18T23:27:42+03:00 | TIER2 | link_normalization | Verified sync reduced unlinked chats from 21 to 4 with zero invalid relatedProjectIds.
+2026-03-18T23:34:20+03:00 | TIER2 | external_audit_inventory | Generated full-system absolute-path inventory and manifest for external LLM audit.
+2026-03-18T23:34:21+03:00 | TIER2 | external_audit_inventory | Included repository, dashboard workspace, KnowledgeBase vault, brain store, MCP config, and NotebookLM runtime cache.
+2026-03-18T23:34:22+03:00 | TIER2 | external_audit_inventory | Verified manifest readability and inventory size of 4772 file paths.
+2026-03-18T23:47:50+03:00 | TIER2 | external_audit_bundle | Built curated external audit bundle folder with 48 copied/redacted files plus prompt/meta artifacts.
+2026-03-18T23:47:51+03:00 | TIER2 | external_audit_bundle | Added redacted mcp_config copy and explicit runtime exclusion note instead of raw auth/cache state.
+2026-03-18T23:47:52+03:00 | TIER2 | external_audit_bundle | Packed upload-ready ZIP for browser-based external LLM audit.
+
+2026-03-19T00:07:32+03:00 | TIER2 | post_audit_quick_wins | Created manual backup set at .agents/checkpoints/manual_post_audit_qw_20260319_000732 before editing dashboard sync and AGENTS files.
+2026-03-19T00:07:33+03:00 | TIER2 | post_audit_quick_wins | Updated sync_workspace_data.py to split manual base from generated projects output, deduplicate notes and workflows, and gate NotebookLM via NOTEBOOKLM_AVAILABLE.
+2026-03-19T00:07:34+03:00 | TIER2 | post_audit_quick_wins | Updated root/workspace/dashboard AGENTS files with precedence markers and root write-back protocol.
+2026-03-19T00:07:35+03:00 | TIER2 | post_audit_quick_wins | Verified py_compile, live sync, generated manual base creation, deduplicated tgaggregator notes, unique workflow paths, and NotebookLM-disabled launch contracts.
+2026-03-19T10:31:39+03:00 | TIER2 | checkpoint_agents_rewrite | Created checkpoint checkpoint_20260319_103139 for AGENTS.md before protocol merge rewrite.
+2026-03-19T10:36:10+03:00 | TIER2 | edit_agents_protocols | Rewrote AGENTS.md and added .agents/protocols/session-protocol.md, .agents/templates/context-handover-template.md, and .agents/templates/adr-template.md.
+2026-03-19T10:36:11+03:00 | TIER2 | verify_agents_protocols | Verified AGENTS.md section order, required rules, 130-line size, and existence of all three supporting files.
+2026-03-19T10:58:50+03:00 | TIER2 | checkpoint_agents_section11 | Created checkpoint checkpoint_20260319_105850 for AGENTS.md before appending protocol review triggers section.
+2026-03-19T10:59:20+03:00 | TIER2 | edit_agents_section11 | Appended section 11 from STEP_05_AGENTS_section_11.md to the end of AGENTS.md and verified resulting tail and line count (167).
+2026-03-19T11:05:00+03:00 | TIER2 | create_protocol_registry | Created .agents/PROTOCOL_REGISTRY.md from STEP_07 template with AGENTS.md version v2.1.0 and date 2026-03-19.

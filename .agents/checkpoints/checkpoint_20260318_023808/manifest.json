@@ -1,0 +1,37 @@
+﻿{
+    "files":  [
+                  {
+                      "relative_path":  ".agents\\skills\\youtube-monitoring\\SKILL.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\.agents\\skills\\youtube-monitoring\\SKILL.md",
+                      "checkpoint_name":  "0_SKILL.md"
+                  },
+                  {
+                      "relative_path":  ".agents\\skills\\youtube-monitoring\\references\\reference.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\.agents\\skills\\youtube-monitoring\\references\\reference.md",
+                      "checkpoint_name":  "1_reference.md"
+                  },
+                  {
+                      "relative_path":  ".agents\\skills\\youtube-monitoring\\scripts\\mcp_server.py",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\.agents\\skills\\youtube-monitoring\\scripts\\mcp_server.py",
+                      "checkpoint_name":  "2_mcp_server.py"
+                  },
+                  {
+                      "relative_path":  ".agents\\skills\\youtube-monitoring\\scripts\\requirements.txt",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\.agents\\skills\\youtube-monitoring\\scripts\\requirements.txt",
+                      "checkpoint_name":  "3_requirements.txt"
+                  },
+                  {
+                      "relative_path":  ".agents\\skills\\youtube-monitoring\\scripts\\skill.py",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\.agents\\skills\\youtube-monitoring\\scripts\\skill.py",
+                      "checkpoint_name":  "4_skill.py"
+                  },
+                  {
+                      "relative_path":  ".agents\\skills\\youtube-monitoring\\tests\\test_core.py",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\.agents\\skills\\youtube-monitoring\\tests\\test_core.py",
+                      "checkpoint_name":  "5_test_core.py"
+                  }
+              ],
+    "message":  "YouTube monitoring skill source cohort clean",
+    "timestamp":  "2026-03-18T02:38:08.7582097+03:00",
+    "id":  "checkpoint_20260318_023808"
+}

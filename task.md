@@ -121,3 +121,60 @@
 - [x] Add `scripts/git_cohort_stage.ps1` with dry-run and apply modes
 - [x] Document exact baseline/staging/exclusion commands in `staging_strategy.md`
 - [x] Keep commit action out of this step
+
+## 2026-03-18 - Ecosystem Convergence Analysis
+
+- [x] Audit current projects, chats, workflows, and topic groups from `My Dashboard`
+- [x] Compare the dashboard inventory with the vault dashboard and architecture notes
+- [x] Identify the main functional overlaps and non-overlaps
+- [x] Write a permanent architecture analysis note in `workspace/notes/`
+- [x] Define the canonical `project_id` registry across dashboard, vault, workflows, chats, and NotebookLM
+- [x] Design the `project mode` launch contract for agent scenarios
+- [x] Design the single inbox pipeline and write-back policy
+- [x] Define the vault-to-dashboard export contract for generated `projects.json` and related summaries
+- [x] Define the minimal YAML/frontmatter schema for `project`, `agent`, `idea`, `artifact`, `task`, and `report`
+- [x] Design the weekly synthesis/report loop for changed projects
+
+## 2026-03-18 - Dashboard Productization MVP
+
+- [x] Extend `sync_workspace_data.py` to emit `data/project_registry.json`
+- [x] Overlay dashboard export with canonical KB project/chat/workflow notes
+- [x] Preserve existing KB entity notes unless explicit refresh is requested
+- [x] Publish weekly brief into both dashboard docs and vault dashboards
+- [x] Load project registry in `app.js` and merge launch-contract data into projects
+- [x] Fix project modal task rendering to use canonical `keyTasks`
+- [x] Add `Project mode`, KB open, and prompt copy actions in dashboard UI
+- [x] Run syntax checks for Python and JavaScript
+- [x] Run a real sync cycle and verify generated registry and weekly brief outputs
+
+## 2026-03-18 - Legacy Chat Link Normalization
+
+- [x] Measure current unlinked chat/workflow counts from generated dashboard state
+- [x] Add evidence-based autolinking for legacy chat sessions
+- [x] Add curated hint rules for NotebookLM, Dashboard, KB, grant, KORA, and monitoring chats
+- [x] Sanitize `relatedProjectIds` against the canonical current project set
+- [x] Reconcile links again after KB overlay and rebuild project chat/workflow counts
+- [x] Re-run sync and verify unlinked chats dropped materially with zero invalid `project_id` references
+
+## 2026-03-18 - External Audit Inventory
+
+- [x] Define the full audit roots for the current system
+- [x] Generate one flat UTF-8 inventory file with absolute paths
+- [x] Generate a manifest with counts, sensitivity notes, and audit order
+- [x] Verify both files are readable and the inventory count matches the collected scope
+- [x] Assemble a curated external audit bundle folder with key files, redacted runtime config, and audit prompt
+- [x] Pack the curated bundle into a ZIP ready for browser upload
+
+## 2026-03-19 - Post-Audit Quick Wins
+
+- [x] Прочитать и сопоставить `Инструкция после аудита Claude.md` с текущим кодом и правилами
+- [x] Развести manual input `projects_manual_base.json` и generated output `projects.json`
+- [x] Добавить автосидирование `projects_manual_base.json` из legacy `projects.json`
+- [x] Убрать дубли `notes` на этапе merge и на этапе KB overlay
+- [x] Убрать дубли workflow по normalized path
+- [x] Убрать `notebooklm` из `allowedTools` по умолчанию и добавить `notebooklmEnabled=false`
+- [x] Добавить приоритетный комментарий в root/workspace/dashboard `AGENTS`
+- [x] Добавить root write-back protocol
+- [x] Перезапустить sync и проверить новый контракт на generated артефактах
+- [ ] Добавить schema validation для project frontmatter перед генерацией registry
+- [ ] Изолировать `.obsidian/` через явные ignore/guardrail правила

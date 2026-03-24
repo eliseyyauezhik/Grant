@@ -1,0 +1,57 @@
+﻿{
+    "files":  [
+                  {
+                      "relative_path":  "index_v3.html",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\index_v3.html",
+                      "checkpoint_name":  "0_index_v3.html"
+                  },
+                  {
+                      "relative_path":  "PROJECT_LINKS.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\PROJECT_LINKS.md",
+                      "checkpoint_name":  "1_PROJECT_LINKS.md"
+                  },
+                  {
+                      "relative_path":  "_bases_syntax.html",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\_bases_syntax.html",
+                      "checkpoint_name":  "2__bases_syntax.html"
+                  },
+                  {
+                      "relative_path":  "_obsidian_cli_help.html",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\_obsidian_cli_help.html",
+                      "checkpoint_name":  "3__obsidian_cli_help.html"
+                  },
+                  {
+                      "relative_path":  "transcript.txt",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\transcript.txt",
+                      "checkpoint_name":  "4_transcript.txt"
+                  },
+                  {
+                      "relative_path":  "transcript_utf8.txt",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\transcript_utf8.txt",
+                      "checkpoint_name":  "5_transcript_utf8.txt"
+                  },
+                  {
+                      "relative_path":  "1_infographics_optimized.jpg",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\1_infographics_optimized.jpg",
+                      "checkpoint_name":  "6_1_infographics_optimized.jpg"
+                  },
+                  {
+                      "relative_path":  "1_infographics_optimized.webp",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\1_infographics_optimized.webp",
+                      "checkpoint_name":  "7_1_infographics_optimized.webp"
+                  },
+                  {
+                      "relative_path":  "gymnasium_photo_opt.jpg",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\gymnasium_photo_opt.jpg",
+                      "checkpoint_name":  "8_gymnasium_photo_opt.jpg"
+                  },
+                  {
+                      "relative_path":  "gymnasium_photo_opt.webp",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\gymnasium_photo_opt.webp",
+                      "checkpoint_name":  "9_gymnasium_photo_opt.webp"
+                  }
+              ],
+    "message":  "Site and reference output cohort clean",
+    "timestamp":  "2026-03-18T02:38:13.0709077+03:00",
+    "id":  "checkpoint_20260318_023813"
+}

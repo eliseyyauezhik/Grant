@@ -8,6 +8,7 @@
 - [[notes/dashboard]]
 - [[notes/project-status-summary]]
 - [[notes/target-system-architecture]]
+- [[notes/ecosystem-overlap-analysis]]
 - [[notes/kb-agent-instructions]]
 - [[notes/setup-checklist]]
 - [[notes/kb-operating-model]]

@@ -327,3 +327,101 @@ Verification
 - `scripts/git_cohort_stage.ps1` supports `show`, single-cohort staging, `all`, `-ResetIndexFirst`, `-ExcludeGenerated`, and `-ShowStatus`.
 - `staging_strategy.md` contains baseline, dry-run, apply, exclusion, and validation commands.
 - Existing checkpoint mapping remains aligned with `progress.md`.
+
+## 2026-03-18 - Ecosystem Convergence Analysis
+
+Objective
+- Map the current overlap between `My Dashboard`, `Obsidian vault`, `NotebookLM`, chats, workflows, and agent projects, then define a pragmatic target architecture for convergence.
+
+Execution steps
+1. Inspect the generated dashboard data for projects, chats, workflows, and topic groupings.
+2. Compare that inventory with the current vault dashboard, architecture note, and project summary.
+3. Separate true duplication from valid layer specialization.
+4. Define a recommended division of responsibility across UI, memory, agent execution, and external tool layers.
+5. Capture the analysis in a permanent vault note that can guide future implementation work.
+
+Verification
+- Confirm the dashboard export still reflects the current project/chat/workflow counts.
+- Confirm the vault note links back to the dashboard and target architecture notes.
+- Confirm the resulting recommendation is consistent with the existing `My Dashboard -> Agent -> Vault` direction.
+
+Extension from external `analysis_results.md`
+6. Define the export contract from vault entities to dashboard JSON so dashboard becomes a generated UI layer instead of a parallel state store.
+7. Define a minimal YAML/frontmatter schema for canonical entities (`project`, `agent`, `idea`, `artifact`, `task`, `report`).
+8. Define a weekly synthesis/report loop that summarizes changed projects into vault reports for dashboard consumption.
+
+## 2026-03-18 - Dashboard Productization MVP
+
+Objective
+- Ship a working MVP of the target architecture: vault-backed registry, dashboard `project mode`, and weekly synthesis export.
+
+Execution steps
+1. Finish the sync pipeline so it reads KB note overlays and emits a dedicated `project_registry.json`.
+2. Preserve existing KB entity notes by default and refresh them only behind an explicit flag.
+3. Publish weekly synthesis both into the dashboard workspace and into the vault dashboards layer.
+4. Update `app.js` so the dashboard loads the registry, merges launch contracts into project cards, and exposes KB / prompt actions in the UI.
+5. Validate syntax and run a real sync cycle to confirm generated artifacts and counts.
+
+Verification
+- `python -m py_compile C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- `node --check C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\app.js`
+- `python C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- Verify `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\data\project_registry.json` contains populated `launchContract` and `projectMode` data.
+- Verify `C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\docs\weekly_project_brief.md` and `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\KnowledgeBase\Dashboards\Weekly Project Brief.md` exist after sync.
+
+## 2026-03-18 - Legacy Chat Link Normalization
+
+Objective
+- Normalize legacy chat-to-project links so the registry can support project-scoped execution and not only static viewing.
+
+Execution steps
+1. Measure current unlinked chat/workflow counts from generated dashboard state.
+2. Add chat autolinking based on evidence text from title, summary, brain markdown snippets, and path hints.
+3. Add curated domain hint rules for recurring system themes such as NotebookLM, Dashboard, Obsidian, grants, KORA, and monitoring.
+4. Sanitize `relatedProjectIds` against the current canonical project set.
+5. Run a second reconciliation pass after KB overlay and rebuild project chat/workflow counts from final entity links.
+
+Verification
+- `python -m py_compile C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- `python C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- Confirm `data/dashboard_data.json` drops unlinked chats from `21` to a materially smaller residual set and that invalid `project_id` references are gone.
+
+## 2026-03-18 - External Audit Inventory
+
+Objective
+- Produce a complete absolute-path inventory of the current system so an external LLM can review the whole architecture, codebase, KB, session memory, and runtime config surface.
+
+Execution steps
+1. Define the audit roots that make up the real system.
+2. Generate one flat UTF-8 inventory file with absolute paths only.
+3. Generate a manifest that explains included roots, counts, sensitivity notes, and a recommended audit order.
+4. Verify both files are readable and that the inventory line count matches the collected file count.
+
+Verification
+- Confirm the manifest exists and lists the included roots with counts.
+- Confirm the inventory exists and contains one absolute path per line.
+- Confirm the current total listed file count is `4772`.
+- Confirm the curated bundle folder and ZIP exist and include redacted runtime files plus the external audit prompt.
+
+## 2026-03-19 - Post-Audit Quick Wins
+
+Objective
+- Apply the first concrete corrections from the external audit instruction while preserving the current `Vault -> sync -> Dashboard` architecture.
+
+Execution steps
+1. Remove the `projects.json` input/output circular dependency by introducing `projects_manual_base.json` as the default manual source and keeping `projects.json` generated-only.
+2. Seed the new manual base automatically from legacy generated data so the migration does not require a manual rename.
+3. Fix project-notes duplication by deduplicating semicolon-separated note segments both during raw merge and during KB overlay.
+4. Deduplicate workflows by normalized path before workflow IDs are created from CSV rows.
+5. Gate NotebookLM via `NOTEBOOKLM_AVAILABLE` and publish `notebooklmEnabled` in registry contracts.
+6. Add explicit AGENTS priority comments plus a root write-back protocol section to reduce policy ambiguity.
+7. Re-run sync and assert the generated outputs match the new contract.
+
+Verification
+- `python -m py_compile C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- `python C:\Users\Admin\.gemini\antigravity\scratch\Мой Дашборд\scripts\dashboard\sync_workspace_data.py`
+- Post-sync assertions on `projects_manual_base.json`, `project_registry.json`, `dashboard_data.json`, and the `tgaggregator` notes field.
+
+Follow-up
+- QW-6: add schema validation for project frontmatter before registry generation.
+- QW-7: isolate `.obsidian/` from agent writable scope through explicit ignore/guardrail rules.

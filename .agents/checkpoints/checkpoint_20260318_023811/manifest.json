@@ -1,0 +1,292 @@
+﻿{
+    "files":  [
+                  {
+                      "relative_path":  "workspace\\agents.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\agents.md",
+                      "checkpoint_name":  "0_agents.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\app.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\app.json",
+                      "checkpoint_name":  "1_app.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\appearance.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\appearance.json",
+                      "checkpoint_name":  "2_appearance.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\community-plugins.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\community-plugins.json",
+                      "checkpoint_name":  "3_community-plugins.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\core-plugins.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\core-plugins.json",
+                      "checkpoint_name":  "4_core-plugins.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\daily-notes.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\daily-notes.json",
+                      "checkpoint_name":  "5_daily-notes.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\templates.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\templates.json",
+                      "checkpoint_name":  "6_templates.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\workspace.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\workspace.json",
+                      "checkpoint_name":  "7_workspace.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\plugins\\obsidian-kanban\\main.js",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\plugins\\obsidian-kanban\\main.js",
+                      "checkpoint_name":  "8_main.js"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\plugins\\obsidian-kanban\\manifest.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\plugins\\obsidian-kanban\\manifest.json",
+                      "checkpoint_name":  "9_manifest.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\plugins\\obsidian-kanban\\styles.css",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\plugins\\obsidian-kanban\\styles.css",
+                      "checkpoint_name":  "10_styles.css"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\plugins\\terminal\\data.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\plugins\\terminal\\data.json",
+                      "checkpoint_name":  "11_data.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\plugins\\terminal\\main.js",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\plugins\\terminal\\main.js",
+                      "checkpoint_name":  "12_main.js"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\plugins\\terminal\\manifest.json",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\plugins\\terminal\\manifest.json",
+                      "checkpoint_name":  "13_manifest.json"
+                  },
+                  {
+                      "relative_path":  "workspace\\.obsidian\\plugins\\terminal\\styles.css",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\.obsidian\\plugins\\terminal\\styles.css",
+                      "checkpoint_name":  "14_styles.css"
+                  },
+                  {
+                      "relative_path":  "workspace\\assets\\daily-template.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\assets\\daily-template.md",
+                      "checkpoint_name":  "15_daily-template.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\assets\\decision-template.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\assets\\decision-template.md",
+                      "checkpoint_name":  "16_decision-template.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\assets\\note-template.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\assets\\note-template.md",
+                      "checkpoint_name":  "17_note-template.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\assets\\runbook-template.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\assets\\runbook-template.md",
+                      "checkpoint_name":  "18_runbook-template.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\assets\\service-template.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\assets\\service-template.md",
+                      "checkpoint_name":  "19_service-template.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\assets\\source-template.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\assets\\source-template.md",
+                      "checkpoint_name":  "20_source-template.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\assets\\task-template.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\assets\\task-template.md",
+                      "checkpoint_name":  "21_task-template.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\dashboard.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\dashboard.md",
+                      "checkpoint_name":  "22_dashboard.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\index.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\index.md",
+                      "checkpoint_name":  "23_index.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\kb-agent-instructions.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\kb-agent-instructions.md",
+                      "checkpoint_name":  "24_kb-agent-instructions.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\kb-operating-model.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\kb-operating-model.md",
+                      "checkpoint_name":  "25_kb-operating-model.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\service-catalog.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\service-catalog.md",
+                      "checkpoint_name":  "26_service-catalog.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\setup-checklist.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\setup-checklist.md",
+                      "checkpoint_name":  "27_setup-checklist.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\source-registry.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\source-registry.md",
+                      "checkpoint_name":  "28_source-registry.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\decisions\\README.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\decisions\\README.md",
+                      "checkpoint_name":  "29_README.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\inbox\\README.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\inbox\\README.md",
+                      "checkpoint_name":  "30_README.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\runbooks\\obsidian-kanban-ops-board-runbook.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\runbooks\\obsidian-kanban-ops-board-runbook.md",
+                      "checkpoint_name":  "31_obsidian-kanban-ops-board-runbook.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\runbooks\\obsidian-kb-registry-runbook.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\runbooks\\obsidian-kb-registry-runbook.md",
+                      "checkpoint_name":  "32_obsidian-kb-registry-runbook.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\runbooks\\obsidian-terminal-shell-runbook.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\runbooks\\obsidian-terminal-shell-runbook.md",
+                      "checkpoint_name":  "33_obsidian-terminal-shell-runbook.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\runbooks\\obsidian-workspace-cli-runbook.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\runbooks\\obsidian-workspace-cli-runbook.md",
+                      "checkpoint_name":  "34_obsidian-workspace-cli-runbook.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\runbooks\\README.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\runbooks\\README.md",
+                      "checkpoint_name":  "35_README.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\services\\obsidian-kanban-ops-board.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\services\\obsidian-kanban-ops-board.md",
+                      "checkpoint_name":  "36_obsidian-kanban-ops-board.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\services\\obsidian-kb-registry.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\services\\obsidian-kb-registry.md",
+                      "checkpoint_name":  "37_obsidian-kb-registry.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\services\\obsidian-terminal-shell.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\services\\obsidian-terminal-shell.md",
+                      "checkpoint_name":  "38_obsidian-terminal-shell.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\services\\obsidian-workspace-cli.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\services\\obsidian-workspace-cli.md",
+                      "checkpoint_name":  "39_obsidian-workspace-cli.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\services\\README.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\services\\README.md",
+                      "checkpoint_name":  "40_README.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\sources\\obsidian-bases-help.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\sources\\obsidian-bases-help.md",
+                      "checkpoint_name":  "41_obsidian-bases-help.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\sources\\obsidian-cli-help.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\sources\\obsidian-cli-help.md",
+                      "checkpoint_name":  "42_obsidian-cli-help.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\sources\\obsidian-kanban-plugin.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\sources\\obsidian-kanban-plugin.md",
+                      "checkpoint_name":  "43_obsidian-kanban-plugin.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\sources\\obsidian-terminal-plugin.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\sources\\obsidian-terminal-plugin.md",
+                      "checkpoint_name":  "44_obsidian-terminal-plugin.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\notes\\sources\\README.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\notes\\sources\\README.md",
+                      "checkpoint_name":  "45_README.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\projects\\ops-board.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\projects\\ops-board.md",
+                      "checkpoint_name":  "46_ops-board.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\projects\\README.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\projects\\README.md",
+                      "checkpoint_name":  "47_README.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\projects\\runbooks.base",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\projects\\runbooks.base",
+                      "checkpoint_name":  "48_runbooks.base"
+                  },
+                  {
+                      "relative_path":  "workspace\\projects\\services.base",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\projects\\services.base",
+                      "checkpoint_name":  "49_services.base"
+                  },
+                  {
+                      "relative_path":  "workspace\\projects\\sources.base",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\projects\\sources.base",
+                      "checkpoint_name":  "50_sources.base"
+                  },
+                  {
+                      "relative_path":  "workspace\\projects\\task-inbox.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\projects\\task-inbox.md",
+                      "checkpoint_name":  "51_task-inbox.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\projects\\daily\\2026\\03\\2026-03-18.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\projects\\daily\\2026\\03\\2026-03-18.md",
+                      "checkpoint_name":  "52_2026-03-18.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\skills\\capture-skill.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\skills\\capture-skill.md",
+                      "checkpoint_name":  "53_capture-skill.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\skills\\kanban-skill.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\skills\\kanban-skill.md",
+                      "checkpoint_name":  "54_kanban-skill.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\skills\\review-skill.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\skills\\review-skill.md",
+                      "checkpoint_name":  "55_review-skill.md"
+                  },
+                  {
+                      "relative_path":  "workspace\\_assets_bin\\README.md",
+                      "original_path":  "D:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\workspace\\_assets_bin\\README.md",
+                      "checkpoint_name":  "56_README.md"
+                  }
+              ],
+    "message":  "Workspace vault cohort clean",
+    "timestamp":  "2026-03-18T02:38:11.4259052+03:00",
+    "id":  "checkpoint_20260318_023811"
+}

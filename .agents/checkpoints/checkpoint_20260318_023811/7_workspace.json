@@ -1,0 +1,228 @@
+{
+  "main": {
+    "id": "main-root",
+    "type": "split",
+    "children": [
+      {
+        "id": "main-tabs",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "leaf-dashboard",
+            "type": "leaf",
+            "state": {
+              "type": "bases",
+              "state": {
+                "file": "projects/services.base",
+                "viewName": "Services"
+              },
+              "icon": "lucide-table",
+              "title": "services"
+            }
+          },
+          {
+            "id": "leaf-services-base",
+            "type": "leaf",
+            "state": {
+              "type": "bases",
+              "state": {
+                "file": "projects/services.base",
+                "viewName": "Services"
+              },
+              "icon": "lucide-table",
+              "title": "Services"
+            }
+          },
+          {
+            "id": "leaf-ops-board",
+            "type": "leaf",
+            "state": {
+              "type": "kanban",
+              "state": {
+                "file": "projects/ops-board.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-kanban-square",
+              "title": "Ops Board"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "left-root",
+    "type": "split",
+    "children": [
+      {
+        "id": "left-tabs",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "leaf-file-explorer",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Файловый менеджер"
+            }
+          },
+          {
+            "id": "leaf-search",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "leaf-bookmarks",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "right-root",
+    "type": "split",
+    "children": [
+      {
+        "id": "right-tabs",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "leaf-backlinks",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "projects/services.base",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Обратные ссылки для services"
+            }
+          },
+          {
+            "id": "leaf-outgoing",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing"
+            }
+          },
+          {
+            "id": "leaf-outline",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "9f785bf53f2c6c8c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Теги"
+            }
+          },
+          {
+            "id": "c3e10cb5068b4b7a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Все свойства"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 320
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-kanban:Create new board": false,
+      "markdown-importer:Импорт Markdown-файлов": false,
+      "workspaces:Пространства": false,
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "bases:Создать новую базу": false,
+      "terminal:Open terminal": false
+    }
+  },
+  "active": "leaf-dashboard",
+  "lastOpenFiles": [
+    "notes/dashboard.md",
+    "projects/ops-board.md",
+    "projects/services.base",
+    "projects/sources.base",
+    "projects/runbooks.base",
+    "notes/service-catalog.md",
+    "notes/source-registry.md",
+    "notes/services/obsidian-workspace-cli.md",
+    "notes/services/obsidian-kb-registry.md",
+    "notes/services/obsidian-kanban-ops-board.md",
+    "notes/services/obsidian-terminal-shell.md",
+    "projects/daily/2026/03/2026-03-18.md"
+  ]
+}
