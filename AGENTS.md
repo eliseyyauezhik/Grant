@@ -123,6 +123,25 @@ The agent does not continue without an explicit answer.
 
 ## § 4. Session and Context Management
 
+### § 4.0 Session Start Reminder (mandatory)
+
+At the start of every session, before addressing the user's request, the agent must:
+
+1. Read `workspace/projects/my-backlog.md`.
+2. Check for items in the **🔴 Срочно** section. If any exist, display them immediately:
+   > 📌 **Напоминание из вашего бэклога:**
+   > [list of urgent items]
+3. If no urgent items exist, skip the reminder silently — do not mention it.
+4. After resolving the user's request, if new tasks/ideas/goals were discussed, add them to `my-backlog.md` in the appropriate section and confirm: «✅ Добавил в бэклог: [item]».
+
+**Backlog management commands** (respond to these in any session):
+
+- «запомни идею: [текст]» → add to 💡 Parking Lot
+- «добавь задачу: [текст]» → add to 🟡 Важно
+- «срочная задача: [текст]» → add to 🔴 Срочно
+- «закрой задачу [текст]» → move to ✅ Выполнено with today's date
+- «что у меня в бэклоге?» → display all open sections
+
 - Use minimum viable context: give the model only the files, dependencies, and constraints actually needed for the current task.
 - Follow the principle `one task = one context`; do not mix implementation, refactoring, documentation, and independent subtasks in one session without explicit need.
 - By default the agent asks no more than one clarifying question before starting work. A second is allowed only after checking local context, if high-risk ambiguity remains and an incorrect assumption could lead to destructive, cross-project, or hard-to-reverse changes.

@@ -10,6 +10,7 @@ tags:
 
 ## Start Here
 
+- 📋 **[[projects/my-backlog]]** ← Бэклог: задачи, идеи, цели
 - [[notes/project-status-summary]]
 - [[notes/target-system-architecture]]
 - [[notes/ecosystem-overlap-analysis]]
@@ -21,6 +22,7 @@ tags:
 
 ## Today
 
+- 📋 **My Backlog** (задачи, идеи, цели): [[projects/my-backlog]]
 - Daily log: [[projects/daily/2026/03/2026-03-18]]
 - Active board: [[projects/ops-board]]
 - Main data views: [[projects/services.base]], [[projects/sources.base]], [[projects/runbooks.base]]

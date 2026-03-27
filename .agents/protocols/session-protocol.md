@@ -8,7 +8,31 @@ This file describes context compaction rules, session-switch criteria, and hando
 - Use minimum viable context: only the files, dependencies, constraints, and artifacts actually needed.
 - After each logically complete block, record a compact handover, even if continuing work in the same session.
 
-## 2. When Context Compaction Is Needed
+## 2. Periodic Context Check (Proactive)
+
+The agent performs a lightweight self-check at the following intervals, **without waiting for user signal**:
+
+### 2.1 Check Interval Rules
+
+| Session type | Check every | Criterion |
+|---|---|---|
+| **Mixed topics** (different projects/areas in one session) | **10–15 exchanges** | Topics diverge → higher drift risk |
+| **Single topic** (one task, one project throughout) | **20–30 exchanges** | Context stays coherent longer |
+
+### 2.2 Check Algorithm (3 questions)
+
+At the checkpoint, the agent asks itself:
+
+1. **Same task as before?**
+   - Yes → continue, no action needed
+2. **Important conclusions/decisions accumulated?**
+   - Yes → briefly record in `owner.md` → Current State block
+3. **Context drifting OR topic changed?**
+   - Yes → propose a handover + switch to a new chat
+
+> The agent signals the check to the user only if action is needed (points 2 or 3). Silent checks do not interrupt the flow.
+
+## 3. When Context Compaction Is Needed (Reactive)
 
 Trigger compaction if at least one signal is observed:
 

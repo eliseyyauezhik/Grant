@@ -60,6 +60,38 @@ local AI solutions, Telegram bots, B2B services for organizations.
 - Stop at points of no return with 2 options + recommendation
 - Signal T1–T3 protocol triggers directly in chat
 
+## Current State (updated: 2026-03-27)
+
+### 🔥 Активные задачи
+
+#### 🤖 Настройка OpenClaw на сервере 4vps
+
+- Статус: **НЕ НАЧАТО — требует действий**
+- Приоритет: Высокий
+- Описание: Развернуть OpenClaw (AI-оркестратор) на VPS-сервере (4vps.ru) под управлением Linux Ubuntu.
+- Задачи:
+  - [ ] Подключиться к серверу 4vps по SSH (получить данные доступа)
+  - [ ] Установить Node.js (среда выполнения для OpenClaw)
+  - [ ] Установить OpenClaw через npm: `npm install -g openclaw@latest`
+  - [ ] Запустить первичную конфигурацию: `openclaw onboard --install-daemon`
+  - [ ] Добавить API-ключ (Claude Sonnet или GPT-4o — на выбор)
+  - [ ] Подключить Telegram-канал как интерфейс управления агентом
+  - [ ] Настроить базовые навыки (Skills): веб-поиск, работа с файлами
+  - [ ] Протестировать: дать агенту первую задачу через Telegram
+  - [ ] (Бонус, день 2) Установить NVIDIA NemoClaw — защитный слой поверх OpenClaw: `curl -fsSL https://www.nvidia.com/nemoclaw.sh | bash`
+  - [ ] (Опционально) Подключить GigaChat/YandexGPT как альтернативу западным API
+  - [ ] (Опционально) Добавить навыки для Яндекс 360 (Диск, Почта, Календарь)
+- Источник: Анализ `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\KnowledgeBase\Inbox\OpenClaw\Российские сервисы OpenClaw_ анализ.txt`
+- Инструкция: `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\KnowledgeBase\Projects\AI Workspace\openclaw-4vps-setup-guide.md`
+
+### 🗂 Parking Lot (отложенные идеи)
+
+- Интеграция OpenClaw с российскими AI (GigaChat через gpt2giga прокси, YandexGPT)
+- Навык yax для Яндекс 360 (Диск, Почта, Telemost)
+- Marketplace-ru навык (Wildberries, Ozon, Яндекс Маркет)
+
+---
+
 ## Communication Preferences
 
 - Language: Russian by default in this workspace
