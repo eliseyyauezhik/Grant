@@ -1,0 +1,607 @@
+{
+  "meta": {
+    "topic": "OpenClaw Lab Community: OpenClaw operational knowledge, Telegram integration, models, memory and troubleshooting",
+    "stage": "stage2_consolidation_topics",
+    "output_language": "Russian",
+    "notes": [
+      "Схлопывание выполнено без агрессивного merge: исторические релизы, конфиг-ломающие изменения и слабые сигналы сохранены отдельно.",
+      "Текущая полезность ставилась выше шума обсуждений, но исторические точки сохранены там, где они объясняют нынешние ограничения."
+    ]
+  },
+  "consolidated_claims": [
+    {
+      "consolidated_claim_id": "cc_001",
+      "source_claim_ids": [
+        "claim_001"
+      ],
+      "final_formulation": "Проектный контекст корпуса задается организационным сдвигом: Питер Штайнбергер уходит в OpenAI, а OpenClaw продолжает жить как open-source foundation-проект.",
+      "preserved_differences": [],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "B",
+      "knowledge_level": "foundational",
+      "conditions": [],
+      "historical_versions": [
+        "До 2026-02-16 OpenClaw обсуждался как более явно founder-led проект."
+      ],
+      "contradictions": [],
+      "links": [
+        {
+          "url": "https://steipete.me/posts/2026/openclaw",
+          "relation": "supports"
+        },
+        {
+          "url": "https://x.com/sama/status/2023150230905159801",
+          "relation": "supports"
+        }
+      ],
+      "notes": [
+        "Это контекст важен не как настройка агента, а как объяснение темпа и тона дискуссии."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_002",
+      "source_claim_ids": [
+        "claim_003",
+        "claim_004"
+      ],
+      "final_formulation": "OpenClaw в этом корпусе мыслится как security-first, hackable, thin-core система, где агент bootstrap'ится через .md-файлы, CLI и skills, а не через магию «из коробки».",
+      "preserved_differences": [
+        "claim_003 описывает архитектурное self-conception проекта, а claim_004 — практический onboarding-паттерн пользователей."
+      ],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "B",
+      "knowledge_level": "foundational",
+      "conditions": [],
+      "historical_versions": [],
+      "contradictions": [],
+      "links": [],
+      "notes": [
+        "Это одна из самых устойчивых линий корпуса: OpenClaw не описывается как «нажал кнопку и всё поехало»."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_003",
+      "source_claim_ids": [
+        "claim_002",
+        "claim_005",
+        "claim_016"
+      ],
+      "final_formulation": "Февральско-мартовские релизы воспринимались как резкий рост production maturity: 1M context, более устойчивые субагенты, лучший realtime, память, security hardening и конфиг-детали уровня `gateway.auth.mode`, которые легко ломают старые гайды.",
+      "preserved_differences": [
+        "claim_002 и claim_005 — широкие релизные дайджесты, claim_016 — узкий, но критичный breaking-ish config detail."
+      ],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "B",
+      "knowledge_level": "foundational",
+      "conditions": [
+        "Многие советы в чате завязаны на конкретную версию"
+      ],
+      "historical_versions": [
+        "Ранее можно было полагаться на более старые setup-схемы без `gateway.auth.mode`."
+      ],
+      "contradictions": [],
+      "links": [],
+      "notes": [
+        "Практический вывод: любую настройку надо читать через призму версии."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_004",
+      "source_claim_ids": [
+        "claim_006",
+        "claim_017"
+      ],
+      "final_formulation": "Сообщество массово использует и обсуждает OAuth/подписочные подключения сильных моделей, но provider policy и стабильность неодинаковы: OpenAI/Codex популярен, Anthropic обсуждается как допустимый для personal use с оговорками, а Gemini считается более рискованным; при этом вокруг Codex/ChatGPT были заметные лаги и модельные ограничения.",
+      "preserved_differences": [
+        "Policy discussion и real-time instability discussion относятся к одному operational plane, но это не одно и то же.",
+        "Внутри корпуса есть различие между personal experimentation и business/24x7 workloads."
+      ],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "C",
+      "knowledge_level": "foundational",
+      "conditions": [
+        "Особенно важно для OAuth instead of API-key strategy"
+      ],
+      "historical_versions": [
+        "9-10 марта наблюдался всплеск жалоб на Codex/ChatGPT lag и model availability."
+      ],
+      "contradictions": [
+        "Часть участников считает подписочный OAuth наиболее практичным путем, часть — считает его слишком нестабильным и policy-sensitive."
+      ],
+      "links": [
+        {
+          "url": "https://chatgpt.com/codex/settings/usage",
+          "relation": "context"
+        },
+        {
+          "url": "https://status.openai.com/",
+          "relation": "context"
+        }
+      ],
+      "notes": [
+        "Один из самых быстро устаревающих фрагментов знания в корпусе."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_005",
+      "source_claim_ids": [
+        "claim_007",
+        "claim_009"
+      ],
+      "final_formulation": "Базовая Telegram-интеграция в чате сводится к двум вещам: канал должен быть реально подключен через `openclaw channels add`, а доступ к личным чатам через Telegram Business bot требует Premium и по умолчанию покрывает только новые сообщения.",
+      "preserved_differences": [
+        "claim_009 — fix неактивного Telegram channel; claim_007 — отдельный Business workflow для доступа к перепискам основного аккаунта."
+      ],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "C",
+      "knowledge_level": "operational",
+      "conditions": [
+        "Разные use cases: бот-канал и Business-бот для личных чатов"
+      ],
+      "historical_versions": [],
+      "contradictions": [],
+      "links": [],
+      "notes": []
+    },
+    {
+      "consolidated_claim_id": "cc_006",
+      "source_claim_ids": [
+        "claim_011",
+        "claim_012"
+      ],
+      "final_formulation": "Telegram topics выступают рабочей границей изоляции для OpenClaw, но после security hardening их нельзя считать implicitly trusted: команды и доступ в group/topic требуют явного ACL (`groupAllowFrom` / `allowFrom`) или открытой policy.",
+      "preserved_differences": [
+        "claim_011 описывает capability layer (topics as isolated agents), claim_012 — authorization behavior after security changes."
+      ],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "B",
+      "knowledge_level": "operational",
+      "conditions": [
+        "Особенно важно в группах, форумах и multi-user сценариях"
+      ],
+      "historical_versions": [
+        "Ранее pairing/DM fallback воспринимался как более широкий implicit grant."
+      ],
+      "contradictions": [],
+      "links": [],
+      "notes": [
+        "Высокосигнальная тема для multi-agent Telegram setups."
+      ]
+    }
+    {
+      "consolidated_claim_id": "cc_007",
+      "source_claim_ids": [
+        "claim_008"
+      ],
+      "final_formulation": "Рабочая continuity pattern внутри корпуса — это layered file memory: ежедневные memory-логи, curated MEMORY.md и локальный retrieval по workspace вместо надежды на непрерывный контекст модели.",
+      "preserved_differences": [],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "C",
+      "knowledge_level": "foundational",
+      "conditions": [
+        "Нужна дисциплина по write-back в файлы"
+      ],
+      "historical_versions": [],
+      "contradictions": [],
+      "links": [],
+      "notes": [
+        "Это один из самых прикладных и малоконфликтных паттернов в корпусе."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_008",
+      "source_claim_ids": [
+        "claim_013"
+      ],
+      "final_formulation": "Для анализа Telegram на горизонте недель/месяцев сообщество выходит за пределы встроенной .md-памяти и строит отдельный ingest в векторную память (например, memU + pgvector + CRON).",
+      "preserved_differences": [],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "C",
+      "knowledge_level": "operational",
+      "conditions": [
+        "Нужен отдельный ingest/indexing stack"
+      ],
+      "historical_versions": [],
+      "contradictions": [],
+      "links": [
+        {
+          "url": "https://github.com/NevaMind-AI/memU",
+          "relation": "supports"
+        },
+        {
+          "url": "https://docs.openclaw.ai",
+          "relation": "supports"
+        }
+      ],
+      "notes": [
+        "Это важный bridge between chat history and practical CRM/knowledge workflows."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_009",
+      "source_claim_ids": [
+        "claim_010",
+        "claim_015"
+      ],
+      "final_formulation": "Self-hosted runtime часто ломается не на «высоком AI», а на низком слое конфигурации: Control UI origins, loopback bindings, sandbox/exec permissions и browser-in-sandbox оказываются критичными для реальной автономности.",
+      "preserved_differences": [
+        "claim_010 — конкретный UI/compose workaround; claim_015 — общий runtime dependency на sandbox/exec и боль с браузером."
+      ],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "C",
+      "knowledge_level": "operational",
+      "conditions": [
+        "Особенно важно для self-hosted и Docker/VPS сценариев"
+      ],
+      "historical_versions": [],
+      "contradictions": [],
+      "links": [],
+      "notes": [
+        "Это объясняет, почему часть «агент не может ничего делать» в чате не является проблемой prompts."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_010",
+      "source_claim_ids": [
+        "claim_014"
+      ],
+      "final_formulation": "Для сложной dev-оркестрации часть сообщества предпочитает подключать внешние workflow-системы вроде Antfarm, а не делать OpenClaw единственным оркестратором всего процесса.",
+      "preserved_differences": [],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "C",
+      "knowledge_level": "context_specific",
+      "conditions": [
+        "Прежде всего для development / YAML workflow use case"
+      ],
+      "historical_versions": [],
+      "contradictions": [],
+      "links": [],
+      "notes": [
+        "Тема больше про экосистему, чем про core OpenClaw."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_011",
+      "source_claim_ids": [
+        "claim_018"
+      ],
+      "final_formulation": "Типичный «агент делает вид, что работает» в корпусе объясняется комбинацией OAuth refresh race, premature completion после message tool, пустого announce после thinking, раздувшихся сессий и слишком жестких prompt/permission слоев.",
+      "preserved_differences": [
+        "Разные failure modes проявляются одинаковым внешним симптомом: отсутствие реального результата при разговорном ответе агента."
+      ],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "C",
+      "knowledge_level": "operational",
+      "conditions": [
+        "Особенно заметно в cron/heartbeat и на дешевых/слабых моделях"
+      ],
+      "historical_versions": [],
+      "contradictions": [],
+      "links": [],
+      "notes": [
+        "Это самый полезный troubleshooting cluster корпуса, но он требует внешней issue-level проверки."
+      ]
+    },
+    {
+      "consolidated_claim_id": "cc_012",
+      "source_claim_ids": [
+        "claim_019"
+      ],
+      "final_formulation": "Малые локальные модели могут быть рабочим компромиссом для части задач OpenClaw, но внутри этого корпуса это пока единичный сигнал, а не подтвержденная best practice.",
+      "preserved_differences": [],
+      "status": "disputed",
+      "confidence": "low",
+      "source_reliability": "D",
+      "knowledge_level": "edge_case",
+      "conditions": [
+        "Сильная зависимость от железа, конфигурации и опыта пользователя"
+      ],
+      "historical_versions": [],
+      "contradictions": [
+        "Большая часть корпуса все равно тяготеет к сильным cloud-моделям с хорошим tool use."
+      ],
+      "links": [],
+      "notes": [
+        "Сигнал сохранен как редкий, но не как основа рекомендаций."
+      ]
+    }
+  ],
+  "topic_map": [
+    {
+      "topic_id": "topic_001",
+      "title": "Project Direction and Release Cadence",
+      "description": "Организационный контекст проекта и быстрый темп релизов, который постоянно меняет operational baseline.",
+      "priority": "high",
+      "subtopics": [
+        {
+          "subtopic_id": "subtopic_001",
+          "title": "Governance and Vision",
+          "description": "Foundation, security-first, thin core, hackability."
+        },
+        {
+          "subtopic_id": "subtopic_002",
+          "title": "Version-Sensitive Setup",
+          "description": "Release changes, breaking-ish auth config details, необходимость сверять гайды с версией."
+        }
+      ]
+    },
+    {
+      "topic_id": "topic_002",
+      "title": "Model and Provider Strategy",
+      "description": "OAuth vs API keys, provider policy drift, latency and fallback behavior.",
+      "priority": "high",
+      "subtopics": [
+        {
+          "subtopic_id": "subtopic_003",
+          "title": "OAuth Reality",
+          "description": "Различия между OpenAI, Anthropic и Gemini."
+        },
+        {
+          "subtopic_id": "subtopic_004",
+          "title": "Fallbacks and Local Experiments",
+          "description": "Лаги, model availability, локальные модели как крайний случай."
+        }
+      ]
+    },
+    {
+      "topic_id": "topic_003",
+      "title": "Telegram Integration and Access Control",
+      "description": "Подключение каналов, Business bots, topics и явные ACL.",
+      "priority": "high",
+      "subtopics": [
+        {
+          "subtopic_id": "subtopic_005",
+          "title": "Channel and Business Setup",
+          "description": "Подключение Telegram к OpenClaw и доступ к личным чатам."
+        },
+        {
+          "subtopic_id": "subtopic_006",
+          "title": "Topics and ACL",
+          "description": "Изоляция по topics и fail-closed group/topic authorization."
+        }
+      ]
+    },
+    {
+      "topic_id": "topic_004",
+      "title": "Memory and Long-Horizon Knowledge",
+      "description": "Layered file memory и отдельная векторная память для длинной истории.",
+      "priority": "high",
+      "subtopics": [
+        {
+          "subtopic_id": "subtopic_007",
+          "title": "File Memory",
+          "description": "memory/YYYY-MM-DD.md, MEMORY.md, local retrieval."
+        },
+        {
+          "subtopic_id": "subtopic_008",
+          "title": "Vector Telegram Memory",
+          "description": "CRON ingest, embeddings, memU/pgvector-like pattern."
+        }
+      ]
+    },
+    {
+      "topic_id": "topic_005",
+      "title": "Runtime Configuration and Failure Modes",
+      "description": "Low-level runtime prerequisites and clustered silent-failure patterns.",
+      "priority": "high",
+      "subtopics": [
+        {
+          "subtopic_id": "subtopic_009",
+          "title": "Self-Hosted Runtime",
+          "description": "controlUi, loopback bindings, sandbox/exec, browser pain points."
+        },
+        {
+          "subtopic_id": "subtopic_010",
+          "title": "Silent Failure Diagnostics",
+          "description": "OAuth race, message-tool completion, thinking, context bloat, conflicting prompts."
+        }
+      ]
+    },
+    {
+      "topic_id": "topic_006",
+      "title": "External Orchestration and Ecosystem",
+      "description": "Соседние инструменты и альтернативные orchestration layers вокруг OpenClaw.",
+      "priority": "medium",
+      "subtopics": [
+        {
+          "subtopic_id": "subtopic_011",
+          "title": "Antfarm Path",
+          "description": "YAML workflows, daemon, dashboard, separate agent roles."
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "topic_id": "topic_001",
+      "title": "Project Direction and Release Cadence",
+      "current_core_claim_ids": [
+        "cc_002",
+        "cc_003",
+        "cc_001"
+      ],
+      "foundational_claim_ids": [
+        "cc_001",
+        "cc_002"
+      ],
+      "operational_claim_ids": [
+        "cc_003"
+      ],
+      "context_specific_claim_ids": [],
+      "edge_case_claim_ids": [],
+      "historical_claim_ids": [],
+      "disputed_claim_ids": [],
+      "related_links": [
+        "https://steipete.me/posts/2026/openclaw"
+      ],
+      "key_uncertainties": [
+        "Насколько точно community-release digests совпадают с upstream releases."
+      ]
+    },
+    {
+      "topic_id": "topic_002",
+      "title": "Model and Provider Strategy",
+      "current_core_claim_ids": [
+        "cc_004"
+      ],
+      "foundational_claim_ids": [
+        "cc_004"
+      ],
+      "operational_claim_ids": [
+        "cc_004"
+      ],
+      "context_specific_claim_ids": [
+        "cc_012"
+      ],
+      "edge_case_claim_ids": [
+        "cc_012"
+      ],
+      "historical_claim_ids": [],
+      "disputed_claim_ids": [
+        "cc_012"
+      ],
+      "related_links": [
+        "https://chatgpt.com/codex/settings/usage",
+        "https://status.openai.com/"
+      ],
+      "key_uncertainties": [
+        "Текущие provider rules и допустимость OAuth к дате использования.",
+        "Сколько проблем относится к самому OpenClaw, а сколько — к провайдеру."
+      ]
+    },
+    {
+      "topic_id": "topic_003",
+      "title": "Telegram Integration and Access Control",
+      "current_core_claim_ids": [
+        "cc_005",
+        "cc_006"
+      ],
+      "foundational_claim_ids": [],
+      "operational_claim_ids": [
+        "cc_005",
+        "cc_006"
+      ],
+      "context_specific_claim_ids": [],
+      "edge_case_claim_ids": [],
+      "historical_claim_ids": [],
+      "disputed_claim_ids": [],
+      "related_links": [],
+      "key_uncertainties": [
+        "Текущая глубина изоляции topics и актуальная схема ACL после последних релизов."
+      ]
+    },
+    {
+      "topic_id": "topic_004",
+      "title": "Memory and Long-Horizon Knowledge",
+      "current_core_claim_ids": [
+        "cc_007",
+        "cc_008"
+      ],
+      "foundational_claim_ids": [
+        "cc_007"
+      ],
+      "operational_claim_ids": [
+        "cc_008"
+      ],
+      "context_specific_claim_ids": [],
+      "edge_case_claim_ids": [],
+      "historical_claim_ids": [],
+      "disputed_claim_ids": [],
+      "related_links": [
+        "https://github.com/NevaMind-AI/memU"
+      ],
+      "key_uncertainties": [
+        "Какая memory architecture является canonical для текущего OpenClaw ecosystem."
+      ]
+    },
+    {
+      "topic_id": "topic_005",
+      "title": "Runtime Configuration and Failure Modes",
+      "current_core_claim_ids": [
+        "cc_009",
+        "cc_011"
+      ],
+      "foundational_claim_ids": [],
+      "operational_claim_ids": [
+        "cc_009",
+        "cc_011"
+      ],
+      "context_specific_claim_ids": [],
+      "edge_case_claim_ids": [],
+      "historical_claim_ids": [],
+      "disputed_claim_ids": [],
+      "related_links": [],
+      "key_uncertainties": [
+        "Какие failure modes уже закрыты в новых версиях, а какие остаются живыми."
+      ]
+    },
+    {
+      "topic_id": "topic_006",
+      "title": "External Orchestration and Ecosystem",
+      "current_core_claim_ids": [
+        "cc_010"
+      ],
+      "foundational_claim_ids": [],
+      "operational_claim_ids": [],
+      "context_specific_claim_ids": [
+        "cc_010"
+      ],
+      "edge_case_claim_ids": [],
+      "historical_claim_ids": [],
+      "disputed_claim_ids": [],
+      "related_links": [],
+      "key_uncertainties": [
+        "Насколько этот путь действительно лучше core-only orchestration для конкретного use case."
+      ]
+    }
+  ],
+  "rare_signals": [
+    {
+      "signal_id": "signal_001",
+      "summary": "Telegram topics внутри OpenClaw могут выступать готовой boundary для quasi-multi-agent работы с разными prompts/skills.",
+      "related_consolidated_claim_ids": [
+        "cc_006"
+      ],
+      "confidence": "medium",
+      "requires_external_verification": true
+    },
+    {
+      "signal_id": "signal_002",
+      "summary": "Небольшая на вид деталь `gateway.auth.mode` может silently ломать startup/pairing после обновления.",
+      "related_consolidated_claim_ids": [
+        "cc_003"
+      ],
+      "confidence": "medium",
+      "requires_external_verification": true
+    },
+    {
+      "signal_id": "signal_003",
+      "summary": "Long-horizon Telegram analysis в сообществе уже мыслится как локальная vector-memory задача, а не как расширение обычной .md-памяти.",
+      "related_consolidated_claim_ids": [
+        "cc_008"
+      ],
+      "confidence": "medium",
+      "requires_external_verification": true
+    },
+    {
+      "signal_id": "signal_004",
+      "summary": "Локальная малая модель на домашнем GPU может быть useful fallback для части задач, но это пока слабый единичный сигнал.",
+      "related_consolidated_claim_ids": [
+        "cc_012"
+      ],
+      "confidence": "low",
+      "requires_external_verification": true
+    }
+  ]
+}
