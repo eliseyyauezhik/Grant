@@ -300,3 +300,14 @@
 - [x] Вернуть owner/private Telegram menu с `/model`
 - [x] Проверить `config validate`, `models status --plain`, `status --deep`, `getMyCommands`
 - [x] Отправить итоговое уведомление владельцу прямо в Telegram-бот
+
+## 2026-03-30 - Telegram Chat Analysis Prompt Pack Run
+
+- [x] Прочитать `workspace/projects/telegram-chat-analysis-prompt-pack/README.md`
+- [x] Прочитать stage prompts и matching schemas по порядку
+- [x] Проверить структуру и метаданные Telegram-экспорта `ChatExport_2026-03-29`
+- [x] Собрать Stage 1 claims с message refs и пометками uncertainty
+- [x] Собрать Stage 2 consolidated claims, topic map и rare signals
+- [x] Собрать финальный analytical JSON с research plan и agent tuning plan
+- [x] Сохранить короткий Markdown summary и handover
+- [x] Провалидировать JSON-файлы

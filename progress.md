@@ -193,6 +193,28 @@ Suggested commit order
   - `.agents/handovers/handover_2026-03-28_openclaw-security-hardening.md`
   - `openclaw_project_dossier_2026-03-28.md`
 
+## 2026-03-30 - Telegram Chat Analysis Prompt Pack Run
+
+- Prompt-pack execution artifacts saved to:
+  - `workspace/projects/telegram-chat-analysis-prompt-pack/runs/2026-03-29_openclaw-lab-community/`
+- Saved outputs:
+  - `stage1_claims.json`
+  - `stage2_topics.json`
+  - `final_analysis.json`
+  - `analysis_summary.md`
+- Dataset baseline captured:
+  - `OpenClaw Lab Community`
+  - `8891` messages
+  - `26` service events skipped
+  - `2026-02-16` to `2026-03-29`
+- Strongest resulting knowledge zones:
+  - Telegram integration and ACL
+  - layered memory and vector-memory direction
+  - self-hosted runtime config
+  - silent-failure troubleshooting
+- Main residual uncertainty:
+  - provider OAuth policy and release details still need external verification against official sources
+
 ## 2026-03-28 - OpenClaw Cost Switch to Haiku and In-Bot Model Picker
 
 - Verified from the live VPS and official docs that the current OpenClaw schema uses `agents.defaults.model.fallbacks`, not `fallback`.

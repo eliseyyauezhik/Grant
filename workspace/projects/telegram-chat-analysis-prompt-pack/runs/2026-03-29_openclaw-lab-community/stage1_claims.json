@@ -245,7 +245,7 @@
       "notes": [
         "Стоит сверить с upstream release notes."
       ]
-    }
+    },
     {
       "claim_id": "claim_006",
       "raw_variants": [
@@ -503,7 +503,7 @@
       "notes": [
         "Нужно проверить, является ли это версионно-зависимым workaround."
       ]
-    }
+    },
     {
       "claim_id": "claim_011",
       "raw_variants": [
@@ -756,7 +756,7 @@
       "notes": [
         "Здесь важна проверка по текущей схеме sandbox/browser в docs."
       ]
-    }
+    },
     {
       "claim_id": "claim_016",
       "raw_variants": [

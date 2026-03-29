@@ -735,6 +735,38 @@ Conclusions
   - workspace access disabled inside the sandbox
 - `NemoClaw` remains intentionally deferred because the current VPS plan is still too disk-constrained for reliable onboarding.
 
+## 2026-03-30 - Telegram Chat Analysis Prompt Pack Run
+
+Goal
+- Run the staged Telegram analysis prompt-pack against the `OpenClaw Lab Community` export and save reusable analytical artifacts.
+
+Inputs inspected
+- `workspace/projects/telegram-chat-analysis-prompt-pack/README.md`
+- `workspace/projects/telegram-chat-analysis-prompt-pack/system_instruction.md`
+- stage prompts and matching schemas in `workspace/projects/telegram-chat-analysis-prompt-pack/`
+- `C:\Users\Kogan\Downloads\Telegram Desktop\ChatExport_2026-03-29\result.json`
+
+Verified dataset facts
+- Chat name: `OpenClaw Lab Community`
+- Chat type: `public_supergroup`
+- Message corpus: `8891` message entries + `26` service entries
+- Date range: `2026-02-16` to `2026-03-29`
+- Messages with links: `424`
+- Attachments present in the export tree and message corpus
+- Highest-volume discussion window: roughly `2026-03-08` to `2026-03-12`
+
+High-signal findings
+- The strongest stable theme is that OpenClaw is treated as a security-first, file-driven, version-sensitive agent system, not a zero-config chatbot.
+- Telegram topics + explicit ACLs are a major operational topic; they are discussed as a practical boundary for quasi-multi-agent setups.
+- Layered file memory (`memory/YYYY-MM-DD.md` + `MEMORY.md` + retrieval) is the most repeatable memory pattern in the corpus.
+- Long-horizon Telegram analysis pushes the community toward vector-memory ingestion rather than ever-growing live sessions.
+- Many “agent degraded / nothing happens” reports are actually runtime/provider/policy failures: OAuth race, message-tool premature completion, thinking-output mismatch, session bloat, sandbox/exec gaps, and conflicting prompt files.
+
+Risks and limitations
+- No external verification was performed in this run; provider-policy and release claims remain claims, not facts.
+- Release-digest posts are detailed but still secondary summaries.
+- Small local-model viability is only weakly supported by the corpus.
+
 ## 2026-03-28 - OpenClaw Cost Switch to Haiku and In-Bot Model Picker
 
 Official references checked
