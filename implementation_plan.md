@@ -662,3 +662,46 @@ Verification
 - `openclaw security audit --json` falls to one residual warning only.
 - `/root/.openclaw` and key config/auth files use tightened permissions.
 - A standalone Markdown dossier exists with the sanitized final config and operating instructions.
+## 2026-03-30 - Verified Corpus-to-Roadmap Skill
+
+Goal
+- Turn the existing Telegram analysis into a reusable pipeline that verifies claims, sorts them into three confidence baskets, scores them for practical value, ranks them for `OpenClaw` and project use, and packages the workflow as a local skill.
+
+Scope
+- Current analysis artifacts under `workspace/projects/telegram-chat-analysis-prompt-pack/runs/2026-03-29_openclaw-lab-community/`
+- The prompt-pack in `workspace/projects/telegram-chat-analysis-prompt-pack/`
+- Shared workflow artifacts: `research_notes.md`, `implementation_plan.md`, `task.md`, `progress.md`
+- New or updated files under `.agents/skills/**` after confirmation
+
+Constraints
+- Use official sources first for verification.
+- Keep the workflow reusable for other chat/database corpora, not only this `OpenClaw` case.
+- Separate stable corpus-processing logic from broader user-specific "life orchestration" ambitions.
+- Keep model/subagent routing explicit and optimization-oriented.
+
+Success
+- A clear `3-basket` evidence model is defined.
+- A prioritization rubric exists for confidence, applicability, impact, volatility, and implementation cost.
+- The current `OpenClaw` corpus is re-ranked with that rubric.
+- A concrete plan of application/implementation is produced from the ranked knowledge.
+- A validated local skill exists that can reproduce the pipeline on another corpus.
+
+Plan
+1. Define the verification ledger and the `3-basket` evidence model (`verified`, `probable but unverified`, `obsolete/noisy/contradicted`) - risk: LOW
+2. Define the prioritization rubric and weighting logic for project relevance and `OpenClaw` operational value - risk: MEDIUM
+3. Apply the rubric to the current `OpenClaw` corpus and produce a ranked rollout roadmap - risk: MEDIUM
+4. Design the reusable skill contract:
+   - use cases
+   - trigger phrases
+   - negative triggers
+   - model/subagent routing decision tree
+   - required outputs
+   risk: MEDIUM
+5. Create a checkpoint and scaffold the new skill under `.agents/skills/` with `SKILL.md` plus `references/` and `scripts/` if justified - risk: HIGH -> needs confirmation
+6. Validate the skill structure and run an evaluation pass on the current `OpenClaw` corpus as the baseline case - risk: MEDIUM
+
+Verification
+- Re-read the basket rules and scoring rubric for ambiguity.
+- Check that the ranked items clearly map to actions, not only themes.
+- Validate the skill via `quick_validate.py` and, if useful, `eval_skill.py`.
+- Confirm the skill does not over-trigger on ordinary summarization requests.

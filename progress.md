@@ -348,3 +348,16 @@ Suggested commit order
 - New documentation artifacts created for continuation and external review:
   - `.agents/handovers/handover_2026-03-28_openclaw-security-hardening.md`
   - `openclaw_project_dossier_2026-03-28.md`
+## 2026-03-30 - Verified Knowledge Triage + Skill Packaging (Planning)
+
+- Researched the current Telegram-analysis prompt-pack, reusable skill rules, and the existing `OpenClaw` corpus outputs.
+- Identified the main missing layers:
+  - official-source verification ledger
+  - three-basket confidence triage
+  - reusable prioritization rubric
+  - direct mapping from ranked knowledge to implementation steps
+- Chose the recommended first-version scope:
+  - a reusable `corpus -> roadmap` pipeline
+  - with explicit model/subagent routing inside the workflow
+  - without expanding the first version into a vague general-purpose life orchestrator
+- Stopped before editing `.agents/skills/**` pending user confirmation on scope.

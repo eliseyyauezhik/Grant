@@ -1064,3 +1064,46 @@ Conclusions
   - sandboxing enabled
   - workspace access disabled inside the sandbox
 - `NemoClaw` remains intentionally deferred because the current VPS plan is still too disk-constrained for reliable onboarding.
+## 2026-03-30 - Verified Knowledge Triage and Skill Packaging
+
+Goal
+- Evolve the current Telegram corpus analysis into a reusable workflow that verifies claims against official sources, sorts knowledge into three confidence baskets, ranks it for project and `OpenClaw` relevance, and outputs an implementation roadmap.
+
+Discovered facts
+- The current prompt-pack already gives a solid staged base:
+  - claim extraction
+  - consolidation/topic mapping
+  - final research-oriented synthesis
+- The current run artifacts for the `OpenClaw Lab Community` corpus already exist and can serve as a baseline case:
+  - `stage1_claims.json`
+  - `stage2_topics.json`
+  - `final_analysis.json`
+  - `analysis_summary.md`
+- The main missing layer is not extraction quality but operationalization:
+  - no explicit verification ledger by source tier
+  - no deterministic `3-basket` confidence triage
+  - no reusable prioritization rubric across projects
+  - no direct mapping from ranked knowledge to rollout steps
+- A quick official-source pass already suggests that some `OpenClaw` Telegram/model/config claims are confirmable via docs, while provider-policy, release-sensitive, and Telegram Business visibility claims remain materially more volatile.
+- Packaging the whole idea as a single broad "life-help" skill would over-mix:
+  - stable corpus-processing logic
+  - volatile orchestration preferences
+  - user-specific proactive assistance heuristics
+
+Conclusions
+- The current prompt-pack should be extended, not replaced.
+- The recommended reusable artifact is one core skill for `corpus -> verification -> triage -> prioritization -> application plan`.
+- `OpenClaw`-specific routing logic should be encoded as references and decision tables inside the skill, not hardcoded as narrow one-off instructions in the description.
+- Model/subagent selection should be treated as an internal decision tree:
+  - cheaper model or narrower subagent for extraction, formatting, and dedupe
+  - stronger model for contradiction handling, final synthesis, and internet verification review
+- The broader "proactive help in life" target should remain outside the first version of the skill; otherwise validation will become vague and the skill will lose reuse value.
+
+Unknowns
+- How wide the first version should go beyond technical corpora and `OpenClaw`-adjacent knowledge.
+- Whether the final ranked knowledge register should live only in `workspace/projects/` or also be normalized into reusable KB notes.
+
+Risks
+- Skill overbreadth: too many goals in one `SKILL.md`.
+- Subjective scoring if the prioritization rubric is not explicitly weighted.
+- Source drift if verification allows forum/blog material instead of official docs, changelogs, issues, and provider policies.

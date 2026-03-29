@@ -311,3 +311,15 @@
 - [x] Собрать финальный analytical JSON с research plan и agent tuning plan
 - [x] Сохранить короткий Markdown summary и handover
 - [x] Провалидировать JSON-файлы
+## 2026-03-30 - Verified Corpus-to-Roadmap Skill
+
+- [x] Исследовать текущий prompt-pack, существующие outputs и локальные skill-правила
+- [x] Выявить разрыв между staged-анализом и целевым verification/priority pipeline
+- [x] Зафиксировать план и ограничения в workflow artifacts
+- [ ] Согласовать scope: узкий reusable pipeline или более широкий orchestration wrapper
+- [ ] Определить `3-бasket` evidence model и verification ledger
+- [ ] Определить rubric для confidence / applicability / impact / volatility / effort
+- [ ] Проранжировать текущий `OpenClaw` corpus по этой rubric
+- [ ] Составить план применения и внедрения для наших проектов и `OpenClaw`
+- [ ] Сделать checkpoint и scaffold нового skill в `.agents/skills/`
+- [ ] Провести validation/eval нового skill на текущем corpus
