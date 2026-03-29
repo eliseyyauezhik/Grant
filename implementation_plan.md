@@ -719,3 +719,8 @@ Execution notes
   - `verified-corpus-roadmap`
   - scope limited to corpus -> verification -> triage -> prioritization -> roadmap
   - no broad orchestration/life-help wrapper in v1
+- Keep user-facing outputs in Russian:
+  - basket labels
+  - comments
+  - roadmap interpretations
+- Use the current corpus workflow as the seed of the wider `Analytical Node`, not as an isolated Telegram-only artifact.

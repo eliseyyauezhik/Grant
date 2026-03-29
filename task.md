@@ -328,3 +328,11 @@
 ### Execution note
 
 - Checkpoint automation was attempted twice and failed because the PowerShell wrapper passed the file list as one string; the implementation continued with reversible new-file additions and small diffs only.
+
+## 2026-03-30 - Russian User-Facing Outputs and Analytical Node Framing
+
+- [x] Уточнить Telegram Business category по официальным Telegram источникам
+- [x] Перевести user-facing метки и комментарии в framework/roadmap на русский
+- [x] Зафиксировать Telegram Business как `проверено по первичным источникам`, но `не проверено в нашей среде`
+- [x] Оформить архитектурную заметку про `Аналитический Узел`
+- [ ] Нормализовать write-back из corpus runs в отдельный vault register

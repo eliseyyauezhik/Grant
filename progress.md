@@ -379,3 +379,16 @@ Suggested commit order
   - `quick_validate.py` -> `Skill is valid!`
   - `eval_skill.py` -> `10/10`, no failures or warnings
 - Checkpoint automation was attempted twice and failed because the PowerShell wrapper collapsed the `-Files` array into one string; the rest of the work was kept reversible via small diffs and new-file additions.
+## 2026-03-30 - Russian Labels + Telegram Business Refinement + Analytical Node
+
+- Switched the user-facing framework and roadmap to Russian labels/comments.
+- Tightened the Telegram Business conclusion using official Telegram docs:
+  - business features currently tied to Premium subscriptions
+  - only one connected business bot per user account
+  - explicit recipient-scope controls for private chats
+- Upgraded the Business-bot category from a vague probable signal to a narrower verified claim:
+  - verified by primary sources
+  - still not locally smoke-tested in our own environment
+- Added a new architecture note:
+  - `workspace/notes/analytical-node-architecture.md`
+  - it positions the corpus workflow as the core of the wider `Analytical Node` and proactive-assistant stack

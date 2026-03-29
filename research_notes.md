@@ -1149,3 +1149,43 @@ Risks
 - Over-promoting community heuristics into hard operating rules.
 - Treating provider subscription auth as stable production ground without repeated policy verification.
 - Packing too much domain-specific context into the first version of the reusable skill.
+## 2026-03-30 - Telegram Business Verification and Analytical Node Framing
+
+Goal
+- Refine the Telegram Business category using official sources where possible, switch user-facing labels/comments to Russian, and connect the verified corpus workflow to the wider `Analytical Node` architecture of the AI system.
+
+Official sources checked
+- `https://core.telegram.org/api/business`
+- `https://core.telegram.org/api/bots/connected-business-bots`
+- `https://core.telegram.org/constructor/businessBotRecipients`
+
+Verified facts
+- Telegram Business features are documented as currently available to Premium subscribers.
+- Telegram officially documents connected business bots as a separate capability for business users.
+- Telegram officially documents that currently only one business bot may be connected to a user account.
+- Telegram officially documents granular business-bot recipient selection:
+  - existing private chats
+  - new private chats
+  - contacts
+  - non-contacts
+  - explicitly selected users
+  - explicit exclusions
+
+Conclusions
+- The earlier corpus claim should be tightened:
+  - not "Business bot probably sees some chats"
+  - but "Business bot access is an explicitly scoped private-chat surface, not a full inbox mirror"
+- This category is now verified at the primary-source level, but still not locally smoke-tested in our own environment.
+- The verified corpus workflow now fits directly into the already-documented architecture:
+  - `My Dashboard` as front door
+  - `Obsidian vault` as system of record
+  - `Analytical Node` as verification/triage/ranking layer
+  - `OpenClaw` and other agents as executor nodes
+
+Unknowns
+- Exact practical behavior for our own Telegram account and settings is still untested locally.
+- The canonical write-back format from corpus runs into long-lived vault knowledge is still not fixed.
+
+Risks
+- Confusing official capability scope with production-readiness in our own environment.
+- Letting the proactive-assistant ambition outrun the still-unfinished write-back and registry contracts.

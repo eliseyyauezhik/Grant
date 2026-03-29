@@ -42,6 +42,8 @@ tags:
 - [ ] `OpenClaw`: собрать по верифицированным данным план поступательной модернизации и обновления
 - [ ] `Knowledge pipeline`: оформить reusable skill для верификации, triage, приоритизации и плана внедрения по Telegram/chat/database corpora
 - [ ] `Knowledge pipeline`: разработать rubric ранжирования знаний по достоверности, применимости к проектам и ценности для `OpenClaw`
+- [ ] `Аналитический Узел`: оформить единый pipeline `inbox -> corpus -> verification -> triage -> ranking -> write-back -> proactive signals`
+- [ ] `Личный ИИ-ассистент`: читать обновления из vault/Obsidian, собирать сигналы развития по проектам и областям, предлагать следующие шаги и нужных агентов
 
 ---
 
