@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.24",
+    "lastTouchedAt": "2026-03-28T06:30:56.946Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-27T21:47:10.082Z",
+    "lastRunVersion": "2026.3.24",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "api_key"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-haiku-4-5-20251001",
+        "fallbacks": [
+          "anthropic/claude-sonnet-4-6"
+        ]
+      },
+      "models": {
+        "anthropic/claude-sonnet-4-6": {
+          "params": {
+            "cacheRetention": "long"
+          },
+          "alias": "sonnet"
+        },
+        "anthropic/claude-haiku-4-5-20251001": {
+          "params": {
+            "cacheRetention": "long"
+          },
+          "alias": "haiku"
+        }
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "memorySearch": {
+        "enabled": false
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "1h"
+      },
+      "sandbox": {
+        "mode": "all",
+        "workspaceAccess": "rw",
+        "scope": "agent"
+      }
+    }
+  },
+  "tools": {
+    "profile": "coding",
+    "allow": [
+      "image",
+      "web",
+      "search"
+    ],
+    "deny": [],
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "duckduckgo"
+      }
+    },
+    "elevated": {
+      "enabled": false
+    },
+    "exec": {
+      "security": "allowlist",
+      "ask": "always"
+    },
+    "fs": {
+      "workspaceOnly": true
+    },
+    "media": {
+      "audio": {
+        "enabled": true,
+        "maxBytes": 20971520,
+        "scope": {
+          "default": "deny",
+          "rules": [
+            {
+              "action": "allow",
+              "match": {
+                "chatType": "direct"
+              }
+            }
+          ]
+        },
+        "models": [
+          {
+            "type": "cli",
+            "command": "/usr/local/bin/whisper",
+            "args": [
+              "--model",
+              "base",
+              "--language",
+              "Russian",
+              "{{MediaPath}}"
+            ],
+            "timeoutSeconds": 180
+          }
+        ]
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": "8393655317:AAH1fLa6H8q3gHlNOasYfSsdr_7d9Jcd7C0",
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "groupPolicy": "enabled",
+      "streaming": "partial"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "d2a2953d0d726968767abb1610b43136052eeed7c8d39342"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {}
+  },
+  "plugins": {
+    "entries": {
+      "duckduckgo": {
+        "enabled": true
+      }
+    }
+  },
+  "skills": {
+    "entries": {
+      "openai-whisper": {
+        "enabled": true
+      }
+    }
+  }
+}
