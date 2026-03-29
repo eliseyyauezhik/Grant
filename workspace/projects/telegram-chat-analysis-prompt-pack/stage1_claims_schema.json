@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "topic": "__FILL_TOPIC__",
+    "stage": "stage1_claim_extraction",
+    "output_language": "Russian",
+    "messages_processed": 0,
+    "messages_skipped": 0,
+    "date_range": {
+      "from": null,
+      "to": null
+    },
+    "notes": []
+  },
+  "claims": [
+    {
+      "claim_id": "claim_001",
+      "raw_variants": [
+        {
+          "text": "Original wording from chat",
+          "message_ref": {
+            "chat_id": null,
+            "message_id": null,
+            "date": null,
+            "speaker": null
+          }
+        }
+      ],
+      "normalized_claim": "Cleaned concise formulation",
+      "claim_type": "fact_claim",
+      "topic_candidate": "Topic name",
+      "subtopic_candidate": "Subtopic name",
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "C",
+      "conditions": [],
+      "actors": [],
+      "supporting_evidence": [],
+      "links": [
+        {
+          "url": "https://example.com",
+          "label": "Optional",
+          "relation": "supports"
+        }
+      ],
+      "requires_external_verification": true,
+      "notes": []
+    }
+  ],
+  "ambiguous_items": [
+    {
+      "item_id": "amb_001",
+      "description": "Why this item is ambiguous",
+      "related_claim_ids": []
+    }
+  ]
+}

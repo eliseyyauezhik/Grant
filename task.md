@@ -178,3 +178,125 @@
 - [x] Перезапустить sync и проверить новый контракт на generated артефактах
 - [ ] Добавить schema validation для project frontmatter перед генерацией registry
 - [ ] Изолировать `.obsidian/` через явные ignore/guardrail правила
+
+## 2026-03-28 - OpenClaw VPS Continuation
+
+- [x] Прочитать handover и локальные заметки по `4vps`
+- [x] Подключиться к VPS и проверить реальное состояние OpenClaw
+- [x] Сверить NVIDIA-заметку с официальной документацией и нормализовать цель до `NeMo Guardrails`
+- [x] Установить `python3.10-venv` на VPS
+- [x] Создать `/opt/nemoguardrails/venv`
+- [x] Установить `nemoguardrails 0.21.0`
+- [ ] Решить, нужна ли интеграция NeMo Guardrails в OpenClaw или достаточно отдельного runtime
+
+## 2026-03-28 - Завершение NemoClaw (с разрешением остановить OpenClaw)
+
+- [x] Прочитать и учесть разрешение пользователя на остановку рабочего OpenClaw
+- [x] Прочитать `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\openclaw\советы бывалых от Grok.txt` как вспомогательный материал
+- [x] Поднять SSH-автоматизацию (paramiko) для управляемых команд на VPS
+- [x] Проверить `nemoclaw`/`onboard-session` и подтвердить блокировку по порту `18789`
+- [ ] Сделать бэкап `/root/.openclaw` и `/root/.nemoclaw` на VPS перед остановкой
+- [ ] Остановить host OpenClaw и освободить `18789`
+- [ ] Запустить `nemoclaw onboard --non-interactive` с Anthropic provider env
+- [ ] Проверить итоговый статус NemoClaw/OpenShell и зафиксировать rollback-шаги
+
+### Execution Update
+
+- [x] Создать новые backup-архивы `/root/.openclaw` и `/root/.nemoclaw` в `/root/nemoclaw-backups`
+- [x] Проверить фактическое состояние перед retry: `OpenClaw` уже был остановлен, `18789` свободен
+- [x] Запустить `nemoclaw onboard --resume --non-interactive` с Anthropic provider env
+- [x] Доказать root cause второго сбоя через kernel logs: global OOM killer во время `openshell sandbox create`
+- [x] Выполнить rollback: восстановить рабочий `OpenClaw` через `openclaw gateway start`
+- [ ] Повторить `NemoClaw` onboarding после добавления swap и/или увеличения RAM на VPS
+
+### Execution Update - Final Retry
+
+- [x] Подтвердить, что `swap` активен и память больше не является живым блокером
+- [x] Найти и удалить безопасные временные артефакты `NemoClaw`/Docker перед финальным retry
+- [x] Дойти повторным `resume` дальше прежних блокеров: healthy gateway, inference config, sandbox image build, upload to gateway
+- [x] Доказать новый финальный блокер: диск VPS доходит до `100%` во время финальной sandbox materialization
+- [x] Восстановить стабильное состояние хоста после провала: удалить failed `openshell-cluster-nemoclaw` container+volume
+- [x] Повторно подтвердить рабочий `OpenClaw` (`127.0.0.1:18789`, Telegram `ON / OK`)
+- [ ] Завершить `NemoClaw` после расширения диска/тарифа VPS или переноса на более ёмкий хост
+
+## 2026-03-28 - Hardening OpenClaw Only
+
+- [x] Прочитать локальный файл лучших практик и сверить его с официальной документацией OpenClaw
+- [x] Снять свежий live-state `OpenClaw` на VPS: `status`, `security audit`, `sandbox explain`, `doctor`, `openclaw.json`
+- [x] Сделать новые бэкапы `/root/.openclaw/openclaw.json` перед risky changes
+- [x] Переключить `OpenClaw` на security-first baseline:
+  - sandbox `all`
+  - `tools.profile = messaging`
+  - запрет runtime/fs/ui/nodes/automation surfaces
+  - `tools.elevated.enabled = false`
+  - `tools.fs.workspaceOnly = true`
+  - `commands.restart = false`
+- [x] Явно отключить Telegram groups (`groupPolicy = disabled`)
+- [x] Удалить неэффективный `gateway.nodes.denyCommands`
+- [x] Ужать права на `/root/.openclaw`, `openclaw.json`, `auth-profiles.json`
+- [x] Добавить low-risk token-tuning:
+  - `cacheRetention = long`
+  - `contextPruning = cache-ttl / 1h`
+- [x] Выключить неработающий `memorySearch`, чтобы убрать ложный operational noise без embedding provider
+- [x] Почистить ошибочно созданные model-keys в `openclaw.json`
+- [x] Повторно проверить live-state: gateway reachable, Telegram `ON / OK`, `security audit` -> `1 warn`
+- [x] Обновить локальные артефакты и подготовить подробный Markdown dossier для внешней нейросети
+
+## 2026-03-28 - OpenClaw Bot Menu and Audio Cleanup
+
+- [x] Прочитать внешний handover и сверить его с фактическим live-state VPS
+- [x] Снять live-state по `OpenClaw`: `status`, `getMyCommands`, preflight для `whisper`
+- [x] Найти корень warning по audio: legacy `plugins.entries.audio` при актуальной схеме `tools.media.audio`
+- [x] Сделать backup `/root/.openclaw/openclaw.json` и мигрировать audio-конфиг на документированный формат
+- [x] Безопасно перезапустить `OpenClaw` и подтвердить `Telegram ON / OK`
+- [x] Обновить команды Telegram-бота до компактного русского меню только из реально поддерживаемых slash-команд
+- [x] Зафиксировать результат в локальных артефактах и handover
+
+## 2026-03-28 - OpenClaw KB Awareness and Owner Menu Upgrade
+
+- [x] Проверить remote workspace-файлы (`BOOTSTRAP.md`, `IDENTITY.md`, `USER.md`, `AGENTS.md`)
+- [x] Подтвердить реальное наличие mounted `KnowledgeBase/` и активный `rclone-kb.service`
+- [x] Исправить workspace source-of-truth, чтобы бот знал про Obsidian vault и не врал про доступ
+- [x] Сбросить stale mapping direct Telegram session для чистого нового диалога
+- [x] Вернуть persistent Telegram menu button (`commands`)
+- [x] Собрать компактное русское меню для private scope и owner-specific меню с `/restart`
+- [x] Включить `commands.restart = true` под owner UX
+- [x] Проверить menu/button через Telegram Bot API и fresh smoke-session
+- [x] Убрать post-fix noise: archive orphan `.jsonl`, отключить `memorySearch` без embedding provider
+- [x] Перепроверить `status`, `security audit`, `doctor`
+
+## 2026-03-28 - Hardening OpenClaw Only
+
+- [x] Прочитать локальный файл лучших практик и сверить его с официальной документацией OpenClaw
+- [x] Снять свежий live-state `OpenClaw` на VPS: `status`, `security audit`, `sandbox explain`, `doctor`, `openclaw.json`
+- [x] Сделать новые бэкапы `/root/.openclaw/openclaw.json` перед risky changes
+- [x] Переключить `OpenClaw` на security-first baseline:
+  - sandbox `all`
+  - `tools.profile = messaging`
+  - запрет runtime/fs/ui/nodes/automation surfaces
+  - `tools.elevated.enabled = false`
+  - `tools.fs.workspaceOnly = true`
+  - `commands.restart = false`
+- [x] Явно отключить Telegram groups (`groupPolicy = disabled`)
+- [x] Удалить неэффективный `gateway.nodes.denyCommands`
+- [x] Ужать права на `/root/.openclaw`, `openclaw.json`, `auth-profiles.json`
+- [x] Добавить low-risk token-tuning:
+  - `cacheRetention = long`
+  - `contextPruning = cache-ttl / 1h`
+- [x] Почистить ошибочно созданные model-keys в `openclaw.json`
+- [x] Повторно проверить live-state: gateway reachable, Telegram `ON / OK`, `security audit` -> `1 warn`
+- [x] Обновить локальные артефакты и подготовить подробный Markdown dossier для внешней нейросети
+
+## 2026-03-28 - OpenClaw: Haiku by Default + `/model` in Telegram
+
+- [x] Проверить текущий live model-policy, allowlist и owner Telegram session keys
+- [x] Сверить актуальную schema `agents.defaults.model` и `/model` с официальной документацией OpenClaw
+- [x] Сделать новые backup'ы `openclaw.json` и `sessions.json`
+- [x] Переключить default model на `anthropic/claude-haiku-4-5-20251001`
+- [x] Оставить `anthropic/claude-sonnet-4-6` fallback'ом через `model.fallbacks`
+- [x] Расширить allowlist `agents.defaults.models` и добавить aliases `haiku` / `sonnet`
+- [x] Сбросить owner Telegram direct/slash sessions для чистого нового DM на Haiku
+- [x] Перезапустить gateway через официальный `openclaw gateway restart`
+- [x] Вернуть owner/private Telegram menu с `/model`
+- [x] Проверить `config validate`, `models status --plain`, `status --deep`, `getMyCommands`
+- [x] Отправить итоговое уведомление владельцу прямо в Telegram-бот

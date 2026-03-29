@@ -1,7 +1,7 @@
 ---
 type: backlog
 status: active
-last_updated: 2026-03-27
+last_updated: 2026-03-28
 tags:
   - backlog
   - reminders
@@ -20,6 +20,7 @@ tags:
 <!-- Задачи с конкретными дедлайнами или высоким приоритетом -->
 
 - [ ] Рассмотреть и утвердить план модернизации Antigravity ([[projects/modernization-plan-review]]) — *обсуждено 2026-03-27*
+- [ ] Принять решение по `NemoClaw` на VPS `4vps`: оставить рабочий `OpenClaw` на `18789` или делать миграцию порта под полный onboarding `NemoClaw` — *добавлено 2026-03-28*
 
 ---
 
@@ -30,6 +31,13 @@ tags:
 - [ ] Добавить блок `## Current State` в `owner.md` (живой журнал состояния проектов)
 - [ ] Написать `context_guide.md` — гайд как правильно давать задачу агенту
 - [ ] Создать шаблон постобработки встречи (`.agents/templates/meeting-debrief-template.md`)
+- [ ] Подготовить лаконичную инструкцию по работе с `OpenClaw` и `NemoClaw` после стабилизации инфраструктуры VPS
+- [ ] `OpenClaw`: если понадобится внешний UI, настроить reverse proxy или Tailscale + `gateway.trustedProxies`
+- [ ] `OpenClaw`: решить, нужен ли semantic memory с embeddings, или оставить `memorySearch` выключенным
+- [ ] `OpenClaw`: отправить тестовое голосовое сообщение и подтвердить voice pipeline после миграции `tools.media.audio`
+- [ ] `OpenClaw`: визуально подтвердить в Telegram, что persistent menu button вернулся и owner-команды отображаются как ожидается
+- [ ] `OpenClaw`: вручную проверить в Telegram `/model`, `/model haiku`, `/model sonnet` и убедиться, что новый диалог реально стартует на `Haiku`
+- [ ] `Telegram DB analysis`: в новом чате прогнать сохранённый prompt-pack на экспорт Telegram-базы и собрать аналитический документ
 
 ---
 

@@ -527,3 +527,508 @@ Conclusions
 - For a Windows personal computer, the realistic path is OpenClaw in WSL2 plus carefully limited tools, not unrestricted desktop automation on the host OS.
 - Anthropic does provide the model/tool layer (`computer use`, APIs, Claude Code for coding), but not a complete consumer-grade self-hosted personal-assistant shell equivalent to OpenClaw; building a general assistant around Anthropic still requires your own orchestration layer.
 - The safest rollout path is staged: start with chat + search + notes + calendar/tasks, then add APIs, and only then add browser/UI automation for the few systems that truly lack APIs.
+
+## 2026-03-28 - OpenClaw VPS Continuation
+
+Goal
+- Continue the VPS setup from the existing handover, verify the real live state on `4vps`, and install the correct NVIDIA security component without breaking the working OpenClaw gateway.
+
+Verified facts
+- Local note `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\openclaw\4vps.txt` contains the server address and root password used for SSH.
+- Live SSH verification confirmed the host is `Ubuntu 22.04.5 LTS` and the OpenClaw CLI is installed as `OpenClaw 2026.3.24 (cff6dc9)`.
+- `openclaw status` on the VPS shows `Gateway service` as `systemd installed · enabled · running` and Telegram as `ON`.
+- The same status output shows `Node service` as `systemd not installed`, so the live deployment is gateway-based rather than a separate node service.
+- The local `NVIDIA NemoClaw.txt` note is not authoritative. Official NVIDIA documentation references `NeMo Guardrails`, not a product named `NemoClaw`.
+- `python3.10-venv` was missing on the VPS and had to be installed before a virtual environment could be created.
+- `nemoguardrails 0.21.0` was successfully installed in `/opt/nemoguardrails/venv`.
+
+Conclusions
+- The live OpenClaw deployment is working and does not need a reinstall.
+- The correct NVIDIA-related add-on is `NeMo Guardrails`, and it is now installed in an isolated venv instead of being forced into the system Python.
+- There is still no automatic integration between OpenClaw and NeMo Guardrails; that would be a separate wiring task if the user wants the guardrail layer to mediate OpenClaw behavior.
+
+## 2026-03-28 - NemoClaw Port Conflict Root Cause
+
+Goal
+- Verify whether NemoClaw supports a documented or hidden onboarding override for the dashboard/control port that conflicts with an existing OpenClaw deployment on `18789`.
+
+Sources checked
+- `https://github.com/NVIDIA/NemoClaw`
+- `https://raw.githubusercontent.com/NVIDIA/NemoClaw/main/nemoclaw-blueprint/blueprint.yaml`
+- `https://raw.githubusercontent.com/NVIDIA/NemoClaw/main/bin/lib/onboard.js`
+- `https://docs.nvidia.com/nemoclaw/latest/reference/commands.html`
+
+Verified facts
+- NemoClaw is a real NVIDIA repository/project (not just a naming error), in early preview.
+- `nemoclaw-blueprint/blueprint.yaml` includes `forward_ports: [18789]`.
+- `bin/lib/onboard.js` performs preflight checks for both required ports:
+  - `8080` (`OpenShell gateway`)
+  - `18789` (`NemoClaw dashboard`)
+- The same onboarding implementation contains hardcoded `18789` forward/stop/start operations and `CONTROL_UI_PORT = 18789`.
+- The official commands reference does not document a CLI flag for overriding the dashboard/control port during `nemoclaw onboard`.
+
+Conclusions
+- The blocker is real: changing only `blueprint.yaml` to another forwarding port is insufficient because onboarding still reserves/checks `18789`.
+- A supported no-downtime path to keep existing OpenClaw on `18789` and complete full NemoClaw onboarding was not found in official docs/code paths inspected.
+- Practical options are:
+  1. keep current OpenClaw unchanged and skip full NemoClaw onboarding;
+  2. migrate OpenClaw off `18789`, then rerun NemoClaw onboarding;
+  3. apply an unsupported local patch to NemoClaw onboarding code (high fragility, can break on update).
+
+## 2026-03-28 - NemoClaw Resume Failure Root Cause
+
+Goal
+- Continue full `NemoClaw` onboarding after the port blocker was cleared and determine why the sandbox step still fails.
+
+Verified facts
+- `OpenClaw` was already stopped when the continuation started, so `18789` was free before the retry.
+- Fresh host-side backups now exist in `/root/nemoclaw-backups` for both `/root/.openclaw` and `/root/.nemoclaw`:
+  - `openclaw_pre_resume_20260328_003059.tgz`
+  - `nemoclaw_pre_resume_20260328_003059.tgz`
+- `nemoclaw onboard --resume --non-interactive` successfully rebuilt the sandbox image `openshell/sandbox-from:1774654357`.
+- The retry failed again at the `sandbox` step after the image build, during `openshell sandbox create`.
+- The onboarding log shows the child process terminated with `Killed` while pushing the sandbox image into the gateway.
+- Kernel logs (`dmesg -T` and `journalctl -k`) confirm a real memory exhaustion event at `2026-03-28 00:35:34`, including `Out of memory: Killed process 81398 (openshell)`.
+- The VPS currently has `3.8 GiB` RAM and `0 B` swap.
+- After the failed retry, `OpenClaw` was explicitly restored with `openclaw gateway start`.
+- Final rollback verification shows:
+  - `openclaw-gateway.service` is running again
+  - `127.0.0.1:18789` is listening
+  - `Telegram` channel state is `ON / OK`
+
+Conclusions
+- The blocking issue is no longer the `18789` port conflict; it is insufficient memory during `openshell sandbox create`.
+- A third onboarding retry without changing VPS memory conditions would be random repetition and was not attempted.
+- The safest next step is infrastructural: add swap and/or move to a larger RAM plan, then rerun `nemoclaw onboard --resume --non-interactive`.
+
+## 2026-03-28 - NemoClaw Final Retry After Swap And Disk Cleanup
+
+Goal
+- Push the existing `NemoClaw` onboarding as far as possible on the current VPS by removing resource blockers, then leave the host in a stable state.
+
+Verified facts
+- Host swap is now enabled and persistent:
+  - `/swapfile`
+  - `2.0 GiB` total swap
+- `OpenClaw` credentials were not available through the shell environment used for `nemoclaw onboard`, but the Anthropic API key source was confirmed to exist in the OpenClaw auth profile store (`auth-profiles.json`), which allowed a resumed run without asking the user for a new secret.
+- Safe disk-recovery actions completed before the final retry:
+  - removed stale `/tmp/openshell-images.tar` inside `openshell-cluster-nemoclaw`
+  - removed old unused `openshell/sandbox-from:*` images and dangling layers that were left by failed builds
+- The final retry advanced materially further than all previous attempts:
+  - gateway recreated successfully and became healthy
+  - inference provider configured successfully
+  - sandbox image `openshell/sandbox-from:1774658382` built successfully
+  - image export completed and upload into the gateway completed
+- The retry still failed at the `sandbox` step, but only after the image had already become available inside the gateway.
+- At the failure point, root filesystem pressure returned to a critical level:
+  - `/dev/vda2` reached `100%`
+  - only `35M` remained free
+- The terminal sandbox error after the successful upload was:
+  - `tls handshake eof`
+- The failure happened while `openshell sandbox create` was still active and the gateway host was effectively out of disk headroom.
+- Post-failure stabilization succeeded:
+  - removed failed `openshell-cluster-nemoclaw` container
+  - removed its `openshell-cluster-nemoclaw` Docker volume
+  - host free space returned to about `3.9G`
+  - `OpenClaw` gateway was restored and verified reachable again on `127.0.0.1:18789`
+  - Telegram channel remained `ON / OK`
+
+Conclusions
+- The original blockers were real but are no longer the decisive ones:
+  - port `18789` conflict was handled
+  - OOM was mitigated with swap
+  - missing `ANTHROPIC_API_KEY` in the onboarding shell was worked around from the existing OpenClaw auth profile
+- The current hard blocker is storage capacity of the VPS during the full sandbox materialization path.
+- On the current plan, `NemoClaw` can now get through build and gateway upload, but the remaining disk margin is too small to complete sandbox creation reliably.
+- The cleanest next step is infrastructure, not another retry on the same disk budget.
+
+## 2026-03-28 - OpenClaw Security Hardening And Dossier
+
+Goal
+- Keep only `OpenClaw` on the current `4vps` host, harden it for secure single-owner Telegram use, and prepare a detailed project dossier for another LLM.
+
+Sources checked
+- `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\openclaw\лучшие практики от Grok.txt`
+- OpenClaw official docs:
+  - `https://docs.openclaw.ai/gateway/security`
+  - `https://docs.openclaw.ai/gateway/configuration-reference`
+  - `https://docs.openclaw.ai/reference/token-use`
+- Live VPS state via SSH:
+  - `openclaw status`
+  - `openclaw security audit --json`
+  - `openclaw sandbox explain --json`
+  - `openclaw doctor`
+  - raw `/root/.openclaw/openclaw.json`
+
+Verified initial facts
+- The live host was still healthy before hardening:
+  - gateway reachable on `127.0.0.1:18789`
+  - Telegram `ON / OK`
+- The pre-hardening config was too broad for a security-first baseline:
+  - `tools.profile = "coding"`
+  - `agents.defaults.sandbox.mode = off`
+  - `tools.fs.workspaceOnly = false`
+  - `tools.elevated.enabled = true`
+  - `commands.restart = true`
+  - `channels.telegram.groupPolicy = "allowlist"`
+  - `gateway.nodes.denyCommands` contained ineffective command IDs
+- The initial security audit had `0 critical / 3 warn / 1 info`:
+  - `gateway.trusted_proxies_missing`
+  - `gateway.nodes.deny_commands_ineffective`
+  - `security.trust_model.multi_user_heuristic`
+- `openclaw doctor` additionally confirmed that Telegram groups were not actually usable in the current config because group allowlists were empty, so group messages would be silently dropped.
+
+Applied changes on the VPS
+- Created fresh config backups before each risky edit:
+  - `/root/.openclaw/openclaw.json.bak_20260328_020925`
+  - `/root/.openclaw/openclaw.json.bak_20260328_021123`
+  - `/root/.openclaw/openclaw.json.bak_20260328_021510`
+- Hardened the live config to an OpenClaw secure baseline plus sandboxing:
+  - `agents.defaults.sandbox.mode = "all"`
+  - `agents.defaults.sandbox.scope = "agent"`
+  - `agents.defaults.sandbox.workspaceAccess = "none"`
+  - `tools.profile = "messaging"`
+  - `tools.allow = ["image"]`
+  - `tools.deny = ["group:automation", "group:runtime", "group:fs", "group:ui", "group:nodes", "sessions_spawn", "sessions_send"]`
+  - `tools.fs.workspaceOnly = true`
+  - `tools.exec.security = "deny"`
+  - `tools.exec.ask = "always"`
+  - `tools.elevated.enabled = false`
+  - `commands.restart = false`
+  - `channels.telegram.groupPolicy = "disabled"`
+- Removed obsolete `gateway.nodes.denyCommands`.
+- Tightened host-side permissions:
+  - `/root/.openclaw` -> `700`
+  - `/root/.openclaw/openclaw.json` -> `600`
+  - `/root/.openclaw/agents/main/agent/auth-profiles.json` -> `600`
+- Added low-risk token-efficiency settings:
+  - `agents.defaults.models["anthropic/claude-sonnet-4-6"].params.cacheRetention = "long"`
+  - `agents.defaults.contextPruning.mode = "cache-ttl"`
+  - `agents.defaults.contextPruning.ttl = "1h"`
+
+Verified final facts
+- Final config validation passed: `Config valid: ~/.openclaw/openclaw.json`.
+- Final model map on disk was cleaned to one real key only:
+  - `["anthropic/claude-sonnet-4-6"]`
+- Python-level readback from `openclaw.json` confirmed:
+  - `{"params":{"cacheRetention":"long"}}` for `anthropic/claude-sonnet-4-6`
+- Final live state after hardening:
+  - gateway reachable on `127.0.0.1:18789`
+  - Telegram `ON / OK`
+  - security audit reduced to `0 critical / 1 warn / 1 info`
+- The only remaining audit warning is `gateway.trusted_proxies_missing`, which is benign while the gateway remains loopback-only and becomes relevant only if a reverse proxy or external HTTP path is added later.
+
+Residual technical notes
+- `openclaw doctor` still reports `openclaw-sandbox:bookworm-slim` as missing.
+  - This is currently non-blocking because runtime/filesystem/UI/node tools are explicitly denied.
+  - If those tools are re-enabled later, the sandbox base image should be prepared first.
+- Memory search was explicitly disabled after live verification showed `Provider: none` and unavailable embeddings.
+  - This removes a dead, noisy subsystem from the current baseline.
+  - If semantic recall is needed later, it should be re-enabled only together with an intentional embedding-provider setup.
+
+Conclusions
+- A materially safer `OpenClaw` baseline is now live on the VPS without breaking the working Telegram channel.
+- The operational trust boundary is now much closer to the documented single-owner OpenClaw model:
+  - no Telegram groups
+  - no runtime/filesystem/tool escalation on the host
+  - sandboxing enabled
+  - workspace access disabled inside the sandbox
+- `NemoClaw` remains intentionally deferred because the current VPS plan is still too disk-constrained for reliable onboarding.
+
+## 2026-03-28 - OpenClaw Cost Switch to Haiku and In-Bot Model Picker
+
+Official references checked
+- `https://docs.openclaw.ai/concepts/models`
+- `https://docs.openclaw.ai/channels/telegram`
+
+Verified facts before the change
+- The live Anthropic-backed default model on the VPS was still `anthropic/claude-sonnet-4-6`.
+- `openclaw config get agents.defaults.model` returned only:
+  - `{"primary":"anthropic/claude-sonnet-4-6"}`
+- `openclaw config get agents.defaults.models` showed a one-model allowlist:
+  - `anthropic/claude-sonnet-4-6`
+- The stored Telegram owner sessions existed under:
+  - `agent:main:telegram:slash:708744350`
+  - `agent:main:telegram:direct:708744350`
+
+Key findings
+- Official OpenClaw docs confirm the valid config keys are:
+  - `agents.defaults.model.primary`
+  - `agents.defaults.model.fallbacks`
+  - `agents.defaults.models` as the `/model` allowlist/catalog
+- The first remote patch failed validation because it used `fallback` instead of documented `fallbacks`; rollback worked correctly.
+- Official docs also confirm that in chat the supported model-switch flow is:
+  - `/model`
+  - `/model list`
+  - `/model <ref>`
+  - `/model status`
+- Telegram native command menu is registered through `setMyCommands`; adding `/model` to the owner menu is enough to expose model switching directly in the bot UI.
+
+Applied changes on the VPS
+- Created fresh backups before the model switch:
+  - `/root/.openclaw/openclaw.json.bak_20260328_163658`
+  - `/root/.openclaw/openclaw.json.bak_20260328_163957`
+  - `/root/.openclaw/agents/main/sessions/sessions.json.bak_20260328_163957`
+- Switched the documented default-model policy to:
+  - primary: `anthropic/claude-haiku-4-5-20251001`
+  - fallbacks: `["anthropic/claude-sonnet-4-6"]`
+- Expanded the model allowlist/catalog to two explicit entries:
+  - `anthropic/claude-haiku-4-5-20251001`
+  - `anthropic/claude-sonnet-4-6`
+- Added stable aliases for in-bot switching:
+  - `haiku`
+  - `sonnet`
+- Kept `params.cacheRetention = "long"` for both models.
+- Cleared the owner Telegram direct and slash session mappings so the next real Telegram interaction starts fresh on the new default model.
+- Restarted the gateway via the official CLI path:
+  - `openclaw gateway restart`
+  - result: `Restarted systemd service: openclaw-gateway.service`
+- Re-published Telegram command menus with `/model` included:
+  - private scope: `new`, `reset`, `model`, `status`, `stop`, `help`, `commands`
+  - owner chat scope: `new`, `reset`, `model`, `status`, `restart`, `stop`, `help`, `commands`
+- Sent a completion message into the owner Telegram chat via:
+  - `openclaw message send --channel telegram --target 708744350 ...`
+  - Telegram delivery returned message id `137`
+
+Verified final facts
+- `openclaw config validate` passes after the change.
+- `openclaw models status --plain` returns:
+  - `anthropic/claude-haiku-4-5-20251001`
+- `openclaw config get agents.defaults.model` returns:
+  - primary `anthropic/claude-haiku-4-5-20251001`
+  - fallbacks `["anthropic/claude-sonnet-4-6"]`
+- `openclaw config get agents.defaults.models` returns both allowed models with aliases `haiku` and `sonnet`.
+- After the Telegram-session reset, `sessions.json` contains only:
+  - `agent:main:main`
+- Final live state after the gateway restart:
+  - gateway reachable
+  - Telegram `ON / OK`
+  - default model in overview: `claude-haiku-4-5-20251001`
+- Bot API verification for the owner menu now returns:
+  - `new`
+  - `reset`
+  - `model`
+  - `status`
+  - `restart`
+  - `stop`
+  - `help`
+  - `commands`
+
+Tradeoff recorded
+- The OpenClaw security audit now shows one additional non-critical warning because `Haiku` is a smaller tier.
+- This is an intentional cost/latency tradeoff requested by the owner; the higher-capability fallback remains `claude-sonnet-4-6`.
+
+## 2026-03-28 - OpenClaw Bot Menu and Audio Cleanup
+
+Goal
+- Continue the external OpenClaw handover autonomously, fix the outdated Telegram bot menu, and clean up the legacy audio configuration without breaking the live gateway.
+
+Facts gathered from the live VPS
+- `openclaw status` showed the gateway already healthy on `127.0.0.1:18789` and Telegram `ON / OK`, so the daemon was not actually down at the moment of continuation.
+- Telegram `getMyCommands` still returned the full default English slash-command list, including commands that are no longer appropriate for the hardened owner-only setup such as `/restart`.
+- `openclaw status` emitted the warning `plugins.entries.audio: plugin not found: audio`.
+- `/root/.openclaw/openclaw.json` still contained a legacy `plugins.entries.audio` entry, while the current official OpenClaw docs route audio handling through `tools.media.audio`.
+- Voice-runtime preflight on the VPS passed:
+  - `torch` import OK
+  - `whisper` import OK
+  - `whisper` CLI available at `/usr/local/bin/whisper`
+- The suggested `/resume` command from the external handover was not present in the current supported `getMyCommands` output, so publishing it would have created a broken menu item.
+
+Applied changes on the VPS
+- Created a fresh config backup before editing:
+  - `/root/.openclaw/openclaw.json.bak_20260328_101740`
+- Removed the stale legacy config entry:
+  - `plugins.entries.audio`
+- Added the documented audio block under `tools.media.audio`:
+  - `enabled = true`
+  - `maxBytes = 20971520`
+  - `scope = direct-only`
+- Re-validated the config and restarted OpenClaw safely in the background.
+- Replaced the Telegram bot menu through the Telegram Bot API from the VPS with a compact Russian command set made only from currently supported slash commands:
+  - `new`
+  - `status`
+  - `reset`
+  - `help`
+  - `stop`
+
+Verified results
+- `openclaw config validate` passes.
+- `openclaw status` no longer shows the stale audio-plugin warning.
+- The live state after restart remained healthy:
+  - gateway reachable on `127.0.0.1:18789`
+  - Telegram `ON / OK`
+  - `openclaw security audit --json` effectively unchanged at `0 critical / 1 warn / 1 info`
+- `getMyCommands` now returns the compact Russian menu only.
+
+Residual note
+- End-to-end voice-note handling still needs one real Telegram voice message from the owner to validate the full ingest path after the config migration.
+
+## 2026-03-28 - OpenClaw KB Awareness, Owner Menu, and Architecture Check
+
+Goal
+- Make the bot answer truthfully about the mounted Obsidian vault, restore a usable Telegram menu for the owner, and run a quick multi-angle health check of the current VPS setup.
+
+Facts gathered from the live VPS
+- The bot workspace still contained generic first-run files that were misleading the agent:
+  - `BOOTSTRAP.md` still described a fresh unconfigured assistant
+  - `IDENTITY.md` still referred to another owner name
+- The mounted knowledge base was real and reachable:
+  - `/root/.openclaw/workspace/KnowledgeBase` -> `/root/KnowledgeBase`
+  - `rclone-kb.service` was active
+  - the mounted vault contained real Obsidian folders and notes
+- Telegram command setup was partially correct but UX was incomplete:
+  - slash commands were already set
+  - the persistent menu button had to be explicitly forced to `commands`
+- The stale direct Telegram session was still carrying older wrong beliefs about Whisper and vault access.
+- A direct smoke run after workspace-file fixes confirmed that a fresh session correctly answered that it had access to the mounted `KnowledgeBase/`.
+- Architecture/doctor findings during this stage:
+  - orphan session transcript files existed after the direct-session reset and smoke runs
+  - `memorySearch` was enabled while no embedding provider was ready
+  - the only remaining security warning stayed `gateway.trusted_proxies_missing`
+
+Applied changes on the VPS
+- Updated the bot workspace source-of-truth files:
+  - `BOOTSTRAP.md`
+  - `IDENTITY.md`
+  - `USER.md`
+  - `AGENTS.md`
+- Added explicit operating rules that:
+  - `KnowledgeBase/` is a mounted server-side Obsidian vault
+  - the bot must answer precisely about mounted-vault access vs unsynced local-PC files
+  - the bot should use the mounted vault instead of asking the user to paste notes manually
+- Cleared the stale Telegram direct-session mapping from `sessions.json` so the next real DM starts with the updated workspace context.
+- Restored Telegram owner UX:
+  - forced the chat menu button to `commands`
+  - set a short Russian owner-facing command menu
+  - set Russian bot description and short description
+- Re-enabled `commands.restart = true` intentionally so the owner can have a real “перезагрузка бота” command in the menu.
+- Refined command scopes:
+  - private/default users get a compact Russian menu without `/restart`
+  - the owner chat gets the expanded menu with `/restart`
+- Archived orphan `.jsonl` session files after the session reset and smoke runs.
+- Disabled `memorySearch` explicitly to remove doctor noise while no embedding provider is configured.
+
+Verified results
+- Telegram Bot API verification confirmed:
+  - owner menu button type = `commands`
+  - owner command list now includes:
+    - `new`
+    - `reset`
+    - `status`
+    - `restart`
+    - `stop`
+    - `help`
+    - `commands`
+- Fresh smoke run answered correctly:
+  - access exists to mounted `KnowledgeBase/`
+  - access does not extend to unsynced local-only files
+- `openclaw status --deep` remained healthy:
+  - gateway reachable
+  - Telegram `ON / OK`
+- `openclaw security audit --json` remained at `0 critical / 1 warn / 1 info`
+- `openclaw doctor` improved:
+  - orphan session-file warning disappeared
+  - memory search now reports `enabled: false`
+
+Architecture conclusion
+- The current operating model is now internally much more coherent:
+  - Telegram owner bot
+  - mounted Obsidian/KnowledgeBase access inside workspace
+  - voice-note transcription through explicit Whisper CLI configuration
+  - compact owner-oriented menu with an actual restart command
+- The main remaining architectural caution is deliberate:
+  - `/restart` is now enabled again for convenience, which slightly relaxes the previous hardening baseline
+  - this is acceptable for the current single-owner paired-DM model, but should be revisited if more paired users are ever added
+
+## 2026-03-28 - OpenClaw Security Hardening And Dossier
+
+Goal
+- Keep only `OpenClaw` on the current `4vps` host, harden it for secure single-owner Telegram use, and prepare a detailed project dossier for another LLM.
+
+Sources checked
+- `D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\openclaw\лучшие практики от Grok.txt`
+- OpenClaw official docs:
+  - `https://docs.openclaw.ai/gateway/security`
+  - `https://docs.openclaw.ai/gateway/configuration-reference`
+  - `https://docs.openclaw.ai/reference/token-use`
+- Live VPS state via SSH:
+  - `openclaw status`
+  - `openclaw security audit --json`
+  - `openclaw sandbox explain --json`
+  - `openclaw doctor`
+  - raw `/root/.openclaw/openclaw.json`
+
+Verified initial facts
+- The live host was still healthy before hardening:
+  - gateway reachable on `127.0.0.1:18789`
+  - Telegram `ON / OK`
+- The pre-hardening config was too broad for a security-first baseline:
+  - `tools.profile = "coding"`
+  - `agents.defaults.sandbox.mode = off`
+  - `tools.fs.workspaceOnly = false`
+  - `tools.elevated.enabled = true`
+  - `commands.restart = true`
+  - `channels.telegram.groupPolicy = "allowlist"`
+  - `gateway.nodes.denyCommands` contained ineffective command IDs
+- The initial security audit had `0 critical / 3 warn / 1 info`:
+  - `gateway.trusted_proxies_missing`
+  - `gateway.nodes.deny_commands_ineffective`
+  - `security.trust_model.multi_user_heuristic`
+- `openclaw doctor` additionally confirmed that Telegram groups were not actually usable in the current config because group allowlists were empty, so group messages would be silently dropped.
+
+Applied changes on the VPS
+- Created fresh config backups before each risky edit:
+  - `/root/.openclaw/openclaw.json.bak_20260328_020925`
+  - `/root/.openclaw/openclaw.json.bak_20260328_021123`
+  - `/root/.openclaw/openclaw.json.bak_20260328_021510`
+- Hardened the live config to an OpenClaw secure baseline plus sandboxing:
+  - `agents.defaults.sandbox.mode = "all"`
+  - `agents.defaults.sandbox.scope = "agent"`
+  - `agents.defaults.sandbox.workspaceAccess = "none"`
+  - `tools.profile = "messaging"`
+  - `tools.allow = ["image"]`
+  - `tools.deny = ["group:automation", "group:runtime", "group:fs", "group:ui", "group:nodes", "sessions_spawn", "sessions_send"]`
+  - `tools.fs.workspaceOnly = true`
+  - `tools.exec.security = "deny"`
+  - `tools.exec.ask = "always"`
+  - `tools.elevated.enabled = false`
+  - `commands.restart = false`
+  - `channels.telegram.groupPolicy = "disabled"`
+- Removed obsolete `gateway.nodes.denyCommands`.
+- Tightened host-side permissions:
+  - `/root/.openclaw` -> `700`
+  - `/root/.openclaw/openclaw.json` -> `600`
+  - `/root/.openclaw/agents/main/agent/auth-profiles.json` -> `600`
+- Added low-risk token-efficiency settings:
+  - `agents.defaults.models["anthropic/claude-sonnet-4-6"].params.cacheRetention = "long"`
+  - `agents.defaults.contextPruning.mode = "cache-ttl"`
+  - `agents.defaults.contextPruning.ttl = "1h"`
+
+Verified final facts
+- Final config validation passed: `Config valid: ~/.openclaw/openclaw.json`.
+- Final model map on disk was cleaned to one real key only:
+  - `["anthropic/claude-sonnet-4-6"]`
+- Python-level readback from `openclaw.json` confirmed:
+  - `{"params":{"cacheRetention":"long"}}` for `anthropic/claude-sonnet-4-6`
+- Final live state after hardening:
+  - gateway reachable on `127.0.0.1:18789`
+  - Telegram `ON / OK`
+  - security audit reduced to `0 critical / 1 warn / 1 info`
+- The only remaining audit warning is `gateway.trusted_proxies_missing`, which is benign while the gateway remains loopback-only and becomes relevant only if a reverse proxy or external HTTP path is added later.
+
+Residual technical notes
+- `openclaw doctor` still reports `openclaw-sandbox:bookworm-slim` as missing.
+  - This is currently non-blocking because runtime/filesystem/UI/node tools are explicitly denied.
+  - If those tools are re-enabled later, the sandbox base image should be prepared first.
+- `openclaw doctor` also reports memory-search embeddings are not configured.
+  - This does not break current Telegram operation.
+  - It is a follow-up choice: either disable memory search or configure an embedding provider.
+
+Conclusions
+- A materially safer `OpenClaw` baseline is now live on the VPS without breaking the working Telegram channel.
+- The operational trust boundary is now much closer to the documented single-owner OpenClaw model:
+  - no Telegram groups
+  - no runtime/filesystem/tool escalation on the host
+  - sandboxing enabled
+  - workspace access disabled inside the sandbox
+- `NemoClaw` remains intentionally deferred because the current VPS plan is still too disk-constrained for reliable onboarding.

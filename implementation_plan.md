@@ -425,3 +425,215 @@ Verification
 Follow-up
 - QW-6: add schema validation for project frontmatter before registry generation.
 - QW-7: isolate `.obsidian/` from agent writable scope through explicit ignore/guardrail rules.
+
+## 2026-03-28 - OpenClaw VPS Continuation
+
+Objective
+- Resume the existing OpenClaw VPS setup, verify the live gateway state, and install the official NVIDIA guardrails component in a way that does not overwrite the working OpenClaw deployment.
+
+Execution steps
+1. Connect to the VPS via SSH using the stored 4vps credentials and confirm the host identity.
+2. Read `openclaw status` and the CLI help to determine the real current state of the gateway, Telegram channel, and daemon/install layout.
+3. Check the NVIDIA note against official documentation and normalize the target to `NeMo Guardrails` rather than the non-official `NemoClaw` name.
+4. Install the missing Ubuntu dependency `python3.10-venv`, create `/opt/nemoguardrails/venv`, and install `nemoguardrails` there.
+5. Verify the package import/version inside the virtual environment and record whether any OpenClaw integration work is still needed.
+
+Verification
+- SSH command returns the live host name and OS version.
+- `openclaw status` shows the actual service and channel state.
+- `python -m pip show nemoguardrails` or an import/version check succeeds inside the dedicated venv.
+- The workspace notes distinguish verified facts from the earlier hallucinated `NemoClaw` name.
+
+## 2026-03-28 - NemoClaw Completion With OpenClaw Stop Allowed
+
+Objective
+- Complete NemoClaw onboarding on `4vps` by temporarily stopping the currently running OpenClaw gateway on port `18789`, with backup and rollback safety.
+
+Execution steps
+1. Re-read local constraints and parse VPS credentials from local secure notes without exposing secrets in logs/chat.
+2. Connect to VPS and verify current OpenClaw/NemoClaw state plus exact port listeners.
+3. Create host-side backup archives of `/root/.openclaw` and `/root/.nemoclaw`.
+4. Stop host OpenClaw gateway process/service and verify port `18789` is free.
+5. Run `nemoclaw onboard --non-interactive` with explicit Anthropic provider env and capture logs.
+6. Verify NemoClaw sandbox status and OpenShell forwarding on `18789`.
+7. Record outcome and exact rollback command set if onboarding fails.
+
+Verification
+- Backup archives exist in `/root/nemoclaw-backups`.
+- `ss -ltnp` no longer shows host OpenClaw listener before onboarding.
+- Onboarding exits successfully (`exit code 0`) and `nemoclaw list/status` reports healthy state.
+- If onboarding fails, logs are saved and rollback instructions are validated against current process state.
+
+Execution update
+- Backups were created successfully in `/root/nemoclaw-backups`.
+- `OpenClaw` did not need to be stopped by this run because the gateway service was already inactive and port `18789` was free.
+- `nemoclaw onboard --resume --non-interactive` was executed and progressed past image build, but failed again during `openshell sandbox create`.
+- Verified root cause from kernel logs: the VPS hit global OOM and the `openshell` process was killed while exporting the sandbox into the gateway.
+- Rollback was validated by restarting `OpenClaw` with `openclaw gateway start`; the gateway is reachable again on `127.0.0.1:18789`.
+- Remaining prerequisite before any further retry: add swap and/or move the VPS to a higher-RAM plan.
+
+## 2026-03-28 - NemoClaw Retry After Swap And Disk Recovery
+
+Objective
+- Remove the remaining solvable VPS resource blockers, retry `NemoClaw` once more with rollback safety, and stop only when the real limiting factor of the current plan is proven.
+
+Execution steps
+1. Confirm the current live VPS state and restore `OpenClaw` first if it is down.
+2. Identify the heaviest host and gateway disk consumers instead of assuming Docker-image totals are the full picture.
+3. Remove only clearly disposable `NemoClaw` artifacts:
+   - abandoned temp tarballs
+   - old unused `openshell/sandbox-from:*` images
+   - dangling image layers
+4. Re-run `nemoclaw onboard --resume --non-interactive` with the existing Anthropic credential source injected from the already configured OpenClaw auth profile.
+5. If the retry still fails, restore `OpenClaw`, clean failed `NemoClaw` runtime artifacts, and record the exact final blocker.
+
+Verification
+- `OpenClaw` is reachable again on `127.0.0.1:18789` after the retry.
+- `openclaw status` shows Telegram `ON / OK`.
+- Host root free space is restored to a non-critical level after cleanup.
+- Notes clearly distinguish solved blockers from the remaining hard limit.
+
+Execution update
+- `OpenClaw` was found stopped at the beginning of this pass and was restored before deeper disk analysis.
+- Swap remained active and healthy (`2.0 GiB`), confirming that memory was no longer the live blocker.
+- Cleanup before the retry freed space by removing:
+  - stale `/tmp/openshell-images.tar` in the failed gateway
+  - old `openshell/sandbox-from:*` images and dangling layers
+- The next retry progressed further than any previous run:
+  - healthy gateway recreation
+  - successful inference configuration
+  - successful sandbox image build
+  - successful image upload into the gateway
+- The retry still failed in `sandbox`, but only after the gateway upload completed.
+- At the failure point the root filesystem hit `100%` usage, after which the run ended with `tls handshake eof`.
+- Post-failure stabilization removed the failed `openshell-cluster-nemoclaw` container and its Docker volume, restoring about `3.9G` free on `/`.
+- Final state is stable again: `OpenClaw` restored, Telegram healthy, `NemoClaw` not onboarded.
+
+## 2026-03-28 - OpenClaw Security Hardening
+
+Objective
+- Freeze the project on `OpenClaw` only, convert the live VPS deployment to a safer single-owner baseline, and capture the exact state in a dossier for external review.
+
+Execution steps
+1. Re-check the live `OpenClaw` status, security audit, sandbox explain output, and current `openclaw.json`.
+2. Cross-check local best-practice notes against official OpenClaw security/config docs and keep only settings that are validated for `2026.3.24`.
+3. Back up the live config on the VPS and apply the hardening changes:
+   - sandbox `all`
+   - messaging profile
+   - deny runtime/fs/ui/nodes/automation surfaces
+   - disable elevated host execution
+   - disable Telegram groups
+   - tighten file permissions
+4. Re-run `openclaw config validate`, `openclaw status`, `openclaw security audit --json`, and `openclaw doctor`.
+5. Clean any config artifacts created during CLI-based updates and verify the final JSON structure.
+6. Record the final operating model and instructions in project artifacts plus a standalone external-review dossier.
+
+Verification
+- `openclaw status` shows the gateway reachable on `127.0.0.1:18789`.
+- Telegram remains `ON / OK`.
+- `openclaw security audit --json` falls to one residual warning only.
+- `/root/.openclaw` and key config/auth files use tightened permissions.
+- A standalone Markdown dossier exists with the sanitized final config and operating instructions.
+
+## 2026-03-28 - OpenClaw Cost Switch to Haiku and In-Bot Model Picker
+
+Goal
+- Lower Telegram operating cost by moving the default OpenClaw model from Sonnet to Haiku, while keeping an easy owner-side way to switch models directly from the bot.
+
+Plan
+1. Confirm the live model policy, allowlist, and active Telegram owner sessions — risk: LOW.
+2. Cross-check the current OpenClaw model schema and `/model` command behavior against official docs — risk: LOW.
+3. Back up the live config and switch the documented primary/fallback policy to Haiku + Sonnet — risk: MEDIUM.
+4. Expand the model allowlist with aliases so `/model haiku` and `/model sonnet` are available — risk: MEDIUM.
+5. Reset only the owner Telegram direct/slash session mappings, restart the gateway through the official CLI path, and verify health — risk: MEDIUM.
+6. Re-publish the Telegram command menu with `/model`, then send a completion notice into the owner chat — risk: MEDIUM.
+
+Verification
+- `openclaw config validate` passes.
+- `openclaw models status --plain` resolves to `anthropic/claude-haiku-4-5-20251001`.
+- `openclaw status --deep` shows gateway reachable and Telegram `ON / OK`.
+- `getMyCommands` for the owner chat includes `/model`.
+- `sessions.json` no longer contains the old owner direct/slash session mappings.
+
+Execution result
+- All six steps completed successfully.
+- One initial config attempt was rolled back automatically after validation because the wrong key `fallback` was used instead of the current documented `fallbacks`.
+- A first restart attempt via `systemctl restart openclaw` failed because the actual managed unit is `openclaw-gateway.service`; the final restart was completed successfully through `openclaw gateway restart`.
+
+## 2026-03-28 - OpenClaw Bot Menu and Audio Cleanup
+
+Goal
+- Continue the latest OpenClaw VPS handover by fixing the stale Telegram command menu and migrating the legacy audio config to the current documented layout without breaking the live bot.
+
+Plan
+1. Re-check the real live state of the gateway, Telegram channel, and slash-command menu — risk: LOW.
+2. Compare the live audio config with the current OpenClaw documentation and confirm the real root cause of the warning — risk: LOW.
+3. Create a reversible backup of `/root/.openclaw/openclaw.json` and migrate the legacy audio entry to `tools.media.audio` — risk: MEDIUM.
+4. Validate the config and perform a safe background restart with a health-check loop and rollback path — risk: MEDIUM.
+5. Replace the Telegram bot menu with a compact Russian set of only currently supported slash commands — risk: MEDIUM.
+
+Verification
+- `openclaw config validate` passes after the edit.
+- `openclaw status` shows the gateway reachable on `127.0.0.1:18789` and Telegram `ON / OK` after restart.
+- The stale `plugins.entries.audio` warning disappears from status output.
+- `getMyCommands` returns only the intended compact command set.
+
+Execution result
+- All five steps completed successfully.
+- The final supported Telegram menu was intentionally limited to `new`, `status`, `reset`, `help`, and `stop`; `/resume` was not published because the current OpenClaw build does not expose it as a supported slash command.
+
+## 2026-03-28 - OpenClaw KB Awareness and Owner Menu Upgrade
+
+Goal
+- Correct the bot's self-understanding about the mounted Obsidian vault, restore the persistent Telegram menu, add an owner-friendly restart command, and run a compact architecture/health pass.
+
+Plan
+1. Inspect the remote workspace bootstrap/identity files and confirm whether they still describe a generic first-run bot — risk: LOW.
+2. Verify the real state of `KnowledgeBase/`, `rclone-kb.service`, and Telegram menu/button settings — risk: LOW.
+3. Update workspace source-of-truth files so fresh sessions know about the mounted Obsidian vault and answer access questions precisely — risk: MEDIUM.
+4. Clear the stale Telegram direct-session mapping so the next real DM starts from the corrected workspace context — risk: MEDIUM.
+5. Reconfigure Telegram commands/menu:
+   - default/private compact Russian menu
+   - owner-specific Russian menu with `/restart`
+   - force menu button to `commands`
+   — risk: MEDIUM.
+6. Re-enable `commands.restart`, then re-run health checks and smoke-test a fresh non-delivered session for vault-access truthfulness — risk: MEDIUM.
+7. Clean obvious post-fix operational noise (`memorySearch` without provider, orphan session files) and re-run doctor — risk: MEDIUM.
+
+Verification
+- `getChatMenuButton` returns `commands` for the owner chat.
+- `getMyCommands` returns the intended owner command set in Russian.
+- Fresh smoke session states that mounted `KnowledgeBase/` is accessible.
+- `openclaw status --deep` shows Telegram `ON / OK`.
+- `openclaw security audit --json` remains free of critical findings.
+- `openclaw doctor` no longer reports orphan session files and reports memory search disabled.
+
+Execution result
+- All seven steps completed successfully.
+- Telegram native grouping still does not exist, so grouping was approximated through ordered commands and category-style Russian descriptions.
+
+## 2026-03-28 - OpenClaw Security Hardening
+
+Objective
+- Freeze the project on `OpenClaw` only, convert the live VPS deployment to a safer single-owner baseline, and capture the exact state in a dossier for external review.
+
+Execution steps
+1. Re-check the live `OpenClaw` status, security audit, sandbox explain output, and current `openclaw.json`.
+2. Cross-check local best-practice notes against official OpenClaw security/config docs and keep only settings that are validated for `2026.3.24`.
+3. Back up the live config on the VPS and apply the hardening changes:
+   - sandbox `all`
+   - messaging profile
+   - deny runtime/fs/ui/nodes/automation surfaces
+   - disable elevated host execution
+   - disable Telegram groups
+   - tighten file permissions
+4. Re-run `openclaw config validate`, `openclaw status`, `openclaw security audit --json`, and `openclaw doctor`.
+5. Clean any config artifacts created during CLI-based updates and verify the final JSON structure.
+6. Record the final operating model and instructions in project artifacts plus a standalone external-review dossier.
+
+Verification
+- `openclaw status` shows the gateway reachable on `127.0.0.1:18789`.
+- Telegram remains `ON / OK`.
+- `openclaw security audit --json` falls to one residual warning only.
+- `/root/.openclaw` and key config/auth files use tightened permissions.
+- A standalone Markdown dossier exists with the sanitized final config and operating instructions.

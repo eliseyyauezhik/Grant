@@ -124,7 +124,7 @@
 [2026-03-18 00:49:07] [T2] CMD Get-Command obsidian FAIL:NOT_FOUND
 [2026-03-18 00:49:07] [T2] CMD checkpoint.ps1 AGENTS.md,research_notes.md,implementation_plan.md,task.md FAIL:ARG_FORMAT
 [2026-03-18 00:49:07] [T2] CMD checkpoint.ps1 -Files @(AGENTS.md,research_notes.md,implementation_plan.md,task.md) SUCCESS:checkpoint_20260318_004408
-[2026-03-18 00:49:07] [T2] READ D:\ßíäåêñÄèñê\Yandex.Disk\ÏÐÎÅÊÒÛ\kb_agent_instructions.docx SUCCESS:EXTRACTED_TO_MARKDOWN_CONTEXT
+[2026-03-18 00:49:07] [T2] READ D:\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\Yandex.Disk\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\kb_agent_instructions.docx SUCCESS:EXTRACTED_TO_MARKDOWN_CONTEXT
 [2026-03-18 00:49:07] [T2] EDIT AGENTS.md SUCCESS
 [2026-03-18 00:49:07] [T2] EDIT research_notes.md SUCCESS
 [2026-03-18 00:49:07] [T2] EDIT implementation_plan.md SUCCESS
@@ -291,6 +291,121 @@
 2026-03-19T10:58:50+03:00 | TIER2 | checkpoint_agents_section11 | Created checkpoint checkpoint_20260319_105850 for AGENTS.md before appending protocol review triggers section.
 2026-03-19T10:59:20+03:00 | TIER2 | edit_agents_section11 | Appended section 11 from STEP_05_AGENTS_section_11.md to the end of AGENTS.md and verified resulting tail and line count (167).
 2026-03-19T11:05:00+03:00 | TIER2 | create_protocol_registry | Created .agents/PROTOCOL_REGISTRY.md from STEP_07 template with AGENTS.md version v2.1.0 and date 2026-03-19.
-[2026-03-22 19:28:18] [T3] EDIT C:\Users\Admin\.gemini\antigravity\scratch\Ìîé Äàøáîðä\index.html SUCCESS:password hash updated to 2300
-[2026-03-22 19:32:54] [T3] CMD git commit SUCCESS:Update dashboard password on C:\Users\Admin\.gemini\antigravity\scratch\Ìîé Äàøáîðä
+[2026-03-22 19:28:18] [T3] EDIT C:\Users\Admin\.gemini\antigravity\scratch\ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\index.html SUCCESS:password hash updated to 2300
+[2026-03-22 19:32:54] [T3] CMD git commit SUCCESS:Update dashboard password on C:\Users\Admin\.gemini\antigravity\scratch\ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 [2026-03-22 19:32:54] [T3] CMD git push origin master SUCCESS:dba182a -> remote master
+2026-03-28T02:05:52+03:00 | TIER3 | nemoclaw_migration | Starting remote backup+stop-openclaw+onboard sequence on 4vps with user-approved service interruption.
+2026-03-28T02:11:36+03:00 | TIER2 | nemoclaw_recovery_retry1 | Disk-space recovery before second onboarding attempt: cleanup caches + onboard --resume --non-interactive.
+2026-03-28T00:30:59+03:00 | TIER3 | nemoclaw_resume_backup | Created fresh remote backups for /root/.openclaw and /root/.nemoclaw in /root/nemoclaw-backups before resume attempt.
+2026-03-28T00:32:35+03:00 | TIER3 | nemoclaw_resume_attempt | Ran nemoclaw onboard --resume --non-interactive on 4vps with Anthropic provider env after confirming port 18789 was already free.
+2026-03-28T00:35:36+03:00 | TIER2 | nemoclaw_failure_diagnosis | Verified from onboarding log and kernel OOM records that openshell sandbox create was killed by global memory exhaustion.
+2026-03-28T00:47:12+03:00 | TIER3 | openclaw_rollback_restore | Restored the working OpenClaw gateway with openclaw gateway start and verified port 18789 plus Telegram channel health.
+21+03:00 | TIER3 | nemoclaw_disk_cleanup | Removed stale NemoClaw temp artifacts and unused sandbox images on 4vps before the final retry.
+21+03:00 | TIER3 | nemoclaw_retry_final | Ran final nemoclaw onboard --resume --non-interactive after injecting the existing Anthropic credential source from OpenClaw auth profiles.
+22+03:00 | TIER2 | nemoclaw_final_failure | Verified the final retry reached gateway upload and then failed at sandbox after root disk exhaustion with tls handshake eof.
+22+03:00 | TIER3 | nemoclaw_failed_runtime_cleanup | Removed failed openshell-cluster-nemoclaw container and volume to recover disk and stabilize the VPS.
+22+03:00 | TIER3 | openclaw_restore_post_retry | Restored the working OpenClaw gateway and re-verified port 18789 plus Telegram health after the final NemoClaw attempt.
+2026-03-28T04:15:54+03:00 | TIER3 | openclaw_hardening | Applied security hardening to live OpenClaw on 4vps: sandbox all, messaging profile, deny runtime/fs/ui/nodes/automation, elevated off, workspaceOnly true, commands.restart false.
+2026-03-28T04:15:55+03:00 | TIER3 | openclaw_group_lockdown | Disabled Telegram group mode on the live OpenClaw gateway after confirming allowlist-based groups were not in use and only generated warnings.
+2026-03-28T04:15:56+03:00 | TIER3 | openclaw_permissions | Tightened permissions on /root/.openclaw, /root/.openclaw/openclaw.json, and auth-profiles.json to 700/600.
+2026-03-28T04:15:57+03:00 | TIER2 | openclaw_verify | Validated config, confirmed gateway reachable on 127.0.0.1:18789, Telegram ON/OK, and reduced openclaw security audit to one residual warning.
+2026-03-28T04:15:58+03:00 | TIER2 | openclaw_docs | Updated workflow artifacts and created a detailed OpenClaw dossier plus handover for external LLM review.
+2026-03-28T07:30:53+03:00 | TIER3 | openclaw_memory_cleanup | Disabled memorySearch on the live OpenClaw gateway after confirming embeddings were unavailable and the feature only produced operational noise.
+2026-03-28T07:30:54+03:00 | TIER2 | openclaw_final_verify | Re-verified gateway reachability, Telegram ON/OK, memory search disabled, and security audit still at one residual warning.
+[2026-03-28 13:07:00] [T2] READ_EXTERNAL ssh://root@147.45.67.249 SSH key probe START
+[2026-03-28 13:07:17] [T2] READ_EXTERNAL ssh://root@147.45.67.249 SSH key probe FAILED:PUBLICKEY_REQUIRED
+[2026-03-28 13:07:41] [T2] READ_EXTERNAL local-runtime SSH client capability probe START
+[2026-03-28 13:08:56] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Live OpenClaw diagnostics START
+[2026-03-28 13:10:57] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Live OpenClaw diagnostics START
+[2026-03-28 13:10:59] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Live OpenClaw diagnostics SUCCESS
+[2026-03-28 13:11:31] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Live OpenClaw diagnostics FAILED:POWERSHELL_QUOTING
+[2026-03-28 13:13:19] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Telegram commands and audio diagnostics START
+[2026-03-28 13:13:38] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Telegram commands and audio diagnostics SUCCESS
+[2026-03-28 13:17:36] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json START
+[2026-03-28 13:17:37] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway START
+[2026-03-28 13:17:37] [T3] POST_API telegram://main-bot setMyCommands START
+[2026-03-28 13:17:57] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json SUCCESS
+[2026-03-28 13:17:57] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway SUCCESS
+[2026-03-28 13:17:57] [T3] POST_API telegram://main-bot setMyCommands SUCCESS
+[2026-03-28 13:18:30] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Whisper runtime preflight START
+[2026-03-28 13:18:36] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Whisper runtime preflight SUCCESS
+[2026-03-28 13:22:12] [T2] EDIT research_notes.md SUCCESS
+[2026-03-28 13:22:12] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-28 13:22:12] [T2] EDIT task.md SUCCESS
+[2026-03-28 13:22:12] [T2] EDIT progress.md SUCCESS
+[2026-03-28 13:22:12] [T2] EDIT workspace/projects/my-backlog.md SUCCESS
+[2026-03-28 13:22:12] [T2] EDIT .agents/handovers/handover_2026-03-28_openclaw-bot-menu-and-audio.md SUCCESS
+[2026-03-28 13:22:34] [T2] EDIT research_notes.md NORMALIZE_CRLF_SUCCESS
+[2026-03-28 13:22:35] [T2] EDIT implementation_plan.md NORMALIZE_CRLF_SUCCESS
+[2026-03-28 13:22:35] [T2] EDIT task.md NORMALIZE_CRLF_SUCCESS
+[2026-03-28 13:22:35] [T2] EDIT progress.md NORMALIZE_CRLF_SUCCESS
+[2026-03-28 13:22:35] [T2] EDIT workspace/projects/my-backlog.md NORMALIZE_CRLF_SUCCESS
+[2026-03-28 13:22:35] [T2] EDIT .agents/handovers/handover_2026-03-28_openclaw-bot-menu-and-audio.md NORMALIZE_CRLF_SUCCESS
+[2026-03-28 13:22:35] [T2] EDIT agent_audit.log NORMALIZE_CRLF_SUCCESS
+[2026-03-28 13:28:14] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Telegram non-response diagnostics START
+[2026-03-28 13:28:25] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Telegram non-response diagnostics SUCCESS
+[2026-03-28 13:29:04] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Whisper skill diagnostics START
+[2026-03-28 13:29:43] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Whisper PATH diagnostics START
+[2026-03-28 13:29:48] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Whisper PATH diagnostics SUCCESS
+[2026-03-28 13:30:54] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Direct whisper preflight START
+[2026-03-28 13:31:07] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Direct whisper preflight SUCCESS
+[2026-03-28 13:32:05] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json Whisper CLI model config START
+[2026-03-28 13:32:06] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway after Whisper config START
+[2026-03-28 13:32:25] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json Whisper CLI model config SUCCESS
+[2026-03-28 13:32:25] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway after Whisper config SUCCESS
+[2026-03-28 13:34:55] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Obsidian access verification START
+[2026-03-28 13:35:00] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Obsidian access verification SUCCESS
+[2026-03-28 13:43:52] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/workspace/{BOOTSTRAP,IDENTITY,USER,AGENTS}.md START
+[2026-03-28 13:43:53] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/agents/main/sessions/sessions.json START
+[2026-03-28 13:43:53] [T3] POST_API telegram://main-bot setMyCommands/setChatMenuButton START
+[2026-03-28 13:43:53] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway after workspace/menu patch START
+[2026-03-28 13:44:44] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/workspace/{BOOTSTRAP,IDENTITY,USER,AGENTS}.md SUCCESS
+[2026-03-28 13:44:44] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/agents/main/sessions/sessions.json SUCCESS
+[2026-03-28 13:44:44] [T3] POST_API telegram://main-bot setMyCommands/setChatMenuButton SUCCESS
+[2026-03-28 13:44:44] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway after workspace/menu patch SUCCESS
+[2026-03-28 13:46:36] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json commands.restart START
+[2026-03-28 13:46:36] [T3] POST_API telegram://main-bot owner menu redesign START
+[2026-03-28 13:46:37] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway after owner menu redesign START
+[2026-03-28 13:47:23] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json commands.restart SUCCESS
+[2026-03-28 13:47:23] [T3] POST_API telegram://main-bot owner menu redesign SUCCESS
+[2026-03-28 13:47:23] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway after owner menu redesign SUCCESS
+[2026-03-28 13:48:36] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json disable memorySearch START
+[2026-03-28 13:48:37] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/agents/main/sessions archive orphan jsonl START
+[2026-03-28 13:48:37] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway after cleanup START
+[2026-03-28 13:49:02] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json disable memorySearch SUCCESS
+[2026-03-28 13:49:02] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/agents/main/sessions archive orphan jsonl SUCCESS
+[2026-03-28 13:49:02] [T3] RESTART ssh://root@147.45.67.249 OpenClaw gateway after cleanup SUCCESS
+[2026-03-28 13:50:32] [T2] EDIT research_notes.md SUCCESS
+[2026-03-28 13:50:32] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-28 13:50:32] [T2] EDIT task.md SUCCESS
+[2026-03-28 13:50:32] [T2] EDIT progress.md SUCCESS
+[2026-03-28 13:50:32] [T2] EDIT workspace/projects/my-backlog.md SUCCESS
+[2026-03-28 13:50:32] [T2] EDIT .agents/handovers/handover_2026-03-28_openclaw-kb-awareness-and-owner-menu.md SUCCESS
+[2026-03-28 18:30:02] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Model provider diagnostics START
+[2026-03-28 18:30:17] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Model provider diagnostics SUCCESS
+[2026-03-28 18:30:49] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Haiku model discovery START
+[2026-03-28 18:31:04] [T2] READ_EXTERNAL ssh://root@147.45.67.249 Haiku model discovery SUCCESS
+[2026-03-28 18:36:58] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json switch primary model to Haiku FAILED:ROLLED_BACK_INVALID_FALLBACK_KEY
+[2026-03-28 18:39:57] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/openclaw.json switch primary model to Haiku with Sonnet fallback SUCCESS
+[2026-03-28 18:39:57] [T3] EDIT ssh://root@147.45.67.249:/root/.openclaw/agents/main/sessions/sessions.json reset owner telegram sessions SUCCESS
+[2026-03-28 18:39:57] [T3] RESTART ssh://root@147.45.67.249 openclaw service FAILED:UNIT_NOT_FOUND
+[2026-03-28 18:42:31] [T3] RESTART ssh://root@147.45.67.249 openclaw-gateway.service SUCCESS
+[2026-03-28 18:42:31] [T3] POST_API telegram://main-bot setMyCommands/setChatMenuButton model menu SUCCESS
+[2026-03-28 18:42:31] [T3] POST_API telegram://main-bot send completion message SUCCESS
+[2026-03-28 18:43:59] [T2] EDIT research_notes.md SUCCESS
+[2026-03-28 18:43:59] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-28 18:43:59] [T2] EDIT task.md SUCCESS
+[2026-03-28 18:43:59] [T2] EDIT progress.md SUCCESS
+[2026-03-28 18:43:59] [T2] EDIT workspace/projects/my-backlog.md SUCCESS
+[2026-03-28 18:43:59] [T2] EDIT .agents/handovers/handover_2026-03-28_openclaw-haiku-switch-and-model-picker.md SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/README.md SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/master_prompt.md SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/system_instruction.md SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/production_prompt_unified.md SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/production_prompt_stage1_claim_extraction.md SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/production_prompt_stage2_consolidation_topics.md SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/production_prompt_stage3_research_and_agent_tuning.md SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/stage1_claims_schema.json SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/stage2_topics_schema.json SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/telegram-chat-analysis-prompt-pack/final_analysis_schema.json SUCCESS
+[2026-03-29 23:48:13] [T2] EDIT workspace/projects/my-backlog.md SUCCESS
