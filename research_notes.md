@@ -1107,3 +1107,45 @@ Risks
 - Skill overbreadth: too many goals in one `SKILL.md`.
 - Subjective scoring if the prioritization rubric is not explicitly weighted.
 - Source drift if verification allows forum/blog material instead of official docs, changelogs, issues, and provider policies.
+## 2026-03-30 - Verified Corpus-to-Roadmap Execution
+
+Goal
+- Finish the Telegram prompt-pack continuation in the correct order: primary-source verification first, then evidence triage, then ranking, then a human-readable roadmap and reusable skill.
+
+Official sources checked
+- `https://docs.openclaw.ai/reference/RELEASING`
+- `https://docs.openclaw.ai/channels/telegram`
+- `https://docs.openclaw.ai/gateway/doctor`
+- `https://docs.openclaw.ai/help/faq`
+- `https://core.telegram.org/constructor/businessBotRecipients`
+
+Verified facts
+- OpenClaw release lanes and stable version naming are explicit and date-based (`stable`, `beta`, `dev`; stable tags `vYYYY.M.D`), so version drift is a first-order operational risk.
+- Telegram behavior is explicitly configured, not inferred:
+  - token-based setup
+  - DM pairing
+  - topic isolation through `:topic:<threadId>`
+  - explicit topic config path
+- `doctor` validates gateway runtime, port collisions, and warns that Telegram/WhatsApp channels require a working Node runtime.
+- `doctor` also recommends a workspace memory system, which aligns with the corpus signal around file-memory being more stable than long live sessions.
+- OpenClaw FAQ explicitly confirms Anthropic subscription auth via setup-token, but also explicitly warns that this is technical compatibility rather than a policy guarantee.
+- Telegram Business-bot recipients are scoped through explicit selectors such as `existing_chats` and `new_chats`, so access should be treated as a governed surface, not as a magical full inbox mirror.
+
+Conclusions
+- The first roadmap layer for our `OpenClaw` should stay conservative and source-backed:
+  - version-aware operations
+  - explicit Telegram governance
+  - runtime diagnostics
+  - file-memory baseline
+- The corpus claims about long-horizon ingest, silent-failure hygiene, and Business-bot operating patterns are useful, but they belong in `probable but unverified` until we do deeper source or live-environment checks.
+- The local-model fallback signal remains too weak for a default recommendation.
+
+Unknowns
+- Whether Telegram Business behavior on our specific account/use case should be promoted from `probable` to `verified`.
+- Whether a separate vector ingest is needed immediately, or whether the current file-memory layer is enough for the next milestone.
+- Whether to normalize the ranked register into KB notes right away or keep it in the run folder for now.
+
+Risks
+- Over-promoting community heuristics into hard operating rules.
+- Treating provider subscription auth as stable production ground without repeated policy verification.
+- Packing too much domain-specific context into the first version of the reusable skill.

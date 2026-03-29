@@ -705,3 +705,17 @@ Verification
 - Check that the ranked items clearly map to actions, not only themes.
 - Validate the skill via `quick_validate.py` and, if useful, `eval_skill.py`.
 - Confirm the skill does not over-trigger on ordinary summarization requests.
+Execution notes
+- Keep the sequence strict:
+  1. official-source verification
+  2. evidence buckets
+  3. ranking
+  4. human-readable roadmap
+  5. reusable skill packaging
+- Deliver the current corpus in a readable form, not only as JSON:
+  - a reusable framework doc
+  - a run-specific verified knowledge library + roadmap
+- Package the workflow as a narrow reusable skill:
+  - `verified-corpus-roadmap`
+  - scope limited to corpus -> verification -> triage -> prioritization -> roadmap
+  - no broad orchestration/life-help wrapper in v1

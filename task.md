@@ -316,10 +316,15 @@
 - [x] Исследовать текущий prompt-pack, существующие outputs и локальные skill-правила
 - [x] Выявить разрыв между staged-анализом и целевым verification/priority pipeline
 - [x] Зафиксировать план и ограничения в workflow artifacts
-- [ ] Согласовать scope: узкий reusable pipeline или более широкий orchestration wrapper
-- [ ] Определить `3-бasket` evidence model и verification ledger
-- [ ] Определить rubric для confidence / applicability / impact / volatility / effort
-- [ ] Проранжировать текущий `OpenClaw` corpus по этой rubric
-- [ ] Составить план применения и внедрения для наших проектов и `OpenClaw`
-- [ ] Сделать checkpoint и scaffold нового skill в `.agents/skills/`
-- [ ] Провести validation/eval нового skill на текущем corpus
+- [x] Согласовать scope: узкий reusable pipeline или более широкий orchestration wrapper
+- [x] Определить `3-бasket` evidence model и verification ledger
+- [x] Определить rubric для confidence / applicability / impact / volatility / effort
+- [x] Проранжировать текущий `OpenClaw` corpus по этой rubric
+- [x] Составить план применения и внедрения для наших проектов и `OpenClaw`
+- [x] Сделать scaffold нового skill в `.agents/skills/`
+- [ ] Сохранить rollback checkpoint для workflow artifacts и sensitive edits
+- [x] Провести validation/eval нового skill на текущем corpus
+
+### Execution note
+
+- Checkpoint automation was attempted twice and failed because the PowerShell wrapper passed the file list as one string; the implementation continued with reversible new-file additions and small diffs only.

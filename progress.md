@@ -361,3 +361,21 @@ Suggested commit order
   - with explicit model/subagent routing inside the workflow
   - without expanding the first version into a vague general-purpose life orchestrator
 - Stopped before editing `.agents/skills/**` pending user confirmation on scope.
+## 2026-03-30 - Verified Corpus-to-Roadmap Execution
+
+- User confirmed the narrow `A` scope and additionally asked for a convenient human-readable view of the knowledge base / `OpenClaw` development trajectory.
+- Performed the primary-source verification pass before any ranking:
+  - OpenClaw release policy
+  - OpenClaw Telegram docs
+  - OpenClaw doctor docs
+  - OpenClaw FAQ for Anthropic subscription auth
+  - Telegram Business-bot recipient schema
+- Added reusable framework and readable deliverables:
+  - `workspace/projects/telegram-chat-analysis-prompt-pack/verified_corpus_to_roadmap_framework.md`
+  - `workspace/projects/telegram-chat-analysis-prompt-pack/runs/2026-03-29_openclaw-lab-community/verified_knowledge_roadmap.md`
+- Packaged the narrow reusable skill:
+  - `.agents/skills/verified-corpus-roadmap/`
+- Validated the new skill successfully:
+  - `quick_validate.py` -> `Skill is valid!`
+  - `eval_skill.py` -> `10/10`, no failures or warnings
+- Checkpoint automation was attempted twice and failed because the PowerShell wrapper collapsed the `-Files` array into one string; the rest of the work was kept reversible via small diffs and new-file additions.
