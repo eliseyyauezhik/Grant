@@ -40,6 +40,7 @@ tags:
 - [ ] `Telegram DB analysis`: в новом чате прогнать сохранённый prompt-pack на экспорт Telegram-базы и собрать аналитический документ
 - [ ] `OpenClaw`: проверить выводы из Telegram-анализа по официальным источникам (docs, changelog, issues, provider policies) и обновить итоговые тезисы
 - [ ] `OpenClaw`: собрать по верифицированным данным план поступательной модернизации и обновления
+- [ ] Публикация статических страниц: закрепить fallback через GitHub Pages или Яндекс.Диск на случай упора в лимиты Netlify
 - [ ] `Knowledge pipeline`: оформить reusable skill для верификации, triage, приоритизации и плана внедрения по Telegram/chat/database corpora
 - [ ] `Knowledge pipeline`: разработать rubric ранжирования знаний по достоверности, применимости к проектам и ценности для `OpenClaw`
 - [ ] `Аналитический Узел`: оформить единый pipeline `inbox -> corpus -> verification -> triage -> ranking -> write-back -> proactive signals`

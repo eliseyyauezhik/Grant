@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenClaw: Telegram vs ПК</title>
+  <meta name="description" content="Краткая карта развития OpenClaw: что можно делегировать через Telegram, а что требует стационарной среды Antigravity.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --panel: rgba(255, 250, 244, 0.88);
+      --panel-strong: #fff7ef;
+      --ink: #1f1f19;
+      --muted: #5d5a4f;
+      --line: rgba(84, 72, 51, 0.16);
+      --accent: #0c6b58;
+      --accent-2: #c95f2d;
+      --accent-3: #d1a231;
+      --shadow: 0 24px 70px rgba(63, 43, 18, 0.11);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(201, 95, 45, 0.16), transparent 26%),
+        radial-gradient(circle at top right, rgba(12, 107, 88, 0.18), transparent 24%),
+        linear-gradient(180deg, #f8f2ea 0%, #efe4d5 100%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255, 247, 239, 0.98), rgba(247, 236, 219, 0.9)),
+        var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -80px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(12, 107, 88, 0.18) 0%, rgba(12, 107, 88, 0) 72%);
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.65);
+      color: var(--muted);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 24px;
+      align-items: end;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5.8vw, 5rem);
+      line-height: 0.95;
+      max-width: 10ch;
+    }
+
+    .lead {
+      margin: 18px 0 0;
+      max-width: 60ch;
+      font-size: 1.08rem;
+      line-height: 1.62;
+      color: var(--muted);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-note,
+    .panel,
+    .fact,
+    .lane-card,
+    .stage-card,
+    .source-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      box-shadow: 0 10px 24px rgba(42, 30, 10, 0.05);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-note {
+      padding: 18px;
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .hero-note p,
+    .panel p,
+    .fact p,
+    .lane-card p,
+    .stage-card p,
+    .source-card p,
+    li {
+      margin: 0;
+      line-height: 1.58;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.6);
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .panel h3 {
+      font-size: 1.08rem;
+      margin-bottom: 10px;
+    }
+
+    section {
+      margin-top: 22px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+    }
+
+    .section-head p {
+      max-width: 60ch;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.62);
+      border-radius: 999px;
+      padding: 11px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    .filter-btn.active {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .lane-grid,
+    .facts,
+    .stages,
+    .sources {
+      display: grid;
+      gap: 16px;
+    }
+
+    .lane-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lane-card {
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lane-card[hidden] {
+      display: none;
+    }
+
+    .lane-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -24px -24px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+
+    .lane-card[data-mode~="telegram"]::before {
+      background: var(--accent);
+    }
+
+    .lane-card[data-mode~="desktop"]::before {
+      background: var(--accent-2);
+    }
+
+    .mode {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+    }
+
+    .mode.telegram {
+      color: var(--accent);
+    }
+
+    .mode.desktop {
+      color: var(--accent-2);
+    }
+
+    .mode.both {
+      color: #7b5a12;
+    }
+
+    .lane-card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+    }
+
+    .lane-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .facts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .fact {
+      padding: 18px;
+    }
+
+    .fact strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.04rem;
+    }
+
+    .fact .tagline {
+      display: inline-flex;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .tagline.ok {
+      background: rgba(12, 107, 88, 0.12);
+      color: var(--accent);
+    }
+
+    .tagline.warn {
+      background: rgba(209, 162, 49, 0.14);
+      color: #8a6511;
+    }
+
+    .tagline.exp {
+      background: rgba(201, 95, 45, 0.12);
+      color: var(--accent-2);
+    }
+
+    .stages {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .stage-card {
+      padding: 18px;
+      min-height: 100%;
+    }
+
+    .stage-card .num {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(31, 31, 25, 0.06);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .stage-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 10px;
+    }
+
+    .stage-card ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .sources {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .source-card {
+      padding: 18px;
+    }
+
+    .source-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.08rem;
+    }
+
+    .source-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .foot {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(31, 31, 25, 0.9);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .foot p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.55s ease forwards;
+    }
+
+    .reveal:nth-child(2) { animation-delay: 0.08s; }
+    .reveal:nth-child(3) { animation-delay: 0.16s; }
+    .reveal:nth-child(4) { animation-delay: 0.24s; }
+    .reveal:nth-child(5) { animation-delay: 0.32s; }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1020px) {
+      .hero-grid,
+      .summary,
+      .lane-grid,
+      .facts,
+      .stages,
+      .sources {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        width: min(100% - 20px, 1180px);
+        padding-top: 12px;
+      }
+
+      .hero {
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      .hero-top,
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .btn,
+      .filter-btn {
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero reveal">
+      <div class="hero-top">
+        <span class="eyebrow">OpenClaw briefing • версия материалов на 2026-03-30</span>
+        <span class="chip">Основано на `openclaw-development-map.md` и `verified_knowledge_roadmap.md`</span>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <h1>Что делать через Telegram, а что только с ПК</h1>
+          <p class="lead">
+            Эта страница превращает два аналитических Markdown-документа в рабочую витрину:
+            сначала отделяет управляемую Telegram-поверхность от стационарной среды Antigravity,
+            затем показывает фазу развития, проверенные знания и следующий безопасный шаг.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#filter">Смотреть фильтр задач</a>
+            <a class="btn btn-secondary" id="shareTelegram" href="#" target="_blank" rel="noopener noreferrer">Поделиться в Telegram</a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="hero-note">
+            <strong>Главная граница</strong>
+            <p>Telegram годится только как уже настроенный интерфейс управления. Версии, каналы, runtime, file-memory и verification-pass остаются работой стационарной среды.</p>
+          </div>
+          <div class="hero-note">
+            <strong>Как читать страницу</strong>
+            <p>Пункты ниже разделены на две поверхности: `Telegram` для готовых сценариев и `ПК / Antigravity` для инфраструктуры, диагностики и пересборки знаний.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="summary">
+      <article class="panel reveal">
+        <h3>Что уже подтверждено</h3>
+        <p>Version discipline, явная Telegram-конфигурация, runtime-first diagnostics и file-memory baseline.</p>
+      </article>
+      <article class="panel reveal">
+        <h3>Что пока не стандарт</h3>
+        <p>Long-horizon ingest Telegram-истории, aggressive pruning-практики и production bundle вокруг Business + vector memory.</p>
+      </article>
+      <article class="panel reveal">
+        <h3>Практический вывод</h3>
+        <p>Не расширять OpenClaw как чат-волшебника. Сначала собрать корректную операционную основу, потом поднимать более умные сценарии.</p>
+      </article>
+    </section>
+
+    <section id="filter">
+      <div class="section-head reveal">
+        <div>
+          <h2>Фильтр по поверхности выполнения</h2>
+        </div>
+        <p>Ниже не просто список задач, а разграничение по каналу выполнения. Если Telegram-слой ещё не настроен, все карточки из блока `Telegram` автоматически переходят в категорию `ПК / Antigravity`.</p>
+      </div>
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" type="button" data-filter="all">Все</button>
+        <button class="filter-btn" type="button" data-filter="telegram">Только Telegram</button>
+        <button class="filter-btn" type="button" data-filter="desktop">Только ПК / Antigravity</button>
+        <button class="filter-btn" type="button" data-filter="both">Переходные задачи</button>
+      </div>
+
+      <div class="lane-grid">
+        <article class="lane-card reveal" data-mode="telegram">
+          <span class="mode telegram">Telegram</span>
+          <h3>Owner-команды и короткие operational запросы</h3>
+          <p>Когда канал уже подключен, через чат можно использовать OpenClaw как управляемый интерфейс: спрашивать следующий шаг, вызывать краткие summary и держать работу в выделенных DM/topic-сессиях.</p>
+          <ul>
+            <li>запросить следующий шаг по roadmap;</li>
+            <li>получить краткую сводку по текущему знанию;</li>
+            <li>вести ограниченный рабочий диалог внутри ACL/topic surface.</li>
+          </ul>
+        </article>
+
+        <article class="lane-card reveal" data-mode="telegram">
+          <span class="mode telegram">Telegram</span>
+          <h3>Проверка пользовательского интерфейса бота</h3>
+          <p>Telegram подходит для smoke-test самого owner-flow: menu, topics, pairing, команды выбора модели и общее ощущение управляемости канала.</p>
+          <ul>
+            <li>проверить, что меню и команды отображаются как ожидается;</li>
+            <li>протестировать поведение в DM и в topic-thread;</li>
+            <li>сверить, что новый диалог стартует с нужной моделью.</li>
+          </ul>
+        </article>
+
+        <article class="lane-card reveal" data-mode="telegram both">
+          <span class="mode both">Переходная зона</span>
+          <h3>Рутинные сценарии после предварительной сборки</h3>
+          <p>Некоторые действия можно отдавать через Telegram только после того, как на ПК уже собраны память, инструкции и retrieval по curated files.</p>
+          <ul>
+            <li>короткие recall-запросы по `MEMORY.md`;</li>
+            <li>follow-up по уже верифицированному знанию;</li>
+            <li>создание черновых daily notes с последующим write-back на ПК.</li>
+          </ul>
+        </article>
+
+        <article class="lane-card reveal" data-mode="desktop">
+          <span class="mode desktop">ПК / Antigravity</span>
+          <h3>Версии, onboarding и каналы</h3>
+          <p>Все задачи, где есть release policy, `botToken`, channel config, ACL, topics и первичная сборка канала, требуют стационарной среды и точной проверки версий.</p>
+          <ul>
+            <li>проверять release lane и конкретный tag;</li>
+            <li>выполнять onboarding и настройку каналов;</li>
+            <li>проектировать ACL/topics вместо неявного поведения.</li>
+          </ul>
+        </article>
+
+        <article class="lane-card reveal" data-mode="desktop">
+          <span class="mode desktop">ПК / Antigravity</span>
+          <h3>Runtime-диагностика и triage</h3>
+          <p>Любые silent failures сначала разбираются на уровне runtime: `doctor`, `status`, ports, Node environment и channel prerequisites. Это не Telegram-задача.</p>
+          <ul>
+            <li>запускать `doctor` и смотреть конфликты среды;</li>
+            <li>проверять порты и gateway runtime;</li>
+            <li>устранять поломки до изменения prompt layer.</li>
+          </ul>
+        </article>
+
+        <article class="lane-card reveal" data-mode="desktop">
+          <span class="mode desktop">ПК / Antigravity</span>
+          <h3>File-memory и write-back</h3>
+          <p>Создание `daily notes`, `MEMORY.md`, curated files и write-back из corpus runs в vault остаются работой компьютера. Это операционный слой, а не UX-добавка.</p>
+          <ul>
+            <li>оформлять базовый memory baseline;</li>
+            <li>собирать curated files для retrieval;</li>
+            <li>обновлять проектный реестр проверенных знаний.</li>
+          </ul>
+        </article>
+
+        <article class="lane-card reveal" data-mode="desktop">
+          <span class="mode desktop">ПК / Antigravity</span>
+          <h3>Verification-pass и пересборка roadmap</h3>
+          <p>Проверка корпуса по первичным источникам, ранжирование знаний и выпуск нового implementation backlog требуют полноразмерной среды, файлов и воспроизводимых артефактов.</p>
+          <ul>
+            <li>сверять corpus с official docs;</li>
+            <li>обновлять ranking и buckets;</li>
+            <li>пересобирать roadmap на основе подтвержденных данных.</li>
+          </ul>
+        </article>
+
+        <article class="lane-card reveal" data-mode="desktop">
+          <span class="mode desktop">ПК / Antigravity</span>
+          <h3>Эксперименты и рискованные расширения</h3>
+          <p>Business-bot, long-history ingest, subscription-sensitive auth и local-model fallback не стоит запускать из Telegram как будто это штатный режим. Это controlled experiments.</p>
+          <ul>
+            <li>держать такие идеи вне production-baseline;</li>
+            <li>тестировать их после стабилизации фаз 1-4;</li>
+            <li>вести отдельный backlog экспериментов.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head reveal">
+        <div>
+          <h2>Траектория развития OpenClaw</h2>
+        </div>
+        <p>Исходные материалы читаются как дорожка от операционной корректности к управляемому интерфейсу, затем к file-memory и только потом к corpus intelligence и экспериментам.</p>
+      </div>
+
+      <div class="stages">
+        <article class="stage-card reveal">
+          <span class="num">0</span>
+          <h3>Версионная дисциплина</h3>
+          <p>Любой совет читается через конкретную release policy и конкретную версию.</p>
+        </article>
+        <article class="stage-card reveal">
+          <span class="num">1</span>
+          <h3>Операционная корректность</h3>
+          <p>Сначала runtime, порты и `doctor`, потом уже prompt-tuning.</p>
+        </article>
+        <article class="stage-card reveal">
+          <span class="num">2</span>
+          <h3>Управляемый Telegram</h3>
+          <p>Telegram проектируется как ограниченный ACL/topic surface, а не как безграничный чат.</p>
+        </article>
+        <article class="stage-card reveal">
+          <span class="num">3</span>
+          <h3>File-memory baseline</h3>
+          <p>`daily notes`, `MEMORY.md` и retrieval по curated files становятся минимальным стандартом.</p>
+        </article>
+        <article class="stage-card reveal">
+          <span class="num">4+</span>
+          <h3>Corpus intelligence</h3>
+          <p>После стабилизации запускается цикл `corpus -> verification -> triage -> ranking -> roadmap`.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head reveal">
+        <div>
+          <h2>Библиотека знаний</h2>
+        </div>
+        <p>Ниже три корзины из исходного verification-pass: что уже можно считать operating rule, что пока требует локальной проверки и что ещё рано считать стандартом.</p>
+      </div>
+
+      <div class="facts">
+        <article class="fact reveal">
+          <span class="tagline ok">Проверено</span>
+          <strong>Version discipline обязательна</strong>
+          <p>Старые рецепты и советы из чатов быстро устаревают. Любой change-plan по OpenClaw должен читаться через конкретный tag и lane.</p>
+        </article>
+        <article class="fact reveal">
+          <span class="tagline ok">Проверено</span>
+          <strong>Telegram устроен явно</strong>
+          <p>`botToken`, channel config, pairing и topic behavior описаны детерминированно. Значит канал нужно проектировать, а не угадывать.</p>
+        </article>
+        <article class="fact reveal">
+          <span class="tagline ok">Проверено</span>
+          <strong>Runtime важнее prompt-tweaking</strong>
+          <p>Большая часть ложных гипотез живет в runtime/config. Диагностика среды идет до правок prompt layer.</p>
+        </article>
+        <article class="fact reveal">
+          <span class="tagline ok">Проверено</span>
+          <strong>File-memory не optional</strong>
+          <p>Память через файлы и curated retrieval устойчивее, чем надежда на бесконечный live context в чате.</p>
+        </article>
+        <article class="fact reveal">
+          <span class="tagline warn">Вероятно</span>
+          <strong>Long-horizon ingest полезен, но не обязателен сейчас</strong>
+          <p>Корпус подталкивает к отдельному ingest для длинной Telegram-истории, но official rule для этого пока не подтвержден.</p>
+        </article>
+        <article class="fact reveal">
+          <span class="tagline exp">Эксперимент</span>
+          <strong>Business + vector memory + local fallback</strong>
+          <p>Это перспективная зона, но не production-baseline. Поднимать её стоит только после стабилизации первых фаз.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head reveal">
+        <div>
+          <h2>Что делать следующим шагом</h2>
+        </div>
+        <p>Если нужна практическая эксплуатация, сначала фиксируется безопасный operating baseline, а не новые умные фичи.</p>
+      </div>
+
+      <div class="facts">
+        <article class="fact reveal">
+          <span class="tagline ok">Шаг 1</span>
+          <strong>Закрепить version-aware runbook</strong>
+          <p>Без этого любая правка OpenClaw рискует ехать по старым или несовместимым советам.</p>
+        </article>
+        <article class="fact reveal">
+          <span class="tagline ok">Шаг 2</span>
+          <strong>Считать Telegram архитектурной единицей</strong>
+          <p>Topics и ACL должны быть частью дизайна, а не декоративной деталью интерфейса.</p>
+        </article>
+        <article class="fact reveal">
+          <span class="tagline ok">Шаг 3</span>
+          <strong>Собрать file-memory baseline</strong>
+          <p>Пока нет `daily notes`, `MEMORY.md` и write-back, Telegram останется только окном чата, а не рабочим контуром.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head reveal">
+        <div>
+          <h2>Источники</h2>
+        </div>
+        <p>Страница собрана из двух локальных материалов и опирается на список первичных официальных источников из verification-pass.</p>
+      </div>
+
+      <div class="sources">
+        <article class="source-card reveal">
+          <h3>Локальные материалы</h3>
+          <ul>
+            <li><code>openclaw-development-map.md</code></li>
+            <li><code>verified_knowledge_roadmap.md</code></li>
+          </ul>
+        </article>
+        <article class="source-card reveal">
+          <h3>Первичные официальные источники</h3>
+          <ul>
+            <li><a href="https://docs.openclaw.ai/reference/RELEASING" target="_blank" rel="noopener noreferrer">OpenClaw Release Policy</a></li>
+            <li><a href="https://docs.openclaw.ai/channels/telegram" target="_blank" rel="noopener noreferrer">OpenClaw Telegram docs</a></li>
+            <li><a href="https://docs.openclaw.ai/gateway/doctor" target="_blank" rel="noopener noreferrer">OpenClaw Doctor docs</a></li>
+            <li><a href="https://docs.openclaw.ai/help/faq" target="_blank" rel="noopener noreferrer">OpenClaw FAQ</a></li>
+            <li><a href="https://core.telegram.org/api/business" target="_blank" rel="noopener noreferrer">Telegram Business docs</a></li>
+            <li><a href="https://core.telegram.org/api/bots/connected-business-bots" target="_blank" rel="noopener noreferrer">Connected Business Bots</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <footer class="foot reveal">
+      <p>Operational rule этой страницы: Telegram используется как слой уже настроенного взаимодействия. Всё, что касается версий, инфраструктуры, диагностики, file-memory и верификации знаний, по-прежнему требует стационарной среды Antigravity.</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const buttons = Array.from(document.querySelectorAll(".filter-btn"));
+      const cards = Array.from(document.querySelectorAll(".lane-card"));
+      const shareTelegram = document.getElementById("shareTelegram");
+      const shareTitle = "OpenClaw: Telegram vs ПК";
+
+      const applyFilter = (mode) => {
+        cards.forEach((card) => {
+          const modes = card.dataset.mode.split(/\s+/);
+          const visible = mode === "all" || modes.includes(mode);
+          card.hidden = !visible;
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          buttons.forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+          applyFilter(button.dataset.filter);
+        });
+      });
+
+      if (shareTelegram) {
+        const shareUrl = window.location.href;
+        shareTelegram.href =
+          "https://t.me/share/url?url=" +
+          encodeURIComponent(shareUrl) +
+          "&text=" +
+          encodeURIComponent(shareTitle);
+      }
+    }());
+  </script>
+</body>
+</html>
