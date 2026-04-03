@@ -249,11 +249,9 @@ tags:
 - Связано: [[notes/ecosystem-overlap-analysis]]
 - Связано: [[projects/telegram-chat-analysis-prompt-pack/verified_corpus_to_roadmap_framework]]
 - Связано: [[projects/telegram-chat-analysis-prompt-pack/runs/2026-03-29_openclaw-lab-community/verified_knowledge_roadmap]]
-- Связано: [[projects/telegram-chat-analysis-prompt-pack/runs/2026-03-29_openclaw-lab-community/openclaw-development-map]]
 
 ## Следующие шаги
 
-- [ ] Держать компактную витрину `OpenClaw` как основной вход в roadmap и библиотеку знаний.
 - [ ] Определить канонический формат write-back из corpus runs в vault.
 - [ ] Выделить отдельный реестр проверенных знаний по проектам.
 - [ ] Спроектировать сигналы для проактивного ассистента поверх этого реестра.
