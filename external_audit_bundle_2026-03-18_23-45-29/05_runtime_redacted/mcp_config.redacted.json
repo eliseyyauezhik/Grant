@@ -1,0 +1,24 @@
+﻿{
+    "mcpServers":  {
+                       "n8n":  {
+                                   "command":  "npx",
+                                   "args":  [
+                                                "-y",
+                                                "@czlonkowski/n8n-manager-for-ai-agents",
+                                                "--n8n-url=http://localhost:5678/api/v1",
+                                                "--n8n-api-key=\u003cREDACTED\u003e"
+                                            ]
+                               },
+                       "notebooklm-mcp":  {
+                                              "command":  "C:\\Users\\Admin\\.gemini\\antigravity\\venv\\Scripts\\python.exe",
+                                              "args":  [
+                                                           "-m",
+                                                           "notebooklm_tools.mcp.server"
+                                                       ],
+                                              "env":  {
+                                                          "HTTPS_PROXY":  "http://\u003cREDACTED\u003e@192.241.96.248:8000",
+                                                          "HTTP_PROXY":  "http://\u003cREDACTED\u003e@192.241.96.248:8000"
+                                                      }
+                                          }
+                   }
+}

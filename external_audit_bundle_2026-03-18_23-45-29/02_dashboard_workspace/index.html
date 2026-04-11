@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мой Дашборд — AI Workspace</title>
+  <meta name="description"
+    content="Единый дашборд проектов, чатов, workflows и Telegram intelligence с автообновлением данных.">
+  <!-- PWA / Mobile -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#101319" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f7f8" media="(prefers-color-scheme: light)">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Auth Gate --- */
+    .auth-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .auth-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .auth-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px 36px;
+      max-width: 380px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    body[data-theme="dark"] .auth-card {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .auth-icon {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .auth-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .auth-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .auth-input-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .auth-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .auth-input:focus {
+      border-color: var(--accent);
+    }
+
+    .auth-input.error {
+      border-color: var(--idea-high);
+      animation: auth-shake 0.4s ease;
+    }
+
+    @keyframes auth-shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-6px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(6px);
+      }
+    }
+
+    .auth-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .auth-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .auth-btn:active {
+      transform: scale(0.97);
+    }
+
+    .auth-error-msg {
+      font-size: 0.78rem;
+      color: var(--idea-high);
+      margin-top: 10px;
+      min-height: 1.2em;
+    }
+
+    .dashboard-content.locked {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Auth Overlay -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-card">
+      <div class="auth-icon">◉</div>
+      <div class="auth-title">Мой Дашборд</div>
+      <div class="auth-subtitle">Введите пароль для доступа</div>
+      <form id="authForm" autocomplete="off">
+        <div class="auth-input-wrap">
+          <input class="auth-input" id="authPassword" type="password" placeholder="Пароль" autofocus>
+        </div>
+        <button class="auth-btn" type="submit">Войти</button>
+        <div class="auth-error-msg" id="authError"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="dashboard-content locked" id="dashboardContent">
+    <header class="header">
+      <div class="header-inner">
+        <div>
+          <div class="header-title">
+            <span class="icon">◉</span> Мой Дашборд
+          </div>
+          <div class="header-date" id="headerDate"></div>
+        </div>
+        <div class="header-actions">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Поиск…" autocomplete="off">
+          </div>
+          <button class="theme-toggle" id="themeToggle" type="button">Тема: день</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- ===== Tab Navigation ===== -->
+      <div class="dashboard-tabs" id="mainTabs">
+        <button class="dashboard-tab active" type="button" data-panel="overviewPanel">
+          <span class="tab-icon">📊</span> Обзор
+        </button>
+        <button class="dashboard-tab" type="button" data-panel="projectsPanel">
+          <span class="tab-icon">📁</span> Проекты
+        </button>
+        <button class="dashboard-tab" type="button" data-panel="inboxPanel">
+          <span class="tab-icon">📥</span> Входящие
+          <span class="tab-badge" id="inboxBadge"></span>
+        </button>
+        <button class="dashboard-tab" type="button" data-panel="libraryPanel">
+          <span class="tab-icon">📚</span> Библиотека
+        </button>
+        <button class="dashboard-tab" type="button" data-panel="assistantPanel">
+          <span class="tab-icon">🤖</span> Ассистент
+        </button>
+      </div>
+
+      <!-- ===== 1. ОБЗОР ===== -->
+      <section class="dashboard-panel active" id="overviewPanel">
+        <div class="overview-stats" id="overviewStats"></div>
+        <div class="section-title">Карта проектов</div>
+        <div class="mindmap-container" id="mindMapContainer">
+          <svg id="mindMapSvg" width="100%" height="500"></svg>
+        </div>
+      </section>
+
+      <!-- ===== 2. ПРОЕКТЫ ===== -->
+      <section class="dashboard-panel" id="projectsPanel">
+        <div class="section-title">Проекты по группам</div>
+        <div class="project-filters" id="projectFilters">
+          <button class="filter-pill active" data-area="all">Все</button>
+          <button class="filter-pill" data-area="работа">💼 Работа</button>
+          <button class="filter-pill" data-area="я">🧠 Я</button>
+          <button class="filter-pill" data-area="семья">👨‍👩‍👧‍👦 Семья</button>
+        </div>
+        <div class="accordion-container" id="projectAccordion"></div>
+      </section>
+
+      <!-- ===== 3. ВХОДЯЩИЕ ===== -->
+      <section class="dashboard-panel" id="inboxPanel">
+        <div class="section-title">Входящие <span class="signal-count-badge" id="signalCountBadge"></span></div>
+        <div class="signal-filters" id="signalFilters">
+          <button class="signal-filter active" data-route="all">Все</button>
+          <button class="signal-filter" data-route="project_update">Проекты</button>
+          <button class="signal-filter" data-route="new_idea">Идеи</button>
+          <button class="signal-filter" data-route="skill_candidate">Навыки</button>
+          <button class="signal-filter" data-route="reference_note">Заметки</button>
+        </div>
+        <div class="signal-feed" id="signalFeed">
+          <div class="no-results">Загрузка сигналов...</div>
+        </div>
+      </section>
+
+      <!-- ===== 4. БИБЛИОТЕКА ===== -->
+      <section class="dashboard-panel" id="libraryPanel">
+        <div class="library-grid">
+          <!-- Goals -->
+          <div class="library-section">
+            <div class="section-title">🎯 Цели и фокусы</div>
+            <div id="goalsGrid" class="goals-grid"></div>
+          </div>
+          <!-- Ideas -->
+          <div class="library-section">
+            <div class="section-title">💡 Банк идей <span class="count-badge" id="ideasCountBadge"></span></div>
+            <div class="ideas-filter" id="ideasFilter">
+              <button class="filter-pill active" data-priority="all">Все</button>
+              <button class="filter-pill" data-priority="high">🔥 Высокий</button>
+              <button class="filter-pill" data-priority="medium">⚡ Средний</button>
+              <button class="filter-pill" data-priority="low">💤 Низкий</button>
+            </div>
+            <div id="ideasGrid" class="ideas-grid"></div>
+          </div>
+          <!-- Notes -->
+          <div class="library-section">
+            <div class="section-title">📝 Заметки и ресурсы <span class="count-badge" id="notesCountBadge"></span></div>
+            <div id="notesGrid" class="notes-grid">
+              <div class="empty-state">Заметки будут появляться из сигналов и ручного добавления</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 5. АССИСТЕНТ ===== -->
+      <section class="dashboard-panel" id="assistantPanel">
+        <div class="assistant-grid">
+          <!-- System Profile -->
+          <div class="assistant-section">
+            <div class="section-title">🧭 Системная карточка</div>
+            <div id="systemProfileCard"></div>
+          </div>
+          <!-- Routing -->
+          <div class="assistant-section">
+            <div class="section-title">🔀 Маршрутизация входящих</div>
+            <div class="protocol-list" id="systemRoutingList"></div>
+          </div>
+          <!-- Skills -->
+          <div class="assistant-section">
+            <div class="section-title">🛠 Навыки для агентов</div>
+            <div class="intel-grid" id="monitorSkillGrid"></div>
+          </div>
+          <!-- Project Hypotheses -->
+          <div class="assistant-section">
+            <div class="section-title">🧪 Проектные гипотезы</div>
+            <div class="intel-grid" id="monitorProjectGrid"></div>
+          </div>
+          <!-- Recommendations -->
+          <div class="assistant-section">
+            <div class="section-title">📋 Рекомендации</div>
+            <div class="protocol-list" id="monitorRecommendationList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Project Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+          <div class="modal-title" id="modalTitle"></div>
+          <span class="status-badge" id="modalStatus"></span>
+        </div>
+        <div id="modalContentBody">
+          <!-- Dynamic rich content injected via JS -->
+        </div>
+        <div class="modal-tags" id="modalTags" style="margin-top:16px;"></div>
+      </div>
+    </div>
+
+    <!-- Idea Modal -->
+    <div class="modal-overlay" id="ideaModalOverlay">
+      <div class="modal">
+        <button class="modal-close" id="ideaModalClose">&times;</button>
+        <div class="modal-title" id="ideaModalTitle"></div>
+        <div class="modal-desc" id="ideaModalDesc" style="margin-top:12px"></div>
+        <div id="ideaModalRelated" style="margin-top:14px;font-size:0.84rem;color:var(--text-secondary)"></div>
+        <div class="modal-tags" id="ideaModalTags" style="margin-top:14px"></div>
+        <div id="ideaModalDate" style="margin-top:12px;font-size:0.75rem;color:var(--text-muted)"></div>
+      </div>
+    </div>
+  </div><!-- /dashboard-content -->
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+
+  <script>
+    (function () {
+      const PASS_HASH = 'b4c8ac20a87e493a3dd30a6f16094149771660c1ae17fbab1e4adfef86c76091';
+      const SESSION_KEY = 'dashboard_auth_v1';
+
+      async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest('SHA-256', data);
+        return [...new Uint8Array(hash)].map(x => x.toString(16).padStart(2, '0')).join('');
+      }
+
+      function unlock() {
+        const overlay = document.getElementById('authOverlay');
+        const content = document.getElementById('dashboardContent');
+        if (overlay) overlay.classList.add('hidden');
+        if (content) content.classList.remove('locked');
+      }
+
+      if (sessionStorage.getItem(SESSION_KEY) === 'ok') {
+        unlock();
+      }
+
+      const form = document.getElementById('authForm');
+      if (form) {
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          const input = document.getElementById('authPassword');
+          const errEl = document.getElementById('authError');
+          const pwd = (input.value || '').trim();
+          if (!pwd) return;
+
+          const hash = await sha256(pwd);
+          if (hash === PASS_HASH) {
+            sessionStorage.setItem(SESSION_KEY, 'ok');
+            unlock();
+          } else {
+            input.classList.add('error');
+            errEl.textContent = 'Неверный пароль';
+            setTimeout(() => input.classList.remove('error'), 500);
+          }
+        });
+      }
+    })();
+  </script>
+  <script src="app.js"></script>
+</body>
+
+</html>

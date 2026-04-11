@@ -1,0 +1,18 @@
+{
+  "worktrees": {
+    "wt-1775914091322-1": {
+      "branch": "mildly-mine",
+      "path": "d:\\ЯндексДиск\\Yandex.Disk\\ПРОЕКТЫ\\Грант для гимназии Давыдова\\Инженерный грант\\.kilo\\worktrees\\mildly-mine",
+      "parentBranch": "master",
+      "createdAt": "2026-04-11T13:28:11.322Z",
+      "remote": "origin"
+    }
+  },
+  "sessions": {
+    "ses_283457b22ffeFYNlTwWMqDuijn": {
+      "worktreeId": "wt-1775914091322-1",
+      "createdAt": "2026-04-11T13:28:11.743Z"
+    }
+  },
+  "sessionsCollapsed": true
+}

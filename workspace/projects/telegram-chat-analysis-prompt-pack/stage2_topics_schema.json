@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "topic": "__FILL_TOPIC__",
+    "stage": "stage2_consolidation_topics",
+    "output_language": "Russian",
+    "notes": []
+  },
+  "consolidated_claims": [
+    {
+      "consolidated_claim_id": "cc_001",
+      "source_claim_ids": [
+        "claim_001"
+      ],
+      "final_formulation": "Merged concise formulation",
+      "preserved_differences": [],
+      "status": "current",
+      "confidence": "medium",
+      "source_reliability": "B",
+      "knowledge_level": "foundational",
+      "conditions": [],
+      "historical_versions": [],
+      "contradictions": [],
+      "links": [
+        {
+          "url": "https://example.com",
+          "relation": "supports"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "topic_map": [
+    {
+      "topic_id": "topic_001",
+      "title": "Main topic",
+      "description": "Short description",
+      "priority": "high",
+      "subtopics": [
+        {
+          "subtopic_id": "subtopic_001",
+          "title": "Subtopic",
+          "description": "Short description"
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "topic_id": "topic_001",
+      "title": "Main topic",
+      "current_core_claim_ids": [
+        "cc_001"
+      ],
+      "foundational_claim_ids": [],
+      "operational_claim_ids": [],
+      "context_specific_claim_ids": [],
+      "edge_case_claim_ids": [],
+      "historical_claim_ids": [],
+      "disputed_claim_ids": [],
+      "related_links": [],
+      "key_uncertainties": []
+    }
+  ],
+  "rare_signals": [
+    {
+      "signal_id": "signal_001",
+      "summary": "Rare but potentially important signal",
+      "related_consolidated_claim_ids": [],
+      "confidence": "low",
+      "requires_external_verification": true
+    }
+  ]
+}

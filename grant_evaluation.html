@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Оценка проекта «ТехноСтарт» — Фонд президентских грантов</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f0;--card:#fff;--border:#ddd;--text:#1a1a1a;--muted:#666;--accent:#2563eb;--green:#16a34a;--yellow:#ca8a04;--red:#dc2626;--green-bg:#dcfce7;--yellow-bg:#fef9c3;--red-bg:#fee2e2}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:0 16px}
+.container{max-width:960px;margin:0 auto;padding:40px 0 80px}
+h1{font-size:1.8rem;font-weight:700;margin-bottom:8px}
+.subtitle{color:var(--muted);margin-bottom:32px;font-size:.95rem}
+h2{font-size:1.3rem;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+h3{font-size:1.05rem;font-weight:600;margin-bottom:8px}
+
+/* Score overview */
+.score-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.score-main{font-size:3rem;font-weight:800;color:var(--red)}
+.score-main span{font-size:1.2rem;color:var(--muted);font-weight:400}
+.score-bar-wrap{flex:1;min-width:200px}
+.score-bar{height:20px;background:#e5e7eb;border-radius:10px;overflow:hidden;position:relative}
+.score-fill{height:100%;border-radius:10px;transition:width .5s}
+.score-labels{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-top:4px}
+.threshold{position:absolute;top:0;height:100%;width:2px;background:#000}
+.threshold-label{position:absolute;top:-18px;font-size:.7rem;font-weight:600;transform:translateX(-50%)}
+
+/* Criteria cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.card-title{font-weight:700;font-size:1rem}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:700;white-space:nowrap}
+.badge-red{background:var(--red-bg);color:var(--red)}
+.badge-yellow{background:var(--yellow-bg);color:var(--yellow)}
+.badge-green{background:var(--green-bg);color:var(--green)}
+.coeff{font-size:.8rem;color:var(--muted);margin-left:8px}
+.section-label{font-weight:600;font-size:.85rem;margin:10px 0 4px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.card ul{margin-left:20px;margin-bottom:8px}
+.card li{margin-bottom:4px;font-size:.92rem}
+.quote{background:#f8f8f5;border-left:3px solid var(--border);padding:8px 12px;margin:8px 0;font-size:.88rem;color:#444}
+
+/* Summary table */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+th{background:#f0f0ec;font-weight:600}
+td:nth-child(3),td:nth-child(4),td:nth-child(5),th:nth-child(3),th:nth-child(4),th:nth-child(5){text-align:center}
+tr.total{font-weight:700;background:#f0f0ec}
+
+/* Action plan */
+.priority{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:700;margin-right:6px}
+.p-high{background:var(--red-bg);color:var(--red)}
+.p-med{background:var(--yellow-bg);color:var(--yellow)}
+.action-item{padding:12px 0;border-bottom:1px solid var(--border)}
+.action-item:last-child{border-bottom:none}
+
+@media print{body{padding:0}.container{padding:20px 0}h2{page-break-before:auto}.card{break-inside:avoid}}
+@media(max-width:600px){h1{font-size:1.4rem}.score-main{font-size:2.2rem}.score-box{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Экспертная оценка проекта «ТехноСтарт»</h1>
+<p class="subtitle">Анализ по критериям Фонда президентских грантов · Категория: 1–5 млн руб. · Дата: 05.03.2026</p>
+
+<!-- SCORE OVERVIEW -->
+<div class="score-box">
+  <div>
+    <div class="score-main" style="color:var(--red)">24.5 <span>/ 100</span></div>
+    <div style="font-size:.85rem;color:var(--muted)">Текущий взвешенный балл</div>
+  </div>
+  <div class="score-bar-wrap">
+    <div class="score-bar">
+      <div class="score-fill" style="width:24.5%;background:var(--red)"></div>
+      <div class="threshold" style="left:68%"><span class="threshold-label" style="left:0">68 — проход</span></div>
+    </div>
+    <div class="score-labels"><span>0</span><span>50</span><span>100</span></div>
+  </div>
+</div>
+
+<p style="margin-bottom:24px;font-size:.95rem"><strong>Вывод:</strong> Документы содержат хорошее описание проблемы и формата мероприятий, но не являются готовой заявкой. Для прохождения экспертизы (68+ баллов) необходимо заполнить как минимум 6 из 10 разделов, которые сейчас фактически пусты.</p>
+
+<!-- CRITERION CARDS -->
+<h2>Оценка по критериям</h2>
+
+<!-- 1 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">1. Актуальность и социальная значимость</span><span class="coeff">× 1.0</span></div>
+    <span class="badge badge-green">8 / 10 → 8.0 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть в документах</div>
+  <ul>
+    <li>Ссылка на указы Президента и ФЗ «О технологической политике»</li>
+    <li>Цитата Министра труда А. Котякова</li>
+    <li>Привязка к моногороду (КАМАЗ), описание кадрового дефицита</li>
+    <li>Три фактора проблемы: отсутствие опыта, стереотипы, информационный вакуум</li>
+    <li>Проведено анкетирование 148 учеников (файл «Результаты по опросу»)</li>
+  </ul>
+  <div class="section-label">⚠ Что нужно доработать</div>
+  <ul>
+    <li>Добавить конкретные цифры: % школьников, не рассматривающих технические профессии (из своего же опроса)</li>
+    <li>Сослаться на статистику Минтруда по дефициту инженерных кадров в РТ</li>
+    <li>Указать данные по оттоку молодёжи из Набережных Челнов (Росстат)</li>
+  </ul>
+</div>
+
+<!-- 2 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">2. Логическая связность и реализуемость</span><span class="coeff">× 1.0</span></div>
+    <span class="badge badge-yellow">5 / 10 → 5.0 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть в документах</div>
+  <ul>
+    <li>Цель сформулирована: повысить осведомлённость учеников 8–10 классов</li>
+    <li>4 задачи проекта описаны (фестивали, взаимодействие, инфосопровождение, тиражирование)</li>
+    <li>3 направления проб: механика, электрика/электроника, программирование</li>
+  </ul>
+  <div class="section-label">⚠ Что нужно доработать</div>
+  <ul>
+    <li><strong>Календарный план:</strong> нет графика мероприятий с датами — обязателен</li>
+    <li><strong>Количественные результаты:</strong> указать KPI: число участников, % изменивших мнение, число партнёрств</li>
+    <li><strong>SMART-цель:</strong> текущая формулировка расплывчата — нужна измеримая цель с индикатором и сроком</li>
+    <li>Связать каждую задачу с конкретными мероприятиями и ожидаемыми результатами</li>
+  </ul>
+</div>
+
+<!-- 3 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">3. Инновационность, уникальность</span><span class="coeff">× 0.5</span></div>
+    <span class="badge badge-yellow">5 / 10 → 2.5 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть</div>
+  <ul>
+    <li>Формат профессиональных проб (а не лекций/экскурсий) — подчёркнуто в тексте</li>
+    <li>Интеграция с реальным производством (КАМАЗ)</li>
+  </ul>
+  <div class="section-label">⚠ Что нужно доработать</div>
+  <ul>
+    <li>Привести анализ аналогов: какие проекты профориентации существуют, чем «ТехноСтарт» отличается</li>
+    <li>Подчеркнуть уникальные элементы: деловые игры по моделированию карьеры, привлечение руководителей КАМАЗ</li>
+    <li>Если есть методологические наработки (авторские программы проб) — описать</li>
+  </ul>
+</div>
+
+<!-- 4 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">4. Соотношение расходов и результатов</span><span class="coeff">× 1.5</span></div>
+    <span class="badge badge-red">3 / 10 → 4.5 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть</div>
+  <ul>
+    <li>Указано число участников: 200 школьников</li>
+    <li>Описан ожидаемый результат: «сформированный осознанный интерес»</li>
+  </ul>
+  <div class="section-label">⚠ Что нужно доработать</div>
+  <ul>
+    <li><strong>Количественные KPI обязательны:</strong> % участников, изменивших отношение к техн. профессиям (замер «до/после»); число подавших документы в технические вузы/колледжи; число проведённых проб</li>
+    <li>Рассчитать стоимость на одного участника и обосновать её</li>
+    <li>Описать методику измерения результатов (повторное анкетирование, мониторинг поступлений)</li>
+  </ul>
+</div>
+
+<!-- 5 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">5. Реалистичность бюджета</span><span class="coeff">× 1.5</span></div>
+    <span class="badge badge-red">0 / 10 → 0.0 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть</div>
+  <ul><li>Упоминание необходимости материально-технической базы (робототехника)</li></ul>
+  <div class="section-label">⚠ Что нужно доработать (критично)</div>
+  <ul>
+    <li><strong>Составить детальный бюджет</strong> по статьям: оборудование, расходные материалы, ФОТ, транспорт, полиграфия, административные расходы</li>
+    <li>Каждую статью привязать к конкретному мероприятию из календарного плана</li>
+    <li>Указать источники ценообразования (коммерческие предложения, средние рыночные цены)</li>
+    <li>Выделить собственный вклад и средства гранта раздельно</li>
+  </ul>
+</div>
+
+<!-- 6 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">6. Масштаб реализации</span><span class="coeff">× 0.5</span></div>
+    <span class="badge badge-yellow">5 / 10 → 2.5 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть</div>
+  <ul>
+    <li>География: г. Набережные Челны, 4 школы (№ 15, 22, 27, 52)</li>
+    <li>Охват: 200 школьников 8–10 классов</li>
+    <li>Упоминание тиражирования на другие школы и регионы</li>
+  </ul>
+  <div class="section-label">⚠ Что нужно доработать</div>
+  <ul>
+    <li>Обосновать выбор именно этих 4-х школ (близость к КАМАЗ, наличие технических кружков и т.п.)</li>
+    <li>Описать конкретный механизм тиражирования: что именно будет передаваться другим школам (методики, программы проб, видеоматериалы)</li>
+    <li>Приложить письма поддержки от школ-партнёров</li>
+  </ul>
+</div>
+
+<!-- 7 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">7. Собственный вклад и перспективы развития</span><span class="coeff">× 1.0</span></div>
+    <span class="badge badge-red">2 / 10 → 2.0 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть</div>
+  <ul><li>Упомянуты планы тиражирования модели</li></ul>
+  <div class="section-label">⚠ Что нужно доработать (критично)</div>
+  <ul>
+    <li><strong>Указать собственный вклад:</strong> помещения, оборудование, труд волонтёров, административный ресурс (конкретные суммы или натуральный эквивалент)</li>
+    <li><strong>Партнёры:</strong> описать вклад КАМАЗ (наставники, экскурсии, материалы), вузов, колледжей</li>
+    <li>Приложить письма о намерениях / соглашения с партнёрами</li>
+    <li>Описать, как проект будет существовать после завершения гранта</li>
+  </ul>
+</div>
+
+<!-- 8 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">8. Опыт организации</span><span class="coeff">× 1.0</span></div>
+    <span class="badge badge-red">0 / 10 → 0.0 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть</div>
+  <ul><li>Не описан</li></ul>
+  <div class="section-label">⚠ Что нужно доработать (критично)</div>
+  <ul>
+    <li>Указать организацию-заявителя (НКО) и её регистрационные данные</li>
+    <li>Описать ранее реализованные проекты (особенно в сфере образования / профориентации)</li>
+    <li>Привести факты: количество мероприятий, число участников, полученные ранее гранты</li>
+    <li>Если опыта мало — описать опыт ключевых членов команды и партнёров</li>
+  </ul>
+</div>
+
+<!-- 9 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">9. Компетенции команды</span><span class="coeff">× 1.0</span></div>
+    <span class="badge badge-red">0 / 10 → 0.0 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть</div>
+  <ul><li>Не описаны</li></ul>
+  <div class="section-label">⚠ Что нужно доработать (критично)</div>
+  <ul>
+    <li>Указать руководителя проекта (ФИО, должность, опыт)</li>
+    <li>Указать ключевых членов команды: координатор, методист, специалист по робототехнике, PR-специалист</li>
+    <li>Для каждого — краткое резюме, подтверждающее компетенцию для данной роли</li>
+    <li>Описать, кто из команды имеет опыт работы с грантами / проектами</li>
+  </ul>
+</div>
+
+<!-- 10 -->
+<div class="card">
+  <div class="card-header">
+    <div><span class="card-title">10. Информационная открытость</span><span class="coeff">× 1.0</span></div>
+    <span class="badge badge-red">0 / 10 → 0.0 б.</span>
+  </div>
+  <div class="section-label">✓ Что есть</div>
+  <ul><li>Не описана</li></ul>
+  <div class="section-label">⚠ Что нужно доработать (критично)</div>
+  <ul>
+    <li>Обеспечить наличие работающего сайта организации с актуальной информацией</li>
+    <li>Заполнить профили организации на портале: президентскиегранты.рф</li>
+    <li>Вести активные соцсети организации (ВКонтакте, Телеграм)</li>
+    <li>Опубликовать отчёты о предыдущей деятельности</li>
+    <li>Описать план информационного сопровождения проекта (СМИ, соцсети, партнёрские каналы)</li>
+  </ul>
+</div>
+
+<!-- SUMMARY TABLE -->
+<h2>Сводная таблица баллов</h2>
+<table>
+<thead><tr><th>№</th><th>Критерий</th><th>Балл (0-10)</th><th>Коэф.</th><th>Итог</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Актуальность и социальная значимость</td><td>8</td><td>1.0</td><td>8.0</td></tr>
+<tr><td>2</td><td>Логическая связность и реализуемость</td><td>5</td><td>1.0</td><td>5.0</td></tr>
+<tr><td>3</td><td>Инновационность, уникальность</td><td>5</td><td>0.5</td><td>2.5</td></tr>
+<tr><td>4</td><td>Расходы vs результаты</td><td>3</td><td>1.5</td><td>4.5</td></tr>
+<tr><td>5</td><td>Реалистичность бюджета</td><td>0</td><td>1.5</td><td>0.0</td></tr>
+<tr><td>6</td><td>Масштаб реализации</td><td>5</td><td>0.5</td><td>2.5</td></tr>
+<tr><td>7</td><td>Собственный вклад, перспективы</td><td>2</td><td>1.0</td><td>2.0</td></tr>
+<tr><td>8</td><td>Опыт организации</td><td>0</td><td>1.0</td><td>0.0</td></tr>
+<tr><td>9</td><td>Компетенции команды</td><td>0</td><td>1.0</td><td>0.0</td></tr>
+<tr><td>10</td><td>Информационная открытость</td><td>0</td><td>1.0</td><td>0.0</td></tr>
+<tr class="total"><td></td><td>ИТОГО</td><td></td><td></td><td>24.5 / 100</td></tr>
+</tbody>
+</table>
+
+<!-- ACTION PLAN -->
+<h2>План действий для достижения 70+ баллов</h2>
+<p style="margin-bottom:16px;font-size:.92rem">Приоритеты расставлены по потенциальному приросту взвешенного балла.</p>
+
+<div class="action-item">
+  <span class="priority p-high">КРИТИЧНО</span>
+  <strong>Составить детальный бюджет</strong> (критерий 5, потенциал +15 б.)
+  <br><span style="color:var(--muted);font-size:.88rem">Постатейная смета, привязанная к мероприятиям. Коммерческие предложения на оборудование. Разделение на средства гранта и собственный вклад.</span>
+</div>
+
+<div class="action-item">
+  <span class="priority p-high">КРИТИЧНО</span>
+  <strong>Описать команду проекта</strong> (критерий 9, потенциал +10 б.)
+  <br><span style="color:var(--muted);font-size:.88rem">ФИО, должности, профильный опыт. Минимум 3–5 человек с чётким распределением ролей.</span>
+</div>
+
+<div class="action-item">
+  <span class="priority p-high">КРИТИЧНО</span>
+  <strong>Описать опыт организации-заявителя</strong> (критерий 8, потенциал +10 б.)
+  <br><span style="color:var(--muted);font-size:.88rem">Реализованные проекты, мероприятия, полученные гранты. Если организация новая — делать акцент на опыте команды.</span>
+</div>
+
+<div class="action-item">
+  <span class="priority p-high">КРИТИЧНО</span>
+  <strong>Обеспечить информационную открытость</strong> (критерий 10, потенциал +10 б.)
+  <br><span style="color:var(--muted);font-size:.88rem">Работающий сайт, активные соцсети, отчётность. Начать вести до подачи заявки.</span>
+</div>
+
+<div class="action-item">
+  <span class="priority p-high">КРИТИЧНО</span>
+  <strong>Определить KPI и метод измерения результатов</strong> (критерий 4, потенциал +6–10 б.)
+  <br><span style="color:var(--muted);font-size:.88rem">Количественные индикаторы: % изменивших отношение, число поступивших в технические учебные заведения. Описать методику замера «до/после».</span>
+</div>
+
+<div class="action-item">
+  <span class="priority p-med">ВАЖНО</span>
+  <strong>Описать собственный вклад и партнёров</strong> (критерий 7, потенциал +8 б.)
+  <br><span style="color:var(--muted);font-size:.88rem">Помещения школ, вклад КАМАЗ (наставники, экскурсии), вузов. Письма поддержки. План устойчивости после гранта.</span>
+</div>
+
+<div class="action-item">
+  <span class="priority p-med">ВАЖНО</span>
+  <strong>Разработать детальный календарный план</strong> (критерий 2, потенциал +5 б.)
+  <br><span style="color:var(--muted);font-size:.88rem">Помесячный график: подготовка → фестивали → подведение итогов. Привязать каждое мероприятие к задаче и результату.</span>
+</div>
+
+<div class="action-item">
+  <span class="priority p-med">ВАЖНО</span>
+  <strong>Усилить раздел «Инновационность»</strong> (критерий 3, потенциал +2.5 б.)
+  <br><span style="color:var(--muted);font-size:.88rem">Сопоставить с существующими профориентационными проектами. Показать, что формат проб + деловые игры + реальные инженеры = уникальная комбинация.</span>
+</div>
+
+<h2 style="margin-top:48px">Справка: система оценки ФПГ</h2>
+<div class="card" style="font-size:.9rem">
+  <p><strong>Макс. балл:</strong> 100 (сумма баллов × коэффициенты). Каждый критерий оценивается от 0 до 10 двумя независимыми экспертами.</p>
+  <p style="margin-top:8px"><strong>Проходные баллы (1-й конкурс 2025):</strong></p>
+  <ul style="margin-top:4px">
+    <li>До 1 млн руб. — 63 балла</li>
+    <li>1–5 млн руб. — 68 баллов</li>
+    <li>5–15 млн руб. — 70 баллов</li>
+    <li>Свыше 15 млн руб. — 71 балл</li>
+  </ul>
+  <p style="margin-top:8px"><strong>Шкала оценки:</strong> 9-10 = отлично (безупречно), 6-8 = хорошо (незначительные недоработки), 3-5 = удовлетворительно (существенные пробелы), 0-2 = неудовлетворительно.</p>
+  <p style="margin-top:8px;color:var(--muted)">Источник: официальный сайт Фонда президентских грантов (президентскиегранты.рф)</p>
+</div>
+
+</div>
+</body>
+</html>

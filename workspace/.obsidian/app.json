@@ -1,0 +1,17 @@
+{
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "_assets_bin",
+  "defaultViewMode": "source",
+  "focusNewTab": true,
+  "livePreview": true,
+  "newFileFolderPath": "notes/inbox",
+  "newFileLocation": "folder",
+  "newLinkFormat": "shortest",
+  "promptDelete": true,
+  "propertiesInDocument": "visible",
+  "readableLineLength": true,
+  "showInlineTitle": false,
+  "spellcheck": true,
+  "trashOption": "system",
+  "useMarkdownLinks": false
+}

@@ -1,0 +1,279 @@
+
+[2026-03-16 15:46:03] [T2] CMD rg --files -g implementation_plan.md FAIL:NO_MATCH
+[2026-03-16 15:46:03] [T2] CMD rg -n NotebookLM|MCP|�����|Scout|implementation plan|implementation_plan -g *.md FAIL:NO_MATCH
+[2026-03-16 15:46:31] [T2] CMD rg --files -g implementation_plan.md d:\\����������\\Yandex.Disk\\������� FAIL:TIMEOUT
+[2026-03-16 15:46:42] [T2] CMD rg --files -g *task*.md -g *plan*.md FAIL:NO_MATCH
+[2026-03-16 15:48:33] [T2] CMD rg -n NotebookLM|MCP|�����|Scout|implementation_plan|���� ��������� -g *.md d:\\����������\\Yandex.Disk\\�������\\AI_Workspace SUCCESS
+[2026-03-16 15:48:33] [T2] READ d:\\����������\\Yandex.Disk\\�������\\AI_Workspace\\Projects\\��� �������\\docs\\workflows_index.md SUCCESS
+[2026-03-16 15:48:46] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\d3e079ad-1b74-4be5-806b-7b96f71a548d\\chat_handover.md SUCCESS
+[2026-03-16 15:50:20] [T2] CMD rg -n NotebookLM|�������lm|notebooklm|�����-?�����|Scout C:\\Users\\Admin\\.gemini\\antigravity\\brain SUCCESS
+[2026-03-16 15:50:48] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\0d6d2d8d-5ac1-4ce6-93dc-5323a01cea54\\implementation_plan.md SUCCESS
+[2026-03-16 15:51:24] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\0d6d2d8d-5ac1-4ce6-93dc-5323a01cea54\\task.md SUCCESS
+[2026-03-16 16:05:57] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\0d6d2d8d-5ac1-4ce6-93dc-5323a01cea54\\implementation_plan.md SUCCESS
+[2026-03-16 16:05:57] [T2] CMD C:\\Python314\\python.exe -m pip show notebooklm-mcp-cli SUCCESS
+[2026-03-16 16:06:08] [T2] CMD Test-Path C:\\Users\\Admin\\.gemini\\antigravity\\venv SUCCESS:false
+[2026-03-16 16:06:40] [T2] CMD C:\\Python314\\python.exe -m venv C:\\Users\\Admin\\.gemini\\antigravity\\venv FAIL:TIMEOUT/NEEDS_APPROVAL
+[2026-03-16 16:06:54] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\mcp_config.json SUCCESS
+[2026-03-16 16:07:19] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\e17d18b1-341e-4953-9681-2808ade445bc\\implementation_plan.md FAIL:BAD_PATH
+[2026-03-16 16:07:30] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\e17d18b1-341e-4953-9681-2808ade445bc\\implementation_plan.md SUCCESS
+[2026-03-16 16:07:51] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\e17d18b1-341e-4953-9681-2808ade445bc\\task.md SUCCESS
+[2026-03-16 16:09:15] [T2] CMD C:\\Python314\\python.exe -m venv C:\\Users\\Admin\\.gemini\\antigravity\\venv SUCCESS
+[2026-03-16 16:09:59] [T2] CMD Test-Path C:\\Users\\Admin\\.gemini\\antigravity\\venv\\Scripts\\python.exe SUCCESS:true
+[2026-03-16 16:14:34] [T2] CMD venv pip install --upgrade pip FAIL:TIMEOUT
+[2026-03-16 16:18:33] [T2] CMD venv pip install notebooklm-mcp-cli FAIL:TIMEOUT
+[2026-03-16 16:19:01] [T2] CMD venv pip install notebooklm-mcp-cli --no-cache-dir FAIL:TIMEOUT
+[2026-03-16 16:41:20] [T2] CMD Test-Path C:\\Users\\Admin\\.gemini\\antigravity\\venv\\Scripts\\python.exe SUCCESS:true
+[2026-03-16 16:41:20] [T2] CMD venv pip show notebooklm-mcp-cli FAIL:NOT_INSTALLED
+[2026-03-16 16:42:59] [T2] CMD venv pip install notebooklm-mcp-cli SUCCESS
+[2026-03-16 16:43:21] [T2] EDIT C:\\Users\\Admin\\.gemini\\antigravity\\mcp_config.json SUCCESS
+[2026-03-16 16:43:37] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\mcp_config.json (notebooklm-mcp entry) SUCCESS
+[2026-03-16 16:43:52] [T2] CMD venv nlm login --check FAIL:CSRF_TOKEN
+[2026-03-16 22:00:47] [T2] CMD Test-Path/New-Item agent_audit.log SUCCESS
+[2026-03-16 22:01:05] [T2] CMD rg --files -g 'mcp_config.json' NO_MATCH
+[2026-03-16 22:02:13] [T2] CMD rg -n 'notebooklm|nlm' -S SUCCESS
+[2026-03-16 22:04:45] [T2] CMD nlm --help FAIL:BAD_WORKDIR
+[2026-03-16 22:05:47] [T2] CMD Get-ChildItem -Force SUCCESS
+[2026-03-16 22:05:47] [T2] CMD Get-ChildItem -Recurse -Filter mcp_config.json C:\\Users\\Admin SUCCESS
+[2026-03-16 22:05:47] [T2] CMD Get-Command mcp SUCCESS
+[2026-03-16 22:05:47] [T2] CMD mcp --help SUCCESS
+[2026-03-16 22:05:47] [T2] CMD python -m notebooklm_mcp.cli --help FAIL:MODULE_NOT_FOUND
+[2026-03-16 22:05:47] [T2] CMD venv pip show notebooklm-mcp-cli SUCCESS
+[2026-03-16 22:05:47] [T2] CMD Get-Command nlm SUCCESS
+[2026-03-16 22:05:47] [T2] CMD Test-Path venv\\Scripts\\nlm.exe SUCCESS
+[2026-03-16 22:05:47] [T2] CMD venv nlm --help SUCCESS
+[2026-03-16 22:05:47] [T2] CMD venv nlm notebook --help SUCCESS
+[2026-03-16 22:05:47] [T2] CMD venv nlm setup --help SUCCESS
+[2026-03-16 22:06:02] [T2] CMD Test-Path research_notes.md SUCCESS:false
+[2026-03-16 22:06:34] [T2] CMD Test-Path implementation_plan.md SUCCESS:false
+[2026-03-16 22:06:46] [T2] CMD Test-Path task.md SUCCESS:false
+[2026-03-16 23:33:23] [T2] CMD Get-ChildItem -Recurse handover_notebooklm_fix.md SUCCESS
+[2026-03-16 23:33:34] [T2] CMD Get-ChildItem -Recurse walkthrough.md SUCCESS
+[2026-03-16 23:33:51] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\5d4c6451-5427-4f81-9e14-5c831512c38d\\handover_notebooklm_fix.md FAIL:BAD_WORKDIR
+[2026-03-16 23:34:02] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\5d4c6451-5427-4f81-9e14-5c831512c38d\\handover_notebooklm_fix.md SUCCESS
+[2026-03-16 23:34:15] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\5d4c6451-5427-4f81-9e14-5c831512c38d\\walkthrough.md FAIL:BAD_WORKDIR
+[2026-03-16 23:34:31] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\5d4c6451-5427-4f81-9e14-5c831512c38d\\walkthrough.md SUCCESS
+[2026-03-16 23:35:19] [T2] EDIT research_notes.md SUCCESS
+[2026-03-16 23:35:46] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-16 23:36:02] [T2] EDIT task.md SUCCESS
+[2026-03-16 23:37:30] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\5d4c6451-5427-4f81-9e14-5c831512c38d\\handover_notebooklm_fix.md SUCCESS
+[2026-03-16 23:37:30] [T2] READ C:\\Users\\Admin\\.gemini\\antigravity\\brain\\5d4c6451-5427-4f81-9e14-5c831512c38d\\walkthrough.md SUCCESS
+[2026-03-16 23:57:09] [T2] CMD venv\\Scripts\\nlm.exe notebook list FAIL:AUTH_EXPIRED
+[2026-03-17 00:03:15] [T2] EDIT task.md SUCCESS
+[2026-03-17 00:03:28] [T2] CMD Get-Process nlm NO_MATCH
+[2026-03-17 00:03:42] [T2] CMD Start-Process nlm login --profile default SUCCESS:PID=11476
+[2026-03-17 00:09:03] [T2] READ C:\\tmp\\final_auth_sync.py SUCCESS
+[2026-03-17 00:40:33] [T2] CMD Write C:\\tmp\\chrome_cookie_sync.py SUCCESS
+[2026-03-17 00:41:33] [T2] EDIT C:\\tmp\\chrome_cookie_sync.py SUCCESS
+[2026-03-17 00:43:58] [T2] CMD python C:\\tmp\\chrome_cookie_sync.py FAIL:PROFILE_NOT_FOUND
+[2026-03-17 00:43:58] [T2] CMD Get-CimInstance Win32_Process chrome.exe SUCCESS
+[2026-03-17 00:43:58] [T2] CMD Read Local State profile list SUCCESS
+[2026-03-17 00:43:58] [T2] CMD List Chrome User Data dirs SUCCESS
+[2026-03-17 00:43:58] [T2] CMD python C:\\tmp\\chrome_cookie_sync.py SUCCESS:COOKIES_0
+[2026-03-17 00:43:58] [T2] CMD Copy Kogan Profile Cookies FAIL:FILE_LOCKED
+[2026-03-17 00:43:58] [T2] CMD sqlite read Kogan Cookies FAIL:OPEN_DB
+[2026-03-17 00:46:09] [T2] CMD Write C:\\tmp\\chrome_cookie_sync_kogan.py SUCCESS
+[2026-03-17 00:46:32] [T2] CMD Get-Process chrome SUCCESS
+[2026-03-17 00:48:39] [T3] CMD Stop-Process chrome -Force SUCCESS
+[2026-03-17 00:58:50] [T2] CMD Write C:\\tmp\\curl_latest.txt SUCCESS
+[2026-03-17 00:58:50] [T2] CMD Parse curl -> auth.json/cookies/metadata SUCCESS
+[2026-03-17 00:58:50] [T2] EDIT C:\\Users\\Admin\\.notebooklm-mcp-cli\\auth.json SUCCESS
+[2026-03-17 00:58:50] [T2] EDIT C:\\Users\\Admin\\.notebooklm-mcp-cli\\profiles\\default\\cookies.json SUCCESS
+[2026-03-17 00:58:50] [T2] EDIT C:\\Users\\Admin\\.notebooklm-mcp-cli\\profiles\\default\\metadata.json SUCCESS
+[2026-03-17 00:59:17] [T2] CMD nlm notebook list SUCCESS:EMPTY_LIST
+[2026-03-17 00:59:17] [T2] CMD nlm notebook get 21c4ad87-0b35-43ca-a31a-01ea3b648b17 FAIL:NOT_FOUND
+[2026-03-17 00:59:49] [T2] EDIT task.md SUCCESS
+[2026-03-17 01:05:54] [T2] CMD Write C:\\tmp\\curl_latest.txt SUCCESS
+[2026-03-17 01:05:54] [T2] CMD Parse curl -> auth.json/cookies/metadata SUCCESS
+[2026-03-17 01:05:54] [T2] CMD nlm notebook list SUCCESS:EMPTY_LIST
+[2026-03-17 01:05:54] [T2] CMD nlm notebook get 254d43aa-a535-46f2-a65b-f6ce877256c9 FAIL:NOT_FOUND
+[2026-03-17 01:06:51] [T2] CMD nlm --debug notebook list SUCCESS:REGION_NOT_SUPPORTED
+[2026-03-17 01:06:51] [T2] EDIT research_notes.md SUCCESS
+[2026-03-17 01:06:51] [T2] EDIT task.md SUCCESS
+[2026-03-17 01:25:35] [T2] CMD nlm --debug notebook list via proxy FAIL:AUTH_EXPIRED
+[2026-03-17 01:25:35] [T2] EDIT research_notes.md SUCCESS
+[2026-03-17 01:25:35] [T2] EDIT task.md SUCCESS
+[2026-03-17 01:35:59] [T2] EDIT research_notes.md SUCCESS
+[2026-03-17 01:35:59] [T2] EDIT task.md SUCCESS
+[2026-03-17 01:35:59] [T2] CMD nlm --debug notebook list via proxy SUCCESS:LIST_OK
+[2026-03-17 01:36:58] [T2] EDIT task.md SUCCESS
+[2026-03-17 02:00:00] [T2] CMD Update mcp_config.json env FAIL:PROPERTY_NOT_FOUND
+[2026-03-17 02:00:17] [T2] EDIT C:\\Users\\Admin\\.gemini\\antigravity\\mcp_config.json SUCCESS
+[2026-03-17 02:02:18] [T2] CMD nlm notebook get 254d43aa-a535-46f2-a65b-f6ce877256c9 via proxy FAIL:AUTH_EXPIRED
+[2026-03-17 02:02:18] [T2] CMD nlm notebook list via proxy FAIL:AUTH_EXPIRED
+[2026-03-17 02:02:18] [T2] CMD nlm --debug notebook list via proxy FAIL:AUTH_EXPIRED
+[2026-03-17 02:02:48] [T2] EDIT research_notes.md SUCCESS
+[2026-03-17 02:02:48] [T2] EDIT task.md SUCCESS
+[2026-03-17 02:20:46] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-17 02:21:07] [T2] EDIT research_notes.md SUCCESS
+[2026-03-17 02:21:07] [T2] EDIT task.md SUCCESS
+[2026-03-17 02:21:53] [T1] CREATE notebooklm_auto_refresh.py SUCCESS
+[2026-03-17 02:22:27] [T2] EDIT task.md SUCCESS
+[2026-03-17 03:22:40] [T2] MKDIR workspace/* SUCCESS
+[2026-03-18 00:36:56] [T2] READ_EXTERNAL D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\KnowledgeBase\.obsidian\AGENTS_ANTIGRAVITY.md SUCCESS
+[2026-03-18 00:36:56] [T2] READ_EXTERNAL d:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\AI_Workspace\KnowledgeBase\available_tools.md SUCCESS
+[2026-03-18 00:36:56] [T2] CHECKPOINT .agents/skills/version-control checkpoint_20260317_233213 SUCCESS
+[2026-03-18 00:36:56] [T2] EDIT AGENTS.md SUCCESS
+[2026-03-18 00:36:56] [T2] EDIT .agents/skills/task-executor/SKILL.md SUCCESS
+[2026-03-18 00:36:56] [T2] EDIT .agents/skills/safety-guardrails/SKILL.md SUCCESS
+[2026-03-18 00:36:56] [T2] EDIT research_notes.md SUCCESS
+[2026-03-18 00:36:56] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-18 00:36:56] [T2] EDIT task.md SUCCESS
+[2026-03-18 00:36:56] [T2] VERIFY agent-system-settings SUCCESS
+
+[2026-03-18 00:37:44] [T2] EDIT UTF8-noBOM normalization for agent system files SUCCESS
+[2026-03-18 00:49:07] [T2] CMD Get-Command obsidian FAIL:NOT_FOUND
+[2026-03-18 00:49:07] [T2] CMD checkpoint.ps1 AGENTS.md,research_notes.md,implementation_plan.md,task.md FAIL:ARG_FORMAT
+[2026-03-18 00:49:07] [T2] CMD checkpoint.ps1 -Files @(AGENTS.md,research_notes.md,implementation_plan.md,task.md) SUCCESS:checkpoint_20260318_004408
+[2026-03-18 00:49:07] [T2] READ D:\����������\Yandex.Disk\�������\kb_agent_instructions.docx SUCCESS:EXTRACTED_TO_MARKDOWN_CONTEXT
+[2026-03-18 00:49:07] [T2] EDIT AGENTS.md SUCCESS
+[2026-03-18 00:49:07] [T2] EDIT research_notes.md SUCCESS
+[2026-03-18 00:49:07] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-18 00:49:07] [T2] EDIT task.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/agents.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/assets/task-template.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/assets/note-template.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/skills/kanban-skill.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/skills/capture-skill.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/skills/review-skill.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/notes/index.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/notes/setup-checklist.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/notes/kb-agent-instructions.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/projects/README.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/projects/task-inbox.md SUCCESS
+[2026-03-18 00:49:07] [T2] CREATE workspace/_assets_bin/README.md SUCCESS
+[2026-03-18 00:49:07] [T2] CMD VERIFY workspace_file_types SUCCESS:ONLY_MD
+[2026-03-18 00:49:07] [T2] CMD VERIFY workspace_wikilinks SUCCESS:LINKS_OK
+
+[2026-03-18 00:50:56] [T2] CHECKPOINT .agents/skills/version-control checkpoint_20260318_004504 SUCCESS
+[2026-03-18 00:50:56] [T2] CREATE .agents/skills/core-agent-rules/SKILL.md SUCCESS
+[2026-03-18 00:50:56] [T2] EDIT AGENTS.md SUCCESS
+[2026-03-18 00:50:56] [T2] EDIT .agents/skills/task-executor/SKILL.md SUCCESS
+[2026-03-18 00:50:56] [T2] EDIT .agents/skills/safety-guardrails/SKILL.md SUCCESS
+[2026-03-18 00:50:56] [T2] EDIT .agents/skills/skill-conductor/SKILL.md SUCCESS
+[2026-03-18 00:50:56] [T2] EDIT .agents/skills/version-control/SKILL.md SUCCESS
+[2026-03-18 00:50:56] [T2] EDIT research_notes.md SUCCESS
+[2026-03-18 00:50:56] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-18 00:50:56] [T2] EDIT task.md SUCCESS
+[2026-03-18 00:50:56] [T2] VERIFY quick_validate core-agent-rules SUCCESS
+[2026-03-18 00:50:56] [T2] VERIFY quick_validate task-executor SUCCESS
+[2026-03-18 00:50:56] [T2] VERIFY quick_validate safety-guardrails SUCCESS
+[2026-03-18 00:50:56] [T2] VERIFY quick_validate skill-conductor SUCCESS
+[2026-03-18 00:50:56] [T2] VERIFY quick_validate version-control SUCCESS
+[2026-03-18 00:50:56] [T2] VERIFY stale-pattern-search skills CLEAN
+[2026-03-18 00:51:13] [T2] EDIT UTF8-noBOM normalization task.md SUCCESS
+[2026-03-18 00:53:06] [T2] EDIT notebooklm_auto_refresh.py SUCCESS
+[2026-03-18 00:53:47] [T2] CHECKPOINT .agents\checkpoints\checkpoint_20260318_004651 SUCCESS
+[2026-03-18 00:53:47] [T2] EDIT notebooklm_auto_refresh.py SUCCESS
+[2026-03-18 00:53:47] [T2] EDIT launch_notebooklm_debug_chrome.ps1 SUCCESS
+[2026-03-18 00:53:47] [T2] EDIT refresh_notebooklm_tokens.ps1 SUCCESS
+[2026-03-18 00:53:47] [T2] EDIT run_nlm_proxy.ps1 SUCCESS
+[2026-03-18 00:53:47] [T2] EDIT research_notes.md SUCCESS
+[2026-03-18 00:53:47] [T2] EDIT implementation_plan.md SUCCESS
+[2026-03-18 00:53:47] [T2] EDIT task.md SUCCESS
+[2026-03-18 00:53:47] [T2] VERIFY notebooklm_auto_refresh.py py_compile SUCCESS
+[2026-03-18 00:53:47] [T2] VERIFY notebooklm_auto_refresh.py --help SUCCESS
+[2026-03-18 00:53:47] [T2] VERIFY launch_notebooklm_debug_chrome.ps1 -PrintOnly SUCCESS
+[2026-03-18 00:53:47] [T2] VERIFY refresh_notebooklm_tokens.ps1 parse SUCCESS
+[2026-03-18 00:53:47] [T2] VERIFY run_nlm_proxy.ps1 --help SUCCESS
+
+[2026-03-18 00:59:44] [T2] BACKUP C:\Users\Admin\.agents\skills -> C:\Users\Admin\.agents\skill_backups\20260318_005543 SUCCESS
+[2026-03-18 00:59:44] [T2] CREATE C:\Users\Admin\.agents\skills\core-agent-rules\SKILL.md SUCCESS
+[2026-03-18 00:59:44] [T2] EDIT C:\Users\Admin\.agents\skills\task-executor\SKILL.md SUCCESS
+[2026-03-18 00:59:44] [T2] EDIT C:\Users\Admin\.agents\skills\safety-guardrails\SKILL.md SUCCESS
+[2026-03-18 00:59:44] [T2] EDIT C:\Users\Admin\.agents\skills\skill-conductor\SKILL.md SUCCESS
+[2026-03-18 00:59:44] [T2] VERIFY quick_validate global core-agent-rules SUCCESS
+[2026-03-18 00:59:44] [T2] VERIFY quick_validate global task-executor SUCCESS
+[2026-03-18 00:59:44] [T2] VERIFY quick_validate global safety-guardrails SUCCESS
+[2026-03-18 00:59:44] [T2] VERIFY quick_validate global skill-conductor SUCCESS
+[2026-03-18 00:59:44] [T2] VERIFY stale-pattern-search global skills CLEAN
+[2026-03-18 01:12:42] [T2] CMD START Obsidian install workflow SUCCESS
+[2026-03-18 01:13:31] [T2] CMD refresh_notebooklm_tokens.ps1 -DebugPort 9223 START
+[2026-03-18 01:13:49] [T2] EDIT notebooklm_auto_refresh.py suppress_origin SUCCESS
+[2026-03-18 01:15:57] [T2] EDIT notebooklm_auto_refresh.py html_token_fallback SUCCESS
+[2026-03-18 01:18:10] [T2] EDIT task.md NotebookLM checklist SUCCESS
+[2026-03-18 01:18:10] [T2] EDIT research_notes.md NotebookLM execution update SUCCESS
+[2026-03-18 01:22:56] [T2] EDIT %APPDATA%\\Obsidian\\obsidian.json SUCCESS:utf8-no-bom cli=true
+[2026-03-18 01:25:08] [T2] EDIT %APPDATA%\\Obsidian\\obsidian.json SUCCESS:add kb-workspace vault + cli=true
+[2026-03-18 01:26:05] [T2] CMD VERIFY obsidian version + vault SUCCESS
+[2026-03-18 01:33:22] [T2] EDIT research_notes.md cross-update-audit SUCCESS
+[2026-03-18 01:33:22] [T2] EDIT implementation_plan.md cross-update-stabilization SUCCESS
+[2026-03-18 01:33:23] [T2] EDIT task.md cross-update-stabilization SUCCESS
+[2026-03-18 01:38:32] [T2] CMD START Obsidian vault productionization SUCCESS
+[2026-03-18 01:56:30] [T2] EDIT workspace vault config/content SUCCESS
+[2026-03-18 01:56:37] [T3] EDIT D:\ЯндексДиск\Yandex.Disk\ПРОЕКТЫ\ИИ-мониторинг рынка автокомпоненетов\Концепт бюджетного бизнес-радара GROK.md SUCCESS:user-requested rewrite
+[2026-03-18 01:56:54] [T2] VERIFY external markdown rewrite SUCCESS:length=19283 readable=utf8
+[2026-03-18 01:56:54] [T2] EDIT research_notes.md radar-rewrite section SUCCESS
+[2026-03-18 01:56:54] [T2] EDIT implementation_plan.md radar-rewrite section SUCCESS
+[2026-03-18 01:56:54] [T2] EDIT task.md radar-rewrite checklist SUCCESS
+[2026-03-18 02:14:18] [T2] VERIFY run_nlm_proxy.ps1 notebook list SUCCESS
+[2026-03-18 02:14:18] [T2] VERIFY run_nlm_proxy.ps1 notebook get 254d43aa-a535-46f2-a65b-f6ce877256c9 SUCCESS
+[2026-03-18 02:14:18] [T2] VERIFY run_nlm_proxy.ps1 notebook get 21c4ad87-0b35-43ca-a31a-01ea3b648b17 SUCCESS
+[2026-03-18 02:14:18] [T2] VERIFY MCP notebook_list via python tool entrypoint SUCCESS
+[2026-03-18 02:14:18] [T2] VERIFY MCP notebook_get 254d43aa-a535-46f2-a65b-f6ce877256c9 via python tool entrypoint SUCCESS
+[2026-03-18 02:14:18] [T2] VERIFY MCP notebook_get 21c4ad87-0b35-43ca-a31a-01ea3b648b17 via python tool entrypoint SUCCESS
+[2026-03-18 02:10:43] [T2] CHECKPOINT AGENTS.md + workspace docs FAILED:checkpoint.ps1 did not parse multi-file argument list
+[2026-03-18 02:10:43] [T2] CMD INSTALL workspace/.obsidian/plugins terminal+obsidian-kanban SUCCESS:official registry + GitHub releases
+[2026-03-18 02:10:43] [T2] EDIT AGENTS.md workspace/agents.md workspace/notes/* SUCCESS:aligned CLI commands and plugin exceptions
+[2026-03-18 02:10:43] [T2] VERIFY Obsidian CLI links/backlinks base:views daily:path plugins SUCCESS
+[2026-03-18 02:22:41] [T2] VERIFY notebooklm-mcp configured entrypoint FAIL:MODULE_NOT_FOUND notebooklm_mcp.server
+[2026-03-18 02:22:41] [T2] VERIFY notebooklm_tools.mcp.server process start SUCCESS
+[2026-03-18 02:28:11] [T3] EDIT C:\Users\Admin\.gemini\antigravity\mcp_config.json SUCCESS:entrypoint notebooklm_tools.mcp.server
+[2026-03-18 02:28:11] [T2] VERIFY configured notebooklm-mcp server process start SUCCESS
+[2026-03-18 02:19:26] [T2] CHECKPOINT .agents\checkpoints\checkpoint_20260318_020141 SUCCESS
+[2026-03-18 02:19:26] [T2] EDIT workspace/agents.md SUCCESS
+[2026-03-18 02:19:26] [T2] EDIT research_notes.md SUCCESS:cross-update-stabilization-execution
+[2026-03-18 02:19:26] [T2] EDIT implementation_plan.md SUCCESS:cross-update-stabilization-alignment
+[2026-03-18 02:19:26] [T2] EDIT task.md SUCCESS:cross-update-stabilization-alignment
+[2026-03-18 02:19:26] [T2] EDIT .agents\skills\safety-guardrails\SKILL.md SUCCESS:audit-log-newline-rule
+[2026-03-18 02:19:26] [T2] EDIT agent_audit.log SUCCESS:newline-repair-and-append
+[2026-03-18 02:19:26] [T2] VERIFY quick_validate safety-guardrails SUCCESS
+[2026-03-18 02:19:26] [T2] VERIFY rg cross-update-stale-patterns SUCCESS
+[2026-03-18 02:22:48] [T2] EDIT workspace\notes\setup-checklist.md SUCCESS:kb-root-fallback-rule
+[2026-03-18 02:22:48] [T2] VERIFY workspace\notes\setup-checklist.md CHECKLIST_CLEAN
+[2026-03-18 02:22:48] [T2] VERIFY agent_audit.log AUDIT_LOG_CLEAN
+[2026-03-18 02:27:12] [T2] CHECKPOINT checkpoint_20260318_021728 SUCCESS:dashboard and service KB expansion
+[2026-03-18 02:27:12] [T2] CMD CREATE projects/ops-board.md SUCCESS:obsidian-kanban convert-to-kanban
+[2026-03-18 02:27:12] [T2] EDIT workspace notes/services/sources/runbooks/projects SUCCESS:dashboard, seeded services, runbooks, daily note
+[2026-03-18 02:27:12] [T2] EDIT workspace/.obsidian/workspace.json SUCCESS:dashboard-first startup layout
+[2026-03-18 02:27:12] [T2] VERIFY ops board, services base, dashboard links, daily path SUCCESS
+[2026-03-18 02:39:45] [T2] CHECKPOINT .agents\checkpoints\checkpoint_20260318_023712 SUCCESS:governance_stabilization
+[2026-03-18 02:39:45] [T2] CHECKPOINT .agents\checkpoints\checkpoint_20260318_023808 SUCCESS:youtube_monitoring_skill
+[2026-03-18 02:39:45] [T2] CHECKPOINT .agents\checkpoints\checkpoint_20260318_023809 SUCCESS:notebooklm_helpers
+[2026-03-18 02:39:45] [T2] CHECKPOINT .agents\checkpoints\checkpoint_20260318_023811 SUCCESS:workspace_vault
+[2026-03-18 02:39:45] [T2] CHECKPOINT .agents\checkpoints\checkpoint_20260318_023813 SUCCESS:site_and_reference_outputs
+[2026-03-18 02:39:45] [T2] EDIT progress.md SUCCESS:dirty-worktree-cohorts
+[2026-03-18 02:39:45] [T2] EDIT research_notes.md SUCCESS:dirty-worktree-grouping
+[2026-03-18 02:39:45] [T2] EDIT implementation_plan.md SUCCESS:dirty-worktree-grouping
+[2026-03-18 02:39:45] [T2] EDIT task.md SUCCESS:dirty-worktree-grouping
+[2026-03-18 02:39:45] [T2] VERIFY checkpoint manifests SUCCESS:023808 023809 023811 023813
+[2026-03-18 02:39:45] [T2] VERIFY progress.md cohort map SUCCESS
+[2026-03-18 19:26:46] [T2] EDIT scripts/git_cohort_stage.ps1 SUCCESS
+[2026-03-18 19:26:46] [T2] EDIT staging_strategy.md SUCCESS
+[2026-03-18 19:26:46] [T2] EDIT implementation_plan.md SUCCESS:cohort-staging-strategy
+[2026-03-18 19:26:46] [T2] EDIT task.md SUCCESS:cohort-staging-strategy
+[2026-03-18 19:26:46] [T2] EDIT progress.md SUCCESS:staging-automation-section
+[2026-03-18 19:26:46] [T2] EDIT research_notes.md SUCCESS:cohort-staging-strategy
+[2026-03-18 19:26:46] [T2] VERIFY scripts/git_cohort_stage.ps1 DRY_RUN_SUCCESS
+[2026-03-18 19:26:46] [T2] VERIFY staged_count REMAINS_243
+[2026-03-18 21:48:22] [T2] EDIT workspace/notes/project-status-summary.md workspace/notes/dashboard.md workspace/projects/ops-board.md SUCCESS:project summary exposed via dashboard and board
+[2026-03-18 21:48:22] [T2] VERIFY dashboard links SUCCESS:project-status-summary linked from dashboard and index
+[2026-03-18 22:28:23] [T2] EDIT workspace/notes/target-system-architecture.md workspace/notes/dashboard.md workspace/notes/index.md workspace/notes/project-status-summary.md workspace/projects/ops-board.md SUCCESS:target architecture for My Dashboard + Vault + Mobile + Agent
+[2026-03-18 22:09:18] [T2] CREATE workspace/notes/ecosystem-overlap-analysis.md SUCCESS
+[2026-03-18 22:09:18] [T2] EDIT workspace/notes/dashboard.md SUCCESS:linked ecosystem analysis
+[2026-03-18 22:09:18] [T2] EDIT workspace/notes/index.md SUCCESS:linked ecosystem analysis
+[2026-03-18 22:09:18] [T2] EDIT research_notes.md SUCCESS:ecosystem convergence analysis section
+[2026-03-18 22:09:18] [T2] EDIT implementation_plan.md SUCCESS:ecosystem convergence analysis section
+[2026-03-18 22:09:18] [T2] EDIT task.md SUCCESS:ecosystem convergence analysis checklist
+[2026-03-18 22:15:06] [T2] EDIT workspace/notes/ecosystem-overlap-analysis.md SUCCESS:added export contract, entity schema, weekly synthesis loop
+[2026-03-18 22:15:06] [T2] EDIT research_notes.md SUCCESS:added external analysis_results deltas
+[2026-03-18 22:15:06] [T2] EDIT implementation_plan.md SUCCESS:extended ecosystem convergence plan
+[2026-03-18 22:15:06] [T2] EDIT task.md SUCCESS:added ecosystem convergence next steps
+2026-03-18T23:15:30+03:00 | TIER2 | dashboard_mvp | Extended sync_workspace_data.py to generate project_registry.json, KB overlays, non-destructive entity export, and weekly briefs.
+2026-03-18T23:15:31+03:00 | TIER2 | dashboard_mvp | Updated scratch dashboard app.js to load canonical project registry and expose project mode, KB open, and launch prompt copy actions.
+2026-03-18T23:15:32+03:00 | TIER2 | dashboard_mvp | Verified Python and JavaScript syntax and completed a live sync run producing dashboard and vault artifacts.
+2026-03-18T23:27:40+03:00 | TIER2 | link_normalization | Added evidence-based legacy chat autolinking with brain markdown snippets, path hints, and curated project hint rules in sync_workspace_data.py.
+2026-03-18T23:27:41+03:00 | TIER2 | link_normalization | Added post-overlay reconciliation and canonical project_id sanitization to remove stale chat links to archived project IDs.
+2026-03-18T23:27:42+03:00 | TIER2 | link_normalization | Verified sync reduced unlinked chats from 21 to 4 with zero invalid relatedProjectIds.
+2026-03-18T23:34:20+03:00 | TIER2 | external_audit_inventory | Generated full-system absolute-path inventory and manifest for external LLM audit.
+2026-03-18T23:34:21+03:00 | TIER2 | external_audit_inventory | Included repository, dashboard workspace, KnowledgeBase vault, brain store, MCP config, and NotebookLM runtime cache.
+2026-03-18T23:34:22+03:00 | TIER2 | external_audit_inventory | Verified manifest readability and inventory size of 4772 file paths.

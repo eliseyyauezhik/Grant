@@ -1,0 +1,46 @@
+filters:
+  and:
+    - file.inFolder("notes/services")
+    - type == "service"
+properties:
+  file.name:
+    displayName: Service
+  service_id:
+    displayName: ID
+  status:
+    displayName: Status
+  owner:
+    displayName: Owner
+  team:
+    displayName: Team
+  category:
+    displayName: Category
+  criticality:
+    displayName: Criticality
+  last_reviewed:
+    displayName: Reviewed
+  runbook:
+    displayName: Runbook
+views:
+  - type: table
+    name: Services
+    order:
+      - file.name
+      - service_id
+      - status
+      - owner
+      - team
+      - category
+      - criticality
+      - last_reviewed
+      - runbook
+  - type: table
+    name: By Status
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - status
+      - file.name
+      - owner
+      - criticality

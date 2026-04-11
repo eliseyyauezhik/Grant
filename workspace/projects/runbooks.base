@@ -1,0 +1,24 @@
+filters:
+  and:
+    - file.inFolder("notes/runbooks")
+    - 'type == "runbook"'
+properties:
+  file.name:
+    displayName: Runbook
+  service:
+    displayName: Service
+  status:
+    displayName: Status
+  owner:
+    displayName: Owner
+  last_reviewed:
+    displayName: Reviewed
+views:
+  - type: table
+    name: Runbooks
+    order:
+      - file.name
+      - service
+      - status
+      - owner
+      - last_reviewed
