@@ -1,7 +1,7 @@
 ---
 type: backlog
 status: active
-last_updated: 2026-04-24
+last_updated: 2026-04-26
 tags:
   - backlog
   - reminders
@@ -19,7 +19,7 @@ tags:
 
 <!-- Задачи с конкретными дедлайнами или высоким приоритетом -->
 
-- [ ] **OpenClaw мультиагентность**: передать `codex_instructions_2026-04-24.md` в Codex и выполнить этапы 1–6 на VPS — *добавлено 2026-04-24*
+- [ ] **Hermes: Honcho + mem0**: подключить плагины памяти — *2026-04-26*
 - [ ] Рассмотреть и утвердить план модернизации Antigravity ([[projects/modernization-plan-review]]) — *обсуждено 2026-03-27*
 
 ---
@@ -51,6 +51,9 @@ tags:
 
 ## ✅ Выполнено
 
+- [x] **Hermes VPS**: установка + Telegram gateway + auxiliary LLM fix — *выполнено 2026-04-26*
+- [x] **SSH-ключ на VPS 85.234.100.31**: автономный доступ настроен — *выполнено 2026-04-26*
+
 - [x] **BUG-1 sync_workspace_data.py**: circular dependency в projects.json разделён (input ≠ output) — *выполнено 2026-04-24*
 - [x] **BUG-2 sync_workspace_data.py**: дедупликация notes segments — *выполнено 2026-04-24*
 - [x] **BUG-3 sync_workspace_data.py**: нормализация workflow paths перед дедупликацией — *выполнено 2026-04-24*
@@ -67,6 +70,14 @@ tags:
 - [ ] FastAPI Brain API (REST/WebSocket для Dashboard mutations)
 - [ ] Smart Inbox Router через n8n
 - [ ] Self-improving agents (только после стабильного write-back)
+- [ ] **OpenAI Privacy Filter** — изучить и внедрить: https://github.com/openai/privacy-filter — *2026-04-25*
+- [ ] **Обновить Linux на старом ноуте** + перенос данных на основной ПК + Яндекс Диск — *2026-04-25*
+- [ ] **Hermes: Inbox Agent** — скилл для обработки сырых материалов из Telegram (Claude Haiku 4.5) — *2026-04-25*
+- [ ] **Hermes: Monitor Agent** — cron мониторинг AI новостей каждые 2-3 дня → Telegram — *2026-04-25*
+- [ ] **Hermes: Silero TTS** — голосовые ответы по-русски в Telegram — *2026-04-25*
+- [ ] **GigaAM финализация** — добавить HuggingFace token для pyannote/segmentation-3.0 — *2026-04-25*
+- [ ] **Hermes: субагенты** — code (Kimi K2), content (Qwen3 235B), data (DeepSeek R1) — *2026-04-25*
+- [ ] **Ollama fallback** — локальная LLM на VPS (Qwen2.5-7B) как 3й уровень fallback — *2026-04-25*
 
 ---
 
