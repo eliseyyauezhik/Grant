@@ -50,6 +50,9 @@ tags:
 
 ## ✅ Выполнено
 
+- [x] **Hermes: субагенты + скиллы**: code-agent (DeepSeek R1), inbox-agent (Haiku), monitor-agent (Gemini Flash) — *выполнено 2026-04-26*
+- [x] **Hermes: делегация** — DeepSeek R1 free + auto-approve + 3 параллельных дочерних агента — *выполнено 2026-04-26*
+- [x] **Hermes: cron-задачи** — AI Monitor (9:00 каждые 2 дня) + Weekly Synthesis (пятница 18:00) — *выполнено 2026-04-26*
 - [x] **Hermes: mem0 память** — mem0 cloud (91.6% accuracy) + redact_pii анонимизация — *выполнено 2026-04-26*
 - [x] **Hermes VPS**: установка + Telegram gateway + auxiliary LLM fix — *выполнено 2026-04-26*
 - [x] **SSH-ключ на VPS 85.234.100.31**: автономный доступ настроен — *выполнено 2026-04-26*
@@ -66,7 +69,7 @@ tags:
 
 ## 💡 Parking Lot (идеи на потом)
 
-- [ ] Weekly synthesis через n8n: каждую пятницу 18:00 → sync → `weekly_project_brief.md` → Telegram
+- [ ] Weekly synthesis — настроено напрямую через Hermes cron (каждую пятницу 18:00 → Telegram) — n8n остаётся для более сложных автоматизаций
 - [ ] FastAPI Brain API (REST/WebSocket для Dashboard mutations)
 - [ ] Smart Inbox Router через n8n
 - [ ] Self-improving agents (только после стабильного write-back)
