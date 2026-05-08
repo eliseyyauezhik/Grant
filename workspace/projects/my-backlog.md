@@ -1,7 +1,7 @@
 ---
 type: backlog
 status: active
-last_updated: 2026-04-26
+last_updated: 2026-05-04
 tags:
   - backlog
   - reminders
@@ -55,6 +55,9 @@ tags:
 - [x] **Hermes: cron-задачи** — AI Monitor (9:00 каждые 2 дня) + Weekly Synthesis (пятница 18:00) — *выполнено 2026-04-26*
 - [x] **Hermes: mem0 память** — mem0 cloud (91.6% accuracy) + redact_pii анонимизация — *выполнено 2026-04-26*
 - [x] **Hermes VPS**: установка + Telegram gateway + auxiliary LLM fix — *выполнено 2026-04-26*
+- [x] **Hermes: bug #19471 workaround** — KillSignal=SIGKILL в systemd unit, gateway больше не застревает при рестарте — *выполнено 2026-05-04*
+- [x] **Hermes: HTTP 402 fix** — заменены платные auxiliary модели (gemini-1.5-pro → gemini-2.0-flash-001 free) — *выполнено 2026-05-04*
+- [x] **Hermes: обновление v0.11.0 → v0.12.0** — 1100 коммитов, 15 новых скиллов — *выполнено 2026-05-04*
 - [x] **SSH-ключ на VPS 85.234.100.31**: автономный доступ настроен — *выполнено 2026-04-26*
 
 - [x] **BUG-1 sync_workspace_data.py**: circular dependency в projects.json разделён (input ≠ output) — *выполнено 2026-04-24*
