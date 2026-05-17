@@ -1,0 +1,19 @@
+{
+  "title": "Hermes VPS — Конфигурация и улучшения (май 2026)",
+  "summary": "Конфигурация Hermes Agent на VPS 85.234.100.31. SOUL.md переписан как управляющий помощник (Context Anchoring, анти-дрифт, делегирование). 6 новых моделей добавлены в CloseRouter. Cron: утренний пульс КОРА, поиск улучшений 2x/день, weekly synthesis. CloseRouter баланс: $2.58. Рекомендован upgrade до v0.13.0.",
+  "created": "2026-05-11T10:30:00+03:00",
+  "updated": "2026-05-11T10:30:00+03:00",
+  "tags": ["hermes", "vps", "configuration", "improvement"],
+  "references": [
+    {
+      "type": "conversation",
+      "id": "3e26650f-b24e-45cc-b204-c3de0099c5f0",
+      "description": "Session: Hermes reconfiguration as project manager"
+    },
+    {
+      "type": "file",
+      "path": "workspace/projects/hermes-improvement-plan.md",
+      "description": "Full improvement plan"
+    }
+  ]
+}

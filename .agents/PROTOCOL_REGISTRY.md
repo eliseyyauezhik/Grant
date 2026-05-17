@@ -1,7 +1,7 @@
 # PROTOCOL REGISTRY
 
-last_review: 2026-03-22
-next_review: 2026-06-22
+last_review: 2026-05-17
+next_review: 2026-08-17
 
 ## Antigravity AI System
 
@@ -37,6 +37,8 @@ next_review: 2026-06-22
 | .agents/skills/n8n-agentic-integration/SKILL.md | 2026-03-19 | ACTIVE |
 | .agents/skills/vibe-coding-ui/SKILL.md | 2026-03-19 | ACTIVE |
 | .agents/skills/youtube-monitoring/SKILL.md | 2026-03-19 | ACTIVE |
+| .agents/skills/session-knowledge-harvester/SKILL.md | 2026-05-17 | ACTIVE |
+| .agents/skills/nlm-skill/SKILL.md | 2026-05-17 | ACTIVE (migrated from global) |
 
 ### FIXED MODELS
 

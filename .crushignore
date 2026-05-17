@@ -1,0 +1,42 @@
+# Crush ignore file
+# Files and directories Crush should not consider as context
+
+# Antigravity-specific (legacy, will be cleaned up)
+.gemini/
+.kilo/
+.claude/
+
+# Binary and generated files
+*.png
+*.jpg
+*.jpeg
+*.jfif
+*.webp
+*.pdf
+*.pptx
+*.docx
+*.rtf
+*.zip
+*.exe
+
+# Build artifacts
+__pycache__/
+node_modules/
+.netlify/
+venv/
+
+# Large HTML files (grant presentations - not code)
+technostart_fpg_*.html
+grant_*.html
+deep_research_*.html
+
+# Archive and audit bundles
+_archive/
+external_audit_bundle_*/
+system_audit_*.txt
+
+# Obsidian internals
+.obsidian/
+
+# Git internals
+.git/

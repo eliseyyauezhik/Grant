@@ -1,0 +1,47 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "agents": {
+    "coder": {
+      "model": "claude-sonnet-4-20250514",
+      "maxTokens": 16000
+    },
+    "task": {
+      "model": "claude-sonnet-4-20250514",
+      "maxTokens": 16000
+    },
+    "title": {
+      "model": "claude-sonnet-4-20250514",
+      "maxTokens": 80
+    }
+  },
+  "mcp": {
+    "n8n-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "n8n-mcp"],
+      "env": {
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "http://localhost:5678",
+        "N8N_BASE_URL": "http://localhost:5678"
+      }
+    }
+  },
+  "permissions": {
+    "allowed_tools": [
+      "view",
+      "ls",
+      "grep",
+      "glob",
+      "diagnostics"
+    ]
+  },
+  "options": {
+    "context_paths": [
+      ".agents/steering/owner.md"
+    ],
+    "initialize_as": "AGENTS.md"
+  },
+  "autoCompact": true
+}

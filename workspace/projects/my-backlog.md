@@ -1,7 +1,7 @@
 ---
 type: backlog
 status: active
-last_updated: 2026-05-11
+last_updated: 2026-05-17
 tags:
   - backlog
   - reminders
@@ -21,7 +21,8 @@ tags:
 
 - [ ] **КОРА 35 лет — Юбилей 2026**: R-фаза (исследование), ответить на 7 вопросов R-5, дедлайн авг 2026 — *инициирован 2026-05-09*
 - [ ] **Hermes: SOUL.md + LIFE_MAP обновлены**: проверить работу в Telegram, убедиться что держит контекст — *2026-05-11*
-- [ ] Рассмотреть и утвердить план модернизации Antigravity ([[projects/modernization-plan-review]]) — *обсуждено 2026-03-27*
+- [ ] **Миграция Antigravity → Crush**: установить Crush (`winget install charmbracelet.crush`), smoke-тест, очистка legacy — *план готов 2026-05-17*
+- [x] ~~Рассмотреть и утвердить план модернизации Antigravity~~ → **заменено миграцией в Crush** — *2026-05-17*
 
 ---
 

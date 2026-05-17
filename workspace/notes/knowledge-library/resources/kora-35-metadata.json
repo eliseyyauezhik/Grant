@@ -1,0 +1,39 @@
+{
+  "title": "КОРА 35 лет — Юбилейные мероприятия 2026",
+  "summary": "Проект организации юбилейных мероприятий для Группы КОРА (35 лет, тройной юбилей с 400-летием Набережных Челнов и 50-летием КАМАЗ). Фаза: Research. Блокер: R-5 (7 вопросов Дмитрию). Файлы: vault workspace/projects/kora-anniversary* + VPS /root/projects/kora-anniversary/. Hermes настроен как управляющий помощник проекта с ежедневным пульсом.",
+  "created": "2026-05-11T10:30:00+03:00",
+  "updated": "2026-05-11T10:30:00+03:00",
+  "tags": ["kora", "anniversary", "events", "hermes", "project"],
+  "references": [
+    {
+      "type": "conversation",
+      "id": "3e26650f-b24e-45cc-b204-c3de0099c5f0",
+      "description": "Main session: KORA anniversary initialization + Hermes reconfiguration"
+    },
+    {
+      "type": "file",
+      "path": "workspace/projects/kora-anniversary-2026.md",
+      "description": "Project card in vault"
+    },
+    {
+      "type": "file",
+      "path": "workspace/projects/kora-anniversary/research-phase.md",
+      "description": "Research phase plan (R-1..R-7)"
+    },
+    {
+      "type": "file",
+      "path": "workspace/projects/kora-anniversary/checklist.md",
+      "description": "Countdown checklist"
+    },
+    {
+      "type": "file",
+      "path": "workspace/projects/kora-anniversary/strategy-section12-analysis.md",
+      "description": "Analysis of strategy Section 12 for anniversary"
+    },
+    {
+      "type": "file",
+      "path": "workspace/projects/hermes-improvement-plan.md",
+      "description": "Hermes improvement plan May 2026"
+    }
+  ]
+}
