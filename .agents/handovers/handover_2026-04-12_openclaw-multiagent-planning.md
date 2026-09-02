@@ -31,7 +31,7 @@
 
 ### Telegram — RUNNING ✅
 - Mode: `polling`
-- Token: `8393655317:AAH1fLa6H8q3gHlNOasYfSsdr_7d9Jcd7C0` (в конфиге VPS)
+- Token: `TELEGRAM_BOT_TOKEN_VYNESEN_SM_LOCAL_SECRETS` (в конфиге VPS)
 - dmPolicy: `pairing`
 - ⚠️ Финальный тест в Telegram (написать боту вручную) — НЕ выполнен, отложен
 

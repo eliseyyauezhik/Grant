@@ -133,7 +133,7 @@
     "telegram": {
       "enabled": true,
       "dmPolicy": "pairing",
-      "botToken": "8393655317:AAH1fLa6H8q3gHlNOasYfSsdr_7d9Jcd7C0",
+      "botToken": "TELEGRAM_BOT_TOKEN_VYNESEN_SM_LOCAL_SECRETS",
       "groups": {
         "*": {
           "requireMention": true
