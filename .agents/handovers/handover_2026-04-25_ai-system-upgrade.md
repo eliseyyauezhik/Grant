@@ -99,7 +99,7 @@
 
 **Важные детали:**
 - Primary модель: `anthropic/claude-haiku-4-5` (дорого, неэффективно)
-- Telegram бот: `8393655317:AAH1fLa6H8q3gHlNOasYfSsdr_7d9Jcd7C0`
+- Telegram бот: `TELEGRAM_BOT_TOKEN_VYNESEN_SM_LOCAL_SECRETS`
 - `memorySearch: false` ← память была ВЫКЛЮЧЕНА
 - Субагенты (code, content, data) НЕ были созданы
 - Инструкция `codex_instructions_2026-04-24.md` НЕ была выполнена
@@ -169,7 +169,7 @@
 ### VPS credentials:
 - **IP:** 147.45.67.249 (ВЫКЛЮЧЕН)
 - **SSH:** `root` / `ZaC8tUI0fg302`
-- **Telegram bot:** `8393655317:AAH1fLa6H8q3gHlNOasYfSsdr_7d9Jcd7C0`
+- **Telegram bot:** `TELEGRAM_BOT_TOKEN_VYNESEN_SM_LOCAL_SECRETS`
 - **Gateway token:** `d2a2953d0d726968767abb1610b43136052eeed7c8d39342`
 
 ---
